@@ -36,11 +36,8 @@ class AuthenticatedSessionController extends Controller
         elseif ($userRole=='moderator') {
             return redirect()->intended(route('moderator', absolute: false));
         }
-        elseif ($userRole=='user') {
-            return redirect()->intended(route('dashboard', absolute: false));
-        }
         else {
-            return redirect()->intended(route('welcome', absolute: false));
+            return redirect()->intended(route('frontpage', absolute: false));
         }
     }
 

@@ -1,0 +1,12 @@
+1. custom error message for login and signup page.
+2. dashboard for moderator
+
+
+
+1. JW Token
+
+
+Problems:
+1. order table, 
+    #. $table->json('address');
+    why json?

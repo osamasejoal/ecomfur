@@ -40,16 +40,14 @@ class RoleManager
                 break;
         }
 
-        switch ($userRole) {
-            case 'admin':
-                return redirect()->route('admin');
-                break;
-            case 'moderator':
-                return redirect()->route('moderator');
-                break;
-            case 'user':
-                return redirect()->route('user');
-                break;
+        if ($userRole == 'admin') {
+            return redirect()->route('admin');
+        }
+        elseif ($userRole =='moderator') {
+            return redirect()->route('moderator');
+        }
+        else {
+            return redirect()->route('frontpage');
         }
     }
 }

@@ -47,4 +47,48 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // hasMany relation with order table
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    // hasMany relation with address table
+    public function address()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    // hasMany relation with wishlist table
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    // hasMany relation with review table
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    // /**
+    //  * Get the identifier that will be stored in the subject claim of the JWT.
+    //  *
+    //  * @return mixed
+    //  */
+    // public function getJWTIdentifier()
+    // {
+    //     return $this->getKey();
+    // }
+
+    // /**
+    //  * Return a key value array, containing any custom claims to be added to the JWT.
+    //  *
+    //  * @return array
+    //  */
+    // public function getJWTCustomClaims()
+    // {
+    //     return [];
+    // }
 }
