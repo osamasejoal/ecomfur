@@ -35,14 +35,14 @@
 
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin') }}">
+                    <a class="nav-link menu-link" href="{{ route('home.admin') }}">
                         <i data-feather="home" class="icon-dual"></i> <span data-key="t-dashboards">Dashboard</span>
                     </a>
                 </li> <!-- end Dashboard -->
 
                 <!-- Categories -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#">
+                    <a class="nav-link menu-link" href="{{ route('category.view') }}">
                         <i data-feather="grid" class="icon-dual"></i> <span>Categories</span>
                     </a>
                 </li> <!-- end Categories -->

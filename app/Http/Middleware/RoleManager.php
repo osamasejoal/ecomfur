@@ -41,10 +41,10 @@ class RoleManager
         }
 
         if ($userRole == 'admin') {
-            return redirect()->route('admin');
+            return redirect()->route('home.admin');
         }
         elseif ($userRole =='moderator') {
-            return redirect()->route('moderator');
+            return redirect()->route('home.moderator');
         }
         else {
             return redirect()->route('frontpage');

@@ -1,3 +1,5 @@
 Laravel Framework   => 11.15.0
 git version         => 2.34.1.windows.1
 Bootstrap           => v5.1.0
+
+jquery version => 3.7.1
