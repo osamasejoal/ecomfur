@@ -47,6 +47,13 @@
                     </a>
                 </li> <!-- end Categories -->
 
+                <!-- About -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('about.view') }}">
+                        <i data-feather="book-open" class="icon-dual"></i> <span>About</span>
+                    </a>
+                </li> <!-- end About -->
+
                 <!-- Pages -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">

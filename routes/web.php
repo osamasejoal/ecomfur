@@ -45,3 +45,15 @@ Route::controller(CategoryController::class)->prefix('category')->middleware(['a
     Route::put('/update/{slug}', 'update')->name('category.update');
     Route::delete('/destroy/{slug}', 'destroy')->name('category.destroy');
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          About Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(AboutController::class)->prefix('about')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('about.view');
+    Route::put('/update/{id}', 'update')->name('about.update');
+});

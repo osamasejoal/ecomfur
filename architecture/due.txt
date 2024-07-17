@@ -1,5 +1,6 @@
-1. custom error message for login and signup page.
-2. dashboard for moderator
+1. Login Signup page
+2. Dashboard for moderator
+3. About page (Image add, delete).
 
 
 
@@ -7,6 +8,3 @@
 
 
 Problems:
-1. order table, 
-    #. $table->json('address');
-    why json?
