@@ -36,7 +36,7 @@
 
                         <table class="table table-nowrap text-center table-light table-bordered">
                             <thead>
-                                <tr class="table-bordered border-primary fw-bold">
+                                <tr class="table-bordered border-info fw-bold">
                                     <th class="fw-bolder" scope="col">Title</th>
                                     <th class="fw-bolder" scope="col">Image</th>
                                     <th class="fw-bolder" scope="col">Action</th>

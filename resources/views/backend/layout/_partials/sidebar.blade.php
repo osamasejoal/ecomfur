@@ -54,6 +54,20 @@
                     </a>
                 </li> <!-- end About -->
 
+                <!-- Testimonial -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('testimonial.view') }}">
+                        <i class="mdi mdi-comment-quote-outline"></i> <span>Testimonial</span>
+                    </a>
+                </li> <!-- end Testimonial -->
+
+                <!-- Supporter -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('supporter.view') }}">
+                        <i class="lab las la-handshake"></i> <span>Supporter</span>
+                    </a>
+                </li> <!-- end Supporter -->
+
                 <!-- Pages -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">

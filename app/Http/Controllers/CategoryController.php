@@ -41,7 +41,7 @@ class CategoryController extends Controller
         ], [
             'title.required' => 'This field is required',
             'title.unique' => 'Title must be unique',
-            'title.regex' => 'Title only contain letters, numbers, and spaces.',
+            'title.regex' => 'This field only contain letters, numbers, and spaces.',
             'image.image' => 'This field must be an image',
             'image.image' => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);

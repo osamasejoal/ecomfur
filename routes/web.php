@@ -57,3 +57,35 @@ Route::controller(AboutController::class)->prefix('about')->middleware(['auth', 
     Route::get('/index', 'index')->name('about.view');
     Route::put('/update/{id}', 'update')->name('about.update');
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Testimonial Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(TestimonialController::class)->prefix('testimonial')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('testimonial.view');
+    Route::get('/create', 'create')->name('testimonial.create');
+    Route::post('/store', 'store')->name('testimonial.store');
+    Route::get('/edit/{id}', 'edit')->name('testimonial.edit');
+    Route::put('/update/{id}', 'update')->name('testimonial.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('testimonial.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Supporter Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(SupporterController::class)->prefix('supporter')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('supporter.view');
+    Route::get('/create', 'create')->name('supporter.create');
+    Route::post('/store', 'store')->name('supporter.store');
+    Route::get('/edit/{id}', 'edit')->name('supporter.edit');
+    Route::put('/update/{id}', 'update')->name('supporter.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('supporter.destroy');
+});

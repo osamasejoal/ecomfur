@@ -1,6 +1,7 @@
-1. Login Signup page
-2. Dashboard for moderator
+1. Login Signup page.
+2. Dashboard for moderator.
 3. About page (Image add, delete).
+4. SupporterController (validation problem wirt 'url').
 
 
 
