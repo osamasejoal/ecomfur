@@ -34,15 +34,15 @@ class TestimonialController extends Controller
     {
         // Validation for Create Testimonial
         $request->validate([
-            'name' => ['required', 'unique:testimonials,name', 'regex:/^[A-Za-z0-9\s]+$/'],
-            'comment' => 'required',
-            'image' => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
+            'name'      => ['required', 'unique:testimonials,name', 'regex:/^[A-Za-z0-9\s]+$/'],
+            'comment'   => 'required',
+            'image'     => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
         ], [
-            '*.required' => 'This field is required',
-            '*.regex' => 'This field only contain letters, numbers, and spaces.',
-            'name.unique' => 'Name must be unique',
-            'image.image' => 'This field must be an image',
-            'image.image' => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            '*.required'    => 'This field is required',
+            '*.regex'       => 'This field only contain letters, numbers, and spaces.',
+            'name.unique'   => 'This field must be unique',
+            'image.image'   => 'This field must be an image',
+            'image.image'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $testimonial = new Testimonial();
@@ -87,15 +87,15 @@ class TestimonialController extends Controller
 
             // Validation for Update Testimonial
             $request->validate([
-                'name' => ['required', 'regex:/^[A-Za-z0-9\s]+$/', 'unique:testimonials,name,' . $testimonial->id],
-                'comment' => 'required',
-                'image' => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
+                'name'      => ['required', 'regex:/^[A-Za-z0-9\s]+$/', 'unique:testimonials,name,' . $testimonial->id],
+                'comment'   => 'required',
+                'image'     => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
             ], [
-                '*.required' => 'This field is required',
-                '*.regex' => 'This field only contain letters, numbers, and spaces.',
-                'name.unique' => 'Name must be unique',
-                'image.image' => 'This field must be an image',
-                'image.image' => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+                '*.required'    => 'This field is required',
+                '*.regex'       => 'This field only contain letters, numbers, and spaces.',
+                'name.unique'   => 'This field must be unique',
+                'image.image'   => 'This field must be an image',
+                'image.image'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);
 
             // Image Upload for Update Testimonial

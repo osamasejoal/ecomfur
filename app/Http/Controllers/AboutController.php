@@ -28,10 +28,10 @@ class AboutController extends Controller
 
             // Validation for Update About
             $request->validate([
-                'title' => 'required',
-                'description' => 'required',
+                'title'         => 'required',
+                'description'   => 'required',
             ], [
-                '*.required' => 'This field is required',
+                '*.required'    => 'This field is required',
             ]);
 
             $about->title       = $request->title;

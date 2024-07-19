@@ -1,7 +1,8 @@
 1. Login Signup page.
 2. Dashboard for moderator.
 3. About page (Image add, delete).
-4. SupporterController (validation problem wirt 'url').
+4. SupporterController (validation problem with 'url').
+5. Check Modal Error. (check validation error, where modal used for update operation).
 
 
 
@@ -9,3 +10,10 @@
 
 
 Problems:
+
+
+
+
+Due commits on github:
+1. Testimonial, Supporter crud done.
+2. 

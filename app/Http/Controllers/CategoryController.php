@@ -39,11 +39,11 @@ class CategoryController extends Controller
             'title' => ['required', 'unique:categories,title', 'regex:/^[A-Za-z0-9\s]+$/'],
             'image' => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
         ], [
-            'title.required' => 'This field is required',
-            'title.unique' => 'Title must be unique',
-            'title.regex' => 'This field only contain letters, numbers, and spaces.',
-            'image.image' => 'This field must be an image',
-            'image.image' => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            'title.required'    => 'This field is required',
+            'title.unique'      => 'This field must be unique',
+            'title.regex'       => 'This field only contain letters, numbers, and spaces.',
+            'image.image'       => 'This field must be an image',
+            'image.image'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $category = new Category();
@@ -60,8 +60,8 @@ class CategoryController extends Controller
         }
 
         // Creating Category
-        $category->title = $request->title;
-        $category->slug = Str::slug($request->title);
+        $category->title    = $request->title;
+        $category->slug     = Str::slug($request->title);
         $category->save();
 
         return back()->with('success', 'Successfully Created your Category');
@@ -90,11 +90,11 @@ class CategoryController extends Controller
                 'title' => ['required', 'regex:/^[A-Za-z0-9\s]+$/', 'unique:categories,title,' . $category->id],
                 'image' => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
             ], [
-                'title.required' => 'This field is required',
-                'title.unique' => 'Title must be unique',
-                'title.regex' => 'Title only contain letters, numbers, and spaces.',
-                'image.image' => 'This field must be an image',
-                'image.image' => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+                'title.required'    => 'This field is required',
+                'title.unique'      => 'This field must be unique',
+                'title.regex'       => 'This field only contain letters, numbers, and spaces.',
+                'image.image'       => 'This field must be an image',
+                'image.image'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);
 
             // Image Upload for Update Category

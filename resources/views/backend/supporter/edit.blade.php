@@ -69,7 +69,8 @@
                         <!-- Logo -->
                         <div class="row mb-4 pt-1">
                             <div class="col-lg-2">
-                                <label for="logo" class="form-label">Logo:</label>
+                                <label for="logo" class="form-label">Logo: <span
+                                    class="text-danger">*</span></label>
                             </div>
                             <div class="col-lg-10">
                                 <input type="file" name="logo" id="logo" class="form-control">

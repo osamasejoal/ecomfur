@@ -89,3 +89,31 @@ Route::controller(SupporterController::class)->prefix('supporter')->middleware([
     Route::put('/update/{id}', 'update')->name('supporter.update');
     Route::delete('/destroy/{id}', 'destroy')->name('supporter.destroy');
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Color Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(ColorController::class)->prefix('color')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('color.view');
+    Route::get('/create', 'create')->name('color.create');
+    Route::post('/store', 'store')->name('color.store');
+    Route::delete('/destroy/{id}', 'destroy')->name('color.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Size Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(SizeController::class)->prefix('size')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('size.view');
+    Route::get('/create', 'create')->name('size.create');
+    Route::post('/store', 'store')->name('size.store');
+    Route::delete('/destroy/{id}', 'destroy')->name('size.destroy');
+});
