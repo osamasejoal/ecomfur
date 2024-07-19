@@ -52,7 +52,8 @@
                                         <td style="vertical-align:middle">
                                             @if ($category->image)
                                                 <img style="object-fit:cover;object-position:center;width:70px;height:70px;border-radius:10%"
-                                                    src="{{ asset($category->image) }}" alt="" class="rounded-circle">
+                                                    src="{{ asset($category->image) }}" alt=""
+                                                    class="rounded-circle">
                                             @else
                                                 <span class="fw-light fst-italic">Null</span>
                                             @endif
@@ -80,7 +81,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <th scope="row"><a href="#" class="fw-semibold">#VZ2110</a></th>
+                                        <td colspan="12" class="text-center text-danger">There is no data to show</td>
                                     </tr>
                                 @endforelse
                             </tbody>

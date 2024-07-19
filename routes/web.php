@@ -117,3 +117,19 @@ Route::controller(SizeController::class)->prefix('size')->middleware(['auth', 'r
     Route::post('/store', 'store')->name('size.store');
     Route::delete('/destroy/{id}', 'destroy')->name('size.destroy');
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Coupon Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(CouponController::class)->prefix('coupon')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('coupon.view');
+    Route::get('/create', 'create')->name('coupon.create');
+    Route::post('/store', 'store')->name('coupon.store');
+    Route::get('/edit/{id}', 'edit')->name('coupon.edit');
+    Route::put('/update/{id}', 'update')->name('coupon.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('coupon.destroy');
+});

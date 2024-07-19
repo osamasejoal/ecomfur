@@ -93,6 +93,13 @@
                         </ul>
                     </div>
                 </li> <!-- end Variant -->
+                
+                <!-- Coupon -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('coupon.view') }}">
+                        <i class="lab las la-tags"></i> <span>Coupon</span>
+                    </a>
+                </li> <!-- end Coupon -->
 
                 <!-- Widgets -->
                 <li class="nav-item">

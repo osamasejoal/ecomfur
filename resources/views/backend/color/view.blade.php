@@ -69,7 +69,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center text-danger">There is no data to show</td>
+                                        <td colspan="12" class="text-center text-danger">There is no data to show</td>
                                     </tr>
                                 @endforelse
                             </tbody>

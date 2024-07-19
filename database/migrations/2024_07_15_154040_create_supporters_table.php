@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('supporters', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('logo');
             $table->string('url')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');

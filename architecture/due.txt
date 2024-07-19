@@ -3,6 +3,9 @@
 3. About page (Image add, delete).
 4. SupporterController (validation problem with 'url').
 5. Check Modal Error. (check validation error, where modal used for update operation).
+6. Look after Coupon's validation (There are some portions of validation should be updated).
+7. Every validtion is creating problem where field value is not required.
+8. Validation Problem with Coupon's crud (specially with the date field).
 
 
 
@@ -16,4 +19,4 @@ Problems:
 
 Due commits on github:
 1. Testimonial, Supporter crud done.
-2. 
+2. Color, Size crud done.

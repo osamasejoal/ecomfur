@@ -13,11 +13,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Create Testimonial</h4>
+                            <h4 class="mb-sm-0">Create Coupon</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('testimonial.view') }}">Testimonial</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('coupon.view') }}">Coupon</a></li>
                                     <li class="breadcrumb-item active">Create</li>
                                 </ol>
                             </div>
@@ -30,8 +30,7 @@
                 <div class="row">
                     <div class="col-lg-11 m-auto">
 
-                        <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data"
-                            class="mt-5">
+                        <form action="{{ route('coupon.store') }}" method="POST" class="mt-5">
                             @csrf
 
                             <!-- Name -->
@@ -42,7 +41,7 @@
                                 </div>
                                 <div class="col-lg-10">
                                     <input type="text" name="name" value="{{ old('name') }}" id="name"
-                                        class="form-control" placeholder="Testimonial Name">
+                                        class="form-control" placeholder="Coupon Name">
 
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
@@ -50,64 +49,71 @@
                                 </div>
                             </div>
 
-                            <!-- Profession -->
+                            <!-- Code -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="profession" class="form-label">Profession:</label>
-                                </div>
-                                <div class="col-lg-10">
-                                    <input type="text" name="profession" value="{{ old('profession') }}" id="profession"
-                                        class="form-control" placeholder="Testimonial Profession">
-
-                                    @error('profession')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- Comment -->
-                            <div class="row mb-4">
-                                <div class="col-lg-2">
-                                    <label for="comment" class="form-label">Comment: <span
+                                    <label for="code" class="form-label">Code: <span
                                             class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <textarea name="comment" id="comment" rows="3" class="form-control" placeholder="Testimonial Comment">{{old('comment')}}</textarea>
+                                    <input type="text" name="code" value="{{ old('code') }}" id="code"
+                                        class="form-control" placeholder="Coupon Code">
 
-                                    @error('comment')
+                                    @error('code')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <!-- Image -->
-                            <div class="row mb-4 pt-1">
+                            <!-- Discount -->
+                            <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="image" class="form-label">Image:</label>
+                                    <label for="discount" class="form-label">Discount: <span
+                                            class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <input type="file" name="image" id="image" class="form-control">
+                                    <input type="number" name="discount" value="{{ old('discount') }}" id="discount"
+                                        class="form-control" placeholder="Coupon Discount">
 
-                                    @error('image')
+                                    @error('discount')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="row mb-4 pt-1">
+                            <!-- Validity -->
+                            <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="showImage" class="form-label"></label>
+                                    <label for="validity" class="form-label">Validity: </label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <img src="{{ asset('upload/no-image.png') }}" alt="No Image" class="rounded-circle "
-                                        id="showImage"
-                                        style="object-fit:cover;object-position:center;width:180px;height:180px;">
+                                    <input type="date" name="validity" value="{{ old('validity') }}" id="validity"
+                                        class="form-control">
+
+                                    @error('validity')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Limit -->
+                            <div class="row mb-4">
+                                <div class="col-lg-2">
+                                    <label for="limit" class="form-label">Limit: </label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <input type="number" name="limit" value="{{ old('limit') }}" id="limit"
+                                        class="form-control" placeholder="Coupon Limit">
+
+                                    @error('limit')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <!-- Submit Button -->
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary">Create Testimonial</button>
+                                <button type="submit" class="btn btn-primary">Create Coupon</button>
                             </div>
                         </form>
 
@@ -118,19 +124,4 @@
             <!-- container-fluid -->
         </div>
         <!-- End Page-content -->
-    @endsection
-
-    @section('footer-content')
-        <!-- The script to show the image what have been chosen by user but didn't submit yet. -->
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#image').change(function(e) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#showImage').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(e.target.files['0']);
-                })
-            });
-        </script>
     @endsection

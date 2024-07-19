@@ -65,6 +65,7 @@
                                 </div>
                             </div>
 
+                            <!-- Submit Button -->
                             <div class="text-center mt-5">
                                 <button type="submit" class="btn btn-primary">Create Color</button>
                             </div>
