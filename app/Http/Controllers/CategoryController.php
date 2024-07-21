@@ -33,15 +33,14 @@ class CategoryController extends Controller
     --------------------------------------------------------------------------*/
     public function store(Request $request)
     {
-
         // Validation for Create Category
         $request->validate([
-            'title' => ['required', 'unique:categories,title', 'regex:/^[A-Za-z0-9\s]+$/'],
+            'name'  => ['required', 'unique:categories,name', 'regex:/^[A-Za-z0-9\s]+$/'],
             'image' => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
         ], [
-            'title.required'    => 'This field is required',
-            'title.unique'      => 'This field must be unique',
-            'title.regex'       => 'This field only contain letters, numbers, and spaces.',
+            'name.required'    => 'This field is required',
+            'name.unique'      => 'This field must be unique',
+            'name.regex'       => 'This field only contain letters, numbers, and spaces.',
             'image.image'       => 'This field must be an image',
             'image.image'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
@@ -60,8 +59,8 @@ class CategoryController extends Controller
         }
 
         // Creating Category
-        $category->title    = $request->title;
-        $category->slug     = Str::slug($request->title);
+        $category->name    = $request->name;
+        $category->slug     = Str::slug($request->name);
         $category->save();
 
         return back()->with('success', 'Successfully Created your Category');
@@ -87,14 +86,14 @@ class CategoryController extends Controller
 
             // Validation for Update Category
             $request->validate([
-                'title' => ['required', 'regex:/^[A-Za-z0-9\s]+$/', 'unique:categories,title,' . $category->id],
+                'name' => ['required', 'regex:/^[A-Za-z0-9\s]+$/', 'unique:categories,name,' . $category->id],
                 'image' => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
             ], [
-                'title.required'    => 'This field is required',
-                'title.unique'      => 'This field must be unique',
-                'title.regex'       => 'This field only contain letters, numbers, and spaces.',
-                'image.image'       => 'This field must be an image',
-                'image.image'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+                'name.required' => 'This field is required',
+                'name.unique'   => 'This field must be unique',
+                'name.regex'    => 'This field only contain letters, numbers, and spaces.',
+                'image.image'   => 'This field must be an image',
+                'image.image'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);
 
             // Image Upload for Update Category
@@ -112,8 +111,8 @@ class CategoryController extends Controller
             }
 
             // Updating Category
-            $category->title = $request->title;
-            $category->slug = Str::slug($request->title);
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name);
             $category->save();
 
             return redirect()->route('category.view')->with('success', 'Successfully Updated your Category');

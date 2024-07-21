@@ -37,7 +37,8 @@
                         <table class="table table-nowrap text-center table-light table-bordered">
                             <thead>
                                 <tr class="table-bordered border-info fw-bold">
-                                    <th class="fw-bolder" scope="col">Title</th>
+                                    <th class="fw-bolder" scope="col">Name</th>
+                                    <th class="fw-bolder" scope="col">Slug</th>
                                     <th class="fw-bolder" scope="col">Image</th>
                                     <th class="fw-bolder" scope="col">Action</th>
                                 </tr>
@@ -45,8 +46,12 @@
                             <tbody>
                                 @forelse ($categories as $category)
                                     <tr>
-                                        <!-- Title -->
-                                        <td style="vertical-align:middle">{{ $category->title }}</td>
+                                        
+                                        <!-- Name -->
+                                        <td style="vertical-align:middle">{{ $category->name }}</td>
+
+                                        <!-- Slug -->
+                                        <td style="vertical-align:middle">{{ $category->slug }}</td>
 
                                         <!-- Image -->
                                         <td style="vertical-align:middle">

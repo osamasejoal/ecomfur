@@ -47,6 +47,13 @@
                     </a>
                 </li> <!-- end Categories -->
 
+                <!-- Product -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('product.view') }}">
+                        <i class="mdi mdi-bed-king-outline"></i> <span>Product</span>
+                    </a>
+                </li> <!-- end Product -->
+
                 <!-- About -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('about.view') }}">

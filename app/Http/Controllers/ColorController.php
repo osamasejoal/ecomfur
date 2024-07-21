@@ -34,7 +34,7 @@ class ColorController extends Controller
         // Validation for Create Color
         $request->validate([
             'title' => ['required', 'regex:/^[A-Za-z0-9\s]+$/'],
-            'code'  => ['required', 'unique:colors,code'],
+            'code'  => 'required|unique:colors,code',
         ], [
             '*.required'    => 'This field is required',
             'title.regex'   => 'This field only contain letters, numbers, and spaces.',

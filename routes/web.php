@@ -50,6 +50,23 @@ Route::controller(CategoryController::class)->prefix('category')->middleware(['a
 
 /*
 |--------------------------------------------------------------------------
+|                          Product Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(ProductController::class)->prefix('product')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('product.view');
+    Route::get('/create', 'create')->name('product.create');
+    Route::post('/store', 'store')->name('product.store');
+    Route::get('/details/{slug}', 'productDetails')->name('product.details');
+    Route::get('/edit/{slug}', 'edit')->name('product.edit');
+    Route::put('/update/{slug}', 'update')->name('product.update');
+    Route::delete('/destroy/{slug}', 'destroy')->name('product.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
 |                          About Controller
 |--------------------------------------------------------------------------
 */

@@ -33,30 +33,30 @@ class CouponController extends Controller
     {
         // Validation for Create Coupon
         $request->validate([
-            'name' => 'required',
-            'code' => 'required|unique:coupon,code',
-            'discount' => 'required|integer|min:1|max:100',
-            'validity' => 'date|after_or_equal:today',
-            'limit' => 'integer|min:1',
+            'name'      => 'required',
+            'code'      => 'required|unique:coupon,code',
+            'discount'  => 'required|integer|min:1|max:100',
+            'validity'  => 'nullable|date|after_or_equal:today',
+            'limit'     => 'nullable|integer|min:1',
         ], [
-            '*.required' => 'This field is required',
-            '*.integer' => 'This field must be an integer',
-            'code.unique' => 'This field must be unique',
-            'discount.min' => 'The minimum discount percent is 1',
-            'discount.max' => 'The maximum discount percent is 100',
-            'validity.date' => 'Please enter a valid date',
-            'validity.after_or_equal' => 'The validity must be after or equal to today',
-            'limit.min' => 'The minimum limit is 1',
+            '*.required'                => 'This field is required',
+            '*.integer'                 => 'This field must be an integer',
+            'code.unique'               => 'This field must be unique',
+            'discount.min'              => 'The minimum discount percent is 1',
+            'discount.max'              => 'The maximum discount percent is 100',
+            'validity.date'             => 'Please enter a valid date',
+            'validity.after_or_equal'   => 'The validity must be after or equal to today',
+            'limit.min'                 => 'The minimum limit is 1',
         ]);
 
         $coupon = new Coupon();
 
         // Creating Coupon
-        $coupon->name = $request->name;
-        $coupon->code = $request->code;
-        $coupon->discount = $request->discount;
-        $coupon->validity = $request->validity;
-        $coupon->limit = $request->limit;
+        $coupon->name       = $request->name;
+        $coupon->code       = $request->code;
+        $coupon->discount   = $request->discount;
+        $coupon->validity   = $request->validity;
+        $coupon->limit      = $request->limit;
         $coupon->save();
 
         return back()->with('success', 'Successfully Created your Coupon');
@@ -82,13 +82,13 @@ class CouponController extends Controller
 
             // Validation for Create Coupon
             $request->validate([
-                'validity' => 'date|after_or_equal:today',
-                'limit' => 'integer|min:1',
+                'validity'  => 'nullable|date|after_or_equal:today',
+                'limit'     => 'nullable|integer|min:1',
             ], [
-                'validity.date' => 'Please enter a valid date',
-                'validity.after_or_equal' => 'The validity must be after or equal to today',
-                'limit.integer' => 'This field must be an integer',
-                'limit.min' => 'The minimum limit is 1',
+                'validity.date'             => 'Please enter a valid date',
+                'validity.after_or_equal'   => 'The validity must be after or equal to today',
+                'limit.integer'             => 'This field must be an integer',
+                'limit.min'                 => 'The minimum limit is 1',
             ]);
 
             // Updating Coupon

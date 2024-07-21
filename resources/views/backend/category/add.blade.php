@@ -42,17 +42,17 @@
                             class="mt-5">
                             @csrf
 
-                            <!-- Title -->
+                            <!-- Name -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="title" class="form-label">Title: <span
+                                    <label for="name" class="form-label">Name: <span
                                             class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <input type="text" name="title" value="{{ old('title') }}" id="title"
-                                        class="form-control" placeholder="Category Title">
+                                    <input type="text" name="name" value="{{ old('name') }}" id="name"
+                                        class="form-control" placeholder="Category Name">
 
-                                    @error('title')
+                                    @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

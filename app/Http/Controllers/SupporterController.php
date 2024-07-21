@@ -34,12 +34,12 @@ class SupporterController extends Controller
         // Validation for Create Supporter
         $request->validate([
             'name'  => 'required|unique:testimonials,name',
-            // 'url'   => 'url',
+            'url'   => 'nullable|url',
             'logo'  => 'required|image|mimes:jpg,jpeg,png,gif,svg,webp',
         ], [
             'name.required' => 'This field is required',
             'name.unique'   => 'Name must be unique',
-            // 'url.url'       => 'This field must be URL',
+            'url.url'       => 'This field must be URL',
             'logo.required' => 'This field is required',
             'logo.image'    => 'This field must be an image',
             'logo.image'    => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
@@ -59,7 +59,7 @@ class SupporterController extends Controller
 
         // Creating Supporter
         $supporter->name = $request->name;
-        $supporter->url = $request->url;
+        $supporter->url  = $request->url;
         $supporter->save();
 
         return back()->with('success', 'Successfully Created your Supporter');
@@ -86,12 +86,12 @@ class SupporterController extends Controller
             // Validation for Create Supporter
             $request->validate([
                 'name' => ['required', 'unique:supporters,name,' . $supporter->id],
-                // 'url'   => 'url',
+                'url'   => 'nullable|url',
                 'logo'  => 'image|mimes:jpg,jpeg,png,gif,svg,webp',
             ], [
                 'name.required' => 'This field is required',
                 'name.unique'   => 'Name must be unique',
-                // 'url.url'       => 'This field must be URL',
+                'url.url'       => 'This field must be URL',
                 'logo.image'    => 'This field must be an image',
                 'logo.image'    => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);

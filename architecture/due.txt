@@ -1,11 +1,17 @@
 1. Login Signup page.
 2. Dashboard for moderator.
-3. About page (Image add, delete).
-4. SupporterController (validation problem with 'url').
-5. Check Modal Error. (check validation error, where modal used for update operation).
-6. Look after Coupon's validation (There are some portions of validation should be updated).
-7. Every validtion is creating problem where field value is not required.
-8. Validation Problem with Coupon's crud (specially with the date field).
+3. About page (json Image add, delete).
+5. Check Modal Error. (check validation error, where modal used for update operation). [AboutContoller]
+6. Look after Coupon's validation (There are some portions of validation should be updated). [CouponController]
+8. Validation Problem with Coupon's crud (specially with the date field). [CouponController]
+9. Product image should be resized. [ProductController]
+10. Product's slug (Product name should not be unique, because same product name can be generated which can differ by brand. But as 'brand' field is nullable, therefore product name has to be unique for unique slug). [ProductController]
+11. Product page (json Image add, delete). [ProductController]
+12. Product add page (When category table is empty, "category_id" field shuld be disabled). [ProductController]
+13. Use edit box in product description. [ProductController]
+14. add and view problem with json image (product table). [ProductController]
+15. Status update. [universal]
+16. Category can't be updated. [CategoryController]
 
 
 
@@ -20,3 +26,4 @@ Problems:
 Due commits on github:
 1. Testimonial, Supporter crud done.
 2. Color, Size crud done.
+3. Coupon crud done (with lots of problems)
