@@ -126,6 +126,21 @@
 
                 <!-- Multi-level -->
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="#frontend" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="frontend">
+                        <i class="lab las la-image"></i> <span data-key="frontend">Frontend</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="frontend">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('SliderImage.view') }}" class="nav-link" data-key="slider-image"> Slider Image </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> <!-- end Multi-level -->
+
+                <!-- Multi-level -->
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarMultilevel">
                         <i data-feather="share-2" class="icon-dual"></i> <span data-key="t-multi-level">Multi
@@ -170,7 +185,7 @@
                         </ul>
                     </div>
                 </li> <!-- end Multi-level -->
-
+                
             </ul>
         </div>
         <!-- Sidebar -->

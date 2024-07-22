@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'name.unique'      => 'This field must be unique',
             'name.regex'       => 'This field only contain letters, numbers, and spaces.',
             'image.image'       => 'This field must be an image',
-            'image.image'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            'image.mimes'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $category = new Category();
@@ -93,7 +93,7 @@ class CategoryController extends Controller
                 'name.unique'   => 'This field must be unique',
                 'name.regex'    => 'This field only contain letters, numbers, and spaces.',
                 'image.image'   => 'This field must be an image',
-                'image.image'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+                'image.mimes'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);
 
             // Image Upload for Update Category

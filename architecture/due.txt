@@ -27,6 +27,7 @@
 
 Problems to discuss with Mehedi:
 1. Why we need color and size table, we can manage it from the variant table. 
+2. Image Thumbnail should be created.
 
 
 
@@ -37,3 +38,24 @@ Due commits on github:
 3. Coupon crud done (with lots of problems)
 4.Product crud almost done (with prolems)
 5. variant crud done.
+6. review crud partially done.
+
+
+
+Questions to Naem Via:
+1. Social Media / Email Create korco? || No
+2. Product ki ki? || Home furniture, office, mattress
+3. Payment Method ki ki? || bkash, nogod, bank account (dutch-bangla-bank)
+4. FAQ ace ki ki? || pending
+5. Any guarantee/Warranty? || 1-year Warranty (manufacturing fault)
+6. Return policy ki? || Instant return
+8. Terms / Privacy Policy ace? || pending
+9. Valo kno pic ace product er?
+10. Product ki resell korba? korle kon kon company theke korbe? || pending
+11. Product ace koyta r kon kon category r?
+12. Logo ace?
+13. domain / hosting. || korte hobe
+
+14. product Image lagbe.
+15. Slogan ace kno?
+16. Image set korle valo hoy.

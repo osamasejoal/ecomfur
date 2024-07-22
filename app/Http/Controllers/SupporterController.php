@@ -42,7 +42,7 @@ class SupporterController extends Controller
             'url.url'       => 'This field must be URL',
             'logo.required' => 'This field is required',
             'logo.image'    => 'This field must be an image',
-            'logo.image'    => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            'logo.mimes'    => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $supporter = new Supporter();
@@ -93,7 +93,7 @@ class SupporterController extends Controller
                 'name.unique'   => 'Name must be unique',
                 'url.url'       => 'This field must be URL',
                 'logo.image'    => 'This field must be an image',
-                'logo.image'    => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+                'logo.mimes'    => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);
 
             // Image Upload for Update Supporter

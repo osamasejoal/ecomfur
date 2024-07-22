@@ -52,7 +52,7 @@ class ProductController extends Controller
             'discount.integer'      => 'This field must be an integer',
             'discount.max'          => 'The maximum discount percent is 100',
             'images.image'          => 'This field must be an image',
-            'images.image'          => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            'images.mimes'          => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $product = new Product();

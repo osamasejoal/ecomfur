@@ -171,6 +171,22 @@ Route::controller(CouponController::class)->prefix('coupon')->middleware(['auth'
 
 /*
 |--------------------------------------------------------------------------
+|                          Slider Image Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(SliderImageController::class)->prefix('SliderImage')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('SliderImage.view');
+    Route::get('/create', 'create')->name('SliderImage.create');
+    Route::post('/store', 'store')->name('SliderImage.store');
+    Route::get('/edit/{id}', 'edit')->name('SliderImage.edit');
+    Route::put('/update/{id}', 'update')->name('SliderImage.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('SliderImage.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
 |                          Review Controller
 |--------------------------------------------------------------------------
 */

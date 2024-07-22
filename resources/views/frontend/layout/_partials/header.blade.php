@@ -9,38 +9,40 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets') }}/images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend') }}/assets/images/favicon.png" />
 
     <!-- CSS
  ============================================ -->
 
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/font-awesome.min.css" />
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/animate.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/odometer.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/select2.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/plugins/ion.rangeSlider.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/animate.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/odometer.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/select2.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/plugins/ion.rangeSlider.min.css" />
 
     <!-- Main Style CSS -->
-    <!-- <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/style.css"> -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/style.min.css" />
+    {{-- <!-- <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.css"> --> --}}
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.min.css" />
+
+    {{-- <style>.logout-button input:hover{color:#f2a100}</style> --}}
 </head>
 
 
 <body>
     <!-- Header Start  -->
-    <div class="header-area header-sticky d-none d-lg-block">
+    <div class="header-area header-white header-sticky d-none d-lg-block">
         <div class="container position-relative">
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <!-- Header Logo Start -->
                     <div class="header-logo">
-                        <a href="index.html"><img src="{{ asset('frontend/assets') }}/images/logo.png" width="154"
+                        <a href="index.html"><img src="{{ asset('frontend') }}/assets/images/logo.png" width="154"
                                 height="46" alt="Logo" /></a>
                     </div>
                     <!-- Header Logo End -->
@@ -123,12 +125,12 @@
 
                                     <li class="manu-banner">
                                         <a href="#"><img
-                                                src="{{ asset('frontend/assets') }}/images/banner-menu-01.jpg"
+                                                src="{{ asset('frontend') }}/assets/images/banner-menu-01.jpg"
                                                 width="465" height="170" alt="Banner" /></a>
                                     </li>
                                     <li class="manu-banner">
                                         <a href="#"><img
-                                                src="{{ asset('frontend/assets') }}/images/banner-menu-02.jpg"
+                                                src="{{ asset('frontend') }}/assets/images/banner-menu-02.jpg"
                                                 width="465" height="170" alt="Banner" /></a>
                                     </li>
                                 </ul>
@@ -218,18 +220,21 @@
                                     class="pe-7s-user"></i></a>
 
                             <ul class="dropdown-menu dropdown-profile">
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="login.html">Sign In</a></li>
-                                <li>
-                                    <a>
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
+                                @auth
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}"
+                                        style="display:inline-block;padding:3px 1.5rem;color:#373a3c" class="logout-button">
+                                        @csrf
+                                            <style>.logout-button input:hover{color:#f2a100}</style>
                                             <input type="submit" value="logout"
-                                                style="text-decoration: none;border: none;background: transparent;margin: 0;padding: 0;">
+                                                style="border: none;background: transparent;padding: 0;">
                                         </form>
-                                    </a>
-                                </li>
+                                    </li>
+                                @else
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Sign Up</a></li>
+                                @endauth
                             </ul>
                         </div>
                         <a class="action" href="wishlist.html"><i class="pe-7s-like"></i></a>
@@ -247,13 +252,13 @@
                                             <!-- Single Cart Item Start -->
                                             <div class="single-cart-item">
                                                 <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend/assets') }}/images/cart/cart-1.jpg"
+                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-1.jpg"
                                                         width="98" height="98" alt="Cart" />
                                                     <span class="product-quantity">1x</span>
                                                 </div>
                                                 <div class="cart-item-content">
                                                     <h6 class="product-name">
-                                                        <a href="product-details.html">High quality vase
+                                                        <a href="#">High quality vase
                                                             bottle</a>
                                                     </h6>
                                                     <span class="product-price">$19.12</span>
@@ -272,13 +277,13 @@
                                             <!-- Single Cart Item Start -->
                                             <div class="single-cart-item">
                                                 <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend/assets') }}/images/cart/cart-2.jpg"
+                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-2.jpg"
                                                         width="98" height="98" alt="Cart" />
                                                     <span class="product-quantity">1x</span>
                                                 </div>
                                                 <div class="cart-item-content">
                                                     <h6 class="product-name">
-                                                        <a href="product-details.html">Living & Bedroom
+                                                        <a href="#">Living & Bedroom
                                                             Chair</a>
                                                     </h6>
                                                     <span class="product-price">$19.12</span>
@@ -297,13 +302,13 @@
                                             <!-- Single Cart Item Start -->
                                             <div class="single-cart-item">
                                                 <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend/assets') }}/images/cart/cart-3.jpg"
+                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-3.jpg"
                                                         width="98" height="98" alt="Cart" />
                                                     <span class="product-quantity">1x</span>
                                                 </div>
                                                 <div class="cart-item-content">
                                                     <h6 class="product-name">
-                                                        <a href="product-details.html">Herman Arm Grey
+                                                        <a href="#">Herman Arm Grey
                                                             Chair</a>
                                                     </h6>
                                                     <span class="product-price">$19.12</span>
@@ -321,28 +326,6 @@
                                     </ul>
                                 </div>
 
-                                <div class="cart-price">
-                                    <div class="cart-subtotals">
-                                        <div class="price-inline">
-                                            <span class="label">Subtotal</span>
-                                            <span class="value">$42.70</span>
-                                        </div>
-                                        <div class="price-inline">
-                                            <span class="label">Shipping</span>
-                                            <span class="value">$7.00</span>
-                                        </div>
-                                        <div class="price-inline">
-                                            <span class="label">Taxes</span>
-                                            <span class="value">$0.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="cart-total">
-                                        <div class="price-inline">
-                                            <span class="label">Total</span>
-                                            <span class="value">$49.70</span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="checkout-btn">
                                     <a href="checkout.html"
                                         class="btn btn-dark btn-hover-primary d-block">Checkout</a>
@@ -378,7 +361,7 @@
                     <div class="col">
                         <!-- Header Logo Start -->
                         <div class="header-logo text-center">
-                            <a href="index.html"><img src="{{ asset('frontend/assets') }}/images/logo.png"
+                            <a href="index.html"><img src="{{ asset('frontend') }}/assets/images/logo.png"
                                     width="154" height="46" alt="Logo" /></a>
                         </div>
                         <!-- Header Logo End -->
@@ -529,12 +512,12 @@
 
                                 <li class="manu-banner">
                                     <a href="#"><img
-                                            src="{{ asset('frontend/assets') }}/images/banner-menu-01.jpg"
+                                            src="{{ asset('frontend') }}/assets/images/banner-menu-01.jpg"
                                             width="465" height="170" alt="Banner" /></a>
                                 </li>
                                 <li class="manu-banner">
                                     <a href="#"><img
-                                            src="{{ asset('frontend/assets') }}/images/banner-menu-02.jpg"
+                                            src="{{ asset('frontend') }}/assets/images/banner-menu-02.jpg"
                                             width="465" height="170" alt="Banner" /></a>
                                 </li>
                             </ul>

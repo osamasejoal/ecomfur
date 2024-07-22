@@ -42,7 +42,7 @@ class TestimonialController extends Controller
             '*.regex'       => 'This field only contain letters, numbers, and spaces.',
             'name.unique'   => 'This field must be unique',
             'image.image'   => 'This field must be an image',
-            'image.image'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            'image.mimes'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $testimonial = new Testimonial();
@@ -95,7 +95,7 @@ class TestimonialController extends Controller
                 '*.regex'       => 'This field only contain letters, numbers, and spaces.',
                 'name.unique'   => 'This field must be unique',
                 'image.image'   => 'This field must be an image',
-                'image.image'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+                'image.mimes'   => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
             ]);
 
             // Image Upload for Update Testimonial
