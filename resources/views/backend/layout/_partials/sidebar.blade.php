@@ -48,14 +48,14 @@
                     </a>
                 </li> <!-- end Categories -->
 
-                <!-- Product -->
+                <!-- Products -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('product.view') }}">
-                        <i class="mdi mdi-bed-king-outline"></i> <span>Product</span>
+                        <i class="mdi mdi-bed-king-outline"></i> <span>Products</span>
                     </a>
-                </li> <!-- end Product -->
+                </li> <!-- end Products -->
 
-                <!-- Variant -->
+                <!-- Variant Box -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarPages">
@@ -64,19 +64,19 @@
                     <div class="collapse menu-dropdown" id="sidebarPages">
                         <ul class="nav nav-sm flex-column">
 
-                            <!-- Variant -->
+                            <!-- Variants -->
                             <li class="nav-item">
-                                <a href="{{ route('variant.view') }}" class="nav-link" data-key="t-starter"> Variant </a>
+                                <a href="{{ route('variant.view') }}" class="nav-link" data-key="t-starter"> Variants </a>
                             </li>
 
-                            <!-- Color -->
+                            <!-- Colors -->
                             <li class="nav-item">
-                                <a href="{{ route('color.view') }}" class="nav-link" data-key="t-starter"> Color </a>
+                                <a href="{{ route('color.view') }}" class="nav-link" data-key="t-starter"> Colors </a>
                             </li>
 
-                            <!-- Size -->
+                            <!-- Sizes -->
                             <li class="nav-item">
-                                <a href="{{ route('size.view') }}" class="nav-link" data-key="t-starter"> Size </a>
+                                <a href="{{ route('size.view') }}" class="nav-link" data-key="t-starter"> Sizes </a>
                             </li>
                         </ul>
                     </div>
@@ -89,26 +89,33 @@
                     </a>
                 </li> <!-- end About -->
 
-                <!-- Testimonial -->
+                <!-- Testimonials -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('testimonial.view') }}">
-                        <i class="mdi mdi-comment-quote-outline"></i> <span>Testimonial</span>
+                        <i class="mdi mdi-comment-quote-outline"></i> <span>Testimonials</span>
                     </a>
-                </li> <!-- end Testimonial -->
+                </li> <!-- end Testimonials -->
 
-                <!-- Supporter -->
+                <!-- Supporters -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('supporter.view') }}">
-                        <i class="lab las la-handshake"></i> <span>Supporter</span>
+                        <i class="lab las la-handshake"></i> <span>Supporters</span>
                     </a>
-                </li> <!-- end Supporter -->
+                </li> <!-- end Supporters -->
 
-                <!-- Coupon -->
+                <!-- Coupons -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('coupon.view') }}">
-                        <i class="lab las la-tags"></i> <span>Coupon</span>
+                        <i class="lab las la-tags"></i> <span>Coupons</span>
                     </a>
-                </li> <!-- end Coupon -->
+                </li> <!-- end Coupons -->
+
+                <!-- Reviews -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('review.view') }}">
+                        <i class="lab las la-sms"></i> <span>Reviews</span>
+                    </a>
+                </li> <!-- end Reviews -->
 
                 <!-- Widgets -->
                 <li class="nav-item">

@@ -166,3 +166,17 @@ Route::controller(CouponController::class)->prefix('coupon')->middleware(['auth'
     Route::put('/update/{id}', 'update')->name('coupon.update');
     Route::delete('/destroy/{id}', 'destroy')->name('coupon.destroy');
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Review Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(ReviewController::class)->prefix('review')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('review.view');
+    Route::post('/store', 'store')->name('review.store');
+    Route::put('/update/{id}', 'update')->name('review.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('review.destroy');
+});
