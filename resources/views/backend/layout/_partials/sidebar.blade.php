@@ -20,7 +20,8 @@
                 <img src="{{ asset('backend/assets') }}/images/logo-light.png" alt="" height="17">
             </span>
         </a>
-        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+            id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
     </div>
@@ -54,6 +55,33 @@
                     </a>
                 </li> <!-- end Product -->
 
+                <!-- Variant -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarPages">
+                        <i class="lab las la-shapes"></i> <span data-key="t-pages">Variant Box</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarPages">
+                        <ul class="nav nav-sm flex-column">
+
+                            <!-- Variant -->
+                            <li class="nav-item">
+                                <a href="{{ route('variant.view') }}" class="nav-link" data-key="t-starter"> Variant </a>
+                            </li>
+
+                            <!-- Color -->
+                            <li class="nav-item">
+                                <a href="{{ route('color.view') }}" class="nav-link" data-key="t-starter"> Color </a>
+                            </li>
+
+                            <!-- Size -->
+                            <li class="nav-item">
+                                <a href="{{ route('size.view') }}" class="nav-link" data-key="t-starter"> Size </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> <!-- end Variant -->
+
                 <!-- About -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('about.view') }}">
@@ -75,32 +103,6 @@
                     </a>
                 </li> <!-- end Supporter -->
 
-                <!-- Variant -->
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                        <i class="lab las la-shapes"></i> <span data-key="t-pages">Variant Box</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarPages">
-                        <ul class="nav nav-sm flex-column">
-
-                            <!-- Variant -->
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-key="t-starter"> Variant </a>
-                            </li>
-
-                            <!-- Color -->
-                            <li class="nav-item">
-                                <a href="{{ route('color.view') }}" class="nav-link" data-key="t-starter"> Color </a>
-                            </li>
-
-                            <!-- Size -->
-                            <li class="nav-item">
-                                <a href="{{ route('size.view') }}" class="nav-link" data-key="t-starter"> Size </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> <!-- end Variant -->
-                
                 <!-- Coupon -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('coupon.view') }}">
@@ -117,8 +119,10 @@
 
                 <!-- Multi-level -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
-                        <i data-feather="share-2" class="icon-dual"></i> <span data-key="t-multi-level">Multi Level</span>
+                    <a class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarMultilevel">
+                        <i data-feather="share-2" class="icon-dual"></i> <span data-key="t-multi-level">Multi
+                            Level</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarMultilevel">
                         <ul class="nav nav-sm flex-column">
@@ -126,7 +130,9 @@
                                 <a href="#" class="nav-link" data-key="t-level-1.1"> Level 1.1 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#sidebarAccount" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2"> Level 1.2
+                                <a href="#sidebarAccount" class="nav-link" data-bs-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
+                                    Level 1.2
                                 </a>
                                 <div class="collapse menu-dropdown" id="sidebarAccount">
                                     <ul class="nav nav-sm flex-column">
@@ -134,15 +140,19 @@
                                             <a href="#" class="nav-link" data-key="t-level-2.1"> Level 2.1 </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#sidebarCrm" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCrm" data-key="t-level-2.2"> Level 2.2
+                                            <a href="#sidebarCrm" class="nav-link" data-bs-toggle="collapse"
+                                                role="button" aria-expanded="false" aria-controls="sidebarCrm"
+                                                data-key="t-level-2.2"> Level 2.2
                                             </a>
                                             <div class="collapse menu-dropdown" id="sidebarCrm">
                                                 <ul class="nav nav-sm flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link" data-key="t-level-3.1"> Level 3.1 </a>
+                                                        <a href="#" class="nav-link" data-key="t-level-3.1">
+                                                            Level 3.1 </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link" data-key="t-level-3.2"> Level 3.2 </a>
+                                                        <a href="#" class="nav-link" data-key="t-level-3.2">
+                                                            Level 3.2 </a>
                                                     </li>
                                                 </ul>
                                             </div>

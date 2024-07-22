@@ -67,6 +67,22 @@ Route::controller(ProductController::class)->prefix('product')->middleware(['aut
 
 /*
 |--------------------------------------------------------------------------
+|                          Variant Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(VariantController::class)->prefix('variant')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('variant.view');
+    Route::get('/create', 'create')->name('variant.create');
+    Route::post('/store', 'store')->name('variant.store');
+    Route::get('/edit/{id}', 'edit')->name('variant.edit');
+    Route::put('/update/{id}', 'update')->name('variant.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('variant.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
 |                          About Controller
 |--------------------------------------------------------------------------
 */

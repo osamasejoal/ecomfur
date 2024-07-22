@@ -34,10 +34,10 @@
                             class="mt-5">
                             @csrf
 
-                            <!-- Category -->
+                            <!-- Product Category -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="title" class="form-label"> Select Category: <span
+                                    <label for="category_id" class="form-label"> Select Category: <span
                                             class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
@@ -55,7 +55,7 @@
 
                                     </select>
 
-                                    @error('title')
+                                    @error('category_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

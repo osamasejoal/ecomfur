@@ -12,13 +12,21 @@
 14. add and view problem with json image (product table). [ProductController]
 15. Status update. [universal]
 16. Category can't be updated. [CategoryController]
+17. Add variants into the product details page. [ProductController]
+18. sort the variant view page according to the category/product order. [VariantController]
+19. How to operate addition to all variants stock for a particular product? [ProductController]
+20. <select name="color" id="color" class="form-select text-center" {{ $colors ? '' : 'disabled' }}>. Here I want to check that if color table is empty then "disabled" attribute will active. [VariantController@add], [ProductController@add]
+21. How take multiple data from one value? I need it in the variant add page for pick the color name and code from one value. [VariantController@add]
+
+
 
 
 
 1. JW Token
 
 
-Problems:
+Problems to discuss with Mehedi:
+1. Why we need color and size table, we can manage it from the variant table. 
 
 
 
@@ -27,3 +35,4 @@ Due commits on github:
 1. Testimonial, Supporter crud done.
 2. Color, Size crud done.
 3. Coupon crud done (with lots of problems)
+4.Product crud almost done (with prolems)
