@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AboutController, AddressController, CategoryController, ColorController, CouponController, FrontendController, HomeController, OrderController, OrderItemController, PopController, ProductController, ProfileController, ReviewController, SizeController, SliderImageController, SupporterController, TestimonialController, VariantController, WishlistController};
+use App\Http\Controllers\{AboutController, AddressController, CategoryController, ColorController, CouponController, FrontendController, HomeController, OrderController, OrderItemController, PopController, ProductController, ProfileController, ReviewController, SizeController, SliderImageController, SupporterController, TestimonialController, VariantController, WishlistController, ServiceController};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -83,6 +83,34 @@ Route::controller(VariantController::class)->prefix('variant')->middleware(['aut
 
 /*
 |--------------------------------------------------------------------------
+|                          Color Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(ColorController::class)->prefix('color')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('color.view');
+    Route::get('/create', 'create')->name('color.create');
+    Route::post('/store', 'store')->name('color.store');
+    Route::delete('/destroy/{id}', 'destroy')->name('color.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Size Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(SizeController::class)->prefix('size')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('size.view');
+    Route::get('/create', 'create')->name('size.create');
+    Route::post('/store', 'store')->name('size.store');
+    Route::delete('/destroy/{id}', 'destroy')->name('size.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
 |                          About Controller
 |--------------------------------------------------------------------------
 */
@@ -121,34 +149,6 @@ Route::controller(SupporterController::class)->prefix('supporter')->middleware([
     Route::get('/edit/{id}', 'edit')->name('supporter.edit');
     Route::put('/update/{id}', 'update')->name('supporter.update');
     Route::delete('/destroy/{id}', 'destroy')->name('supporter.destroy');
-});
-
-
-
-/*
-|--------------------------------------------------------------------------
-|                          Color Controller
-|--------------------------------------------------------------------------
-*/
-Route::controller(ColorController::class)->prefix('color')->middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('/index', 'index')->name('color.view');
-    Route::get('/create', 'create')->name('color.create');
-    Route::post('/store', 'store')->name('color.store');
-    Route::delete('/destroy/{id}', 'destroy')->name('color.destroy');
-});
-
-
-
-/*
-|--------------------------------------------------------------------------
-|                          Size Controller
-|--------------------------------------------------------------------------
-*/
-Route::controller(SizeController::class)->prefix('size')->middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('/index', 'index')->name('size.view');
-    Route::get('/create', 'create')->name('size.create');
-    Route::post('/store', 'store')->name('size.store');
-    Route::delete('/destroy/{id}', 'destroy')->name('size.destroy');
 });
 
 
@@ -195,4 +195,17 @@ Route::controller(ReviewController::class)->prefix('review')->middleware(['auth'
     Route::post('/store', 'store')->name('review.store');
     Route::put('/update/{id}', 'update')->name('review.update');
     Route::delete('/destroy/{id}', 'destroy')->name('review.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Service Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(ServiceController::class)->prefix('service')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('service.view');
+    Route::get('/edit/{id}', 'edit')->name('service.edit');
+    Route::put('/update/{id}', 'update')->name('service.update');
 });

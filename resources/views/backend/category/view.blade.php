@@ -31,12 +31,12 @@
                     <div class="col-lg-11 m-auto">
 
                         <div class="add-category mb-3 float-end">
-                            <a href="{{ route('category.create') }}" class="btn btn-primary btn-md"> + add category </a>
+                            <a href="{{ route('category.create') }}" class="btn btn-warning btn-md"> + Add Category </a>
                         </div>
 
                         <table class="table table-nowrap text-center table-light table-bordered">
                             <thead>
-                                <tr class="table-bordered border-info fw-bold">
+                                <tr class="table-bordered border-warning fw-bold">
                                     <th class="fw-bolder" scope="col">Name</th>
                                     <th class="fw-bolder" scope="col">Slug</th>
                                     <th class="fw-bolder" scope="col">Image</th>
@@ -68,18 +68,18 @@
                                         <td style="vertical-align:middle;cursor:default;">
                                             <!-- Edit -->
                                             <a href="{{ route('category.edit', $category->slug) }}"
-                                                style="color:deepskyblue;margin-right:5px"><abbr title="Edit"
+                                                style="margin-right:5px"><abbr title="Edit"
                                                     style="cursor:pointer"><i data-feather="edit"
-                                                        class="icon-xl"></i></abbr></a>
+                                                        class="icon-xl c-f2a100"></i></abbr></a>
                                             <!-- Delete -->
                                             <form class="d-inline" action="{{ route('category.destroy', $category->slug) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="border:none;background:transparent;color:deepskyblue;margin-left:5px"><abbr
+                                                    style="border:none;background:transparent;margin-left:5px"><abbr
                                                         title="Delete" style="cursor:pointer"><i data-feather="trash-2"
-                                                            class="icon-xl"></i></abbr></button>
+                                                            class="icon-xl c-f2a100"></i></abbr></button>
                                             </form>
 
                                         </td>

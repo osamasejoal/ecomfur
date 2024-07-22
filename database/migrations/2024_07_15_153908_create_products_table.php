@@ -23,7 +23,8 @@ return new class extends Migration
             $table->integer('discount')->nullable();
             $table->mediumText('short_description')->nullable();
             $table->longText('description');
-            $table->json('images');
+            $table->json('images')->nullable();
+            $table->string('thumbnail');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

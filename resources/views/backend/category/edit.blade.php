@@ -78,7 +78,7 @@
 
                         <!-- Submit Button -->
                         <div class="text-center mt-5">
-                            <button type="submit" class="btn btn-primary">Update Category</button>
+                            <button type="submit" class="btn btn-warning">Update Category</button>
                         </div>
                     </form>
 

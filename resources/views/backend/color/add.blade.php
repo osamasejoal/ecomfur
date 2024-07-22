@@ -67,7 +67,7 @@
 
                             <!-- Submit Button -->
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary">Create Color</button>
+                                <button type="submit" class="btn btn-warning">Create Color</button>
                             </div>
                         </form>
 

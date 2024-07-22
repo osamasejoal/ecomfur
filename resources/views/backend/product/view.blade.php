@@ -31,12 +31,12 @@
                     <div class="col-lg-11 m-auto">
 
                         <div class="add-product mb-3 float-end">
-                            <a href="{{ route('product.create') }}" class="btn btn-primary btn-md"> + add Product </a>
+                            <a href="{{ route('product.create') }}" class="btn btn-warning btn-md"> + Add Product </a>
                         </div>
 
                         <table class="table table-nowrap text-center table-light table-bordered">
                             <thead>
-                                <tr class="table-bordered border-info fw-bold">
+                                <tr class="table-bordered border-warning fw-bold">
                                     <th class="fw-bolder" scope="col">Name</th>
                                     <th class="fw-bolder" scope="col">Slug</th>
                                     <th class="fw-bolder" scope="col">Code</th>
@@ -62,7 +62,7 @@
 
                                         <!-- Action -->
                                         <td style="vertical-align:middle;cursor:default;">
-                                            <a href="{{ route('product.details', $product->slug) }}" class="btn btn-info btn-sm">View More</a>
+                                            <a href="{{ route('product.details', $product->slug) }}" class="btn btn-warning btn-sm">View More</a>
                                         </td>
                                     </tr>
                                 @empty

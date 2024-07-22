@@ -169,7 +169,7 @@
                             </div>
 
                             <!-- Images -->
-                            <div class="row mb-4 pt-1">
+                            {{-- <div class="row mb-4 pt-1">
                                 <div class="col-lg-2">
                                     <label for="images" class="form-label">Images: <span
                                         class="text-danger">*</span></label>
@@ -178,6 +178,21 @@
                                     <input type="file" name="images" id="images" class="form-control" multiple>
 
                                     @error('images')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div> --}}
+
+                            <!-- Thumbnail -->
+                            <div class="row mb-4 pt-1">
+                                <div class="col-lg-2">
+                                    <label for="thumbnail" class="form-label">Thumbnail: <span
+                                        class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+
+                                    @error('thumbnail')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -197,7 +212,7 @@
 
                             <!-- Submit Button -->
                             <div class="text-center my-5">
-                                <button type="submit" class="btn btn-primary">Create Product</button>
+                                <button type="submit" class="btn btn-warning">Create Product</button>
                             </div>
                         </form>
 

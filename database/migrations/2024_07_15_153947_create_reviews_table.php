@@ -18,8 +18,8 @@ return new class extends Migration
             $table->mediumText('comment')->nullable();
             $table->integer('rating')->nullable();
             $table->mediumText('reply')->nullable();
-            $table->integer('likes')->nullable();
-            $table->integer('dislikes')->nullable();
+            // $table->integer('likes')->nullable();
+            // $table->integer('dislikes')->nullable();
             $table->enum('status', ['unread', 'read'])->default('unread');
             $table->timestamps();
         });

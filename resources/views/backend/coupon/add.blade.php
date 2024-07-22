@@ -113,7 +113,7 @@
 
                             <!-- Submit Button -->
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary">Create Coupon</button>
+                                <button type="submit" class="btn btn-warning">Create Coupon</button>
                             </div>
                         </form>
 

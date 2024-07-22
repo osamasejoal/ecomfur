@@ -99,7 +99,7 @@
 
                             <!-- Product Details -->
                             <div class="col-xxl-4">
-                                <div class="card border-info">
+                                <div class="card border-warning">
                                     <div class="card-body">
 
                                         <div class="product-heading">
@@ -175,7 +175,7 @@
 
                                             <!-- Edit -->
                                             <a href="{{ route('product.edit', $product->slug) }}"
-                                                class="btn btn-primary mx-2">Edit</a>
+                                                class="btn btn-warning mx-2">Edit</a>
 
                                             <!-- Delete -->
                                             <form class="d-inline mx-2"
@@ -192,7 +192,7 @@
 
                             <!-- Product Descriptions -->
                             <div class="col-xxl-8">
-                                <div class="card border-info">
+                                <div class="card border-warning">
                                     <div class="card-body">
 
                                         <div class="product-heading">
@@ -233,8 +233,8 @@
                             </div> <!-- End Product Descriptions -->
 
                             <!-- Product Images -->
-                            <div class="col-12">
-                                <div class="card border-info">
+                            {{-- <div class="col-12">
+                                <div class="card border-warning">
                                     <div class="card-body">
 
                                         <div class="gallery">
@@ -252,6 +252,25 @@
                                                     <p>There is no Images to show!</p>
                                                 @endif
                                             </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- End Product Images --> --}}
+
+                            <!-- Product Images -->
+                            <div class="col-12">
+                                <div class="card border-warning">
+                                    <div class="card-body">
+
+                                        <div class="gallery">
+
+                                            <div class="product-heading">
+                                                <p>Product <span>Image</span> </h3>
+                                            </div>
+
+                                            <div class="gallery-wrapper">{{ $product->thumbnail }}</div>
 
                                         </div>
 

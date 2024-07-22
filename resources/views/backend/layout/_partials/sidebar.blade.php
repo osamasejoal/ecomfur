@@ -36,47 +36,78 @@
 
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('home.admin') }}">
+                    <a href="{{ route('home.admin') }}"
+                        class="nav-link menu-link
+                    {{ request()->routeIs('home.admin') ? 'active' : '' }}">
                         <i data-feather="home" class="icon-dual"></i> <span data-key="t-dashboards">Dashboard</span>
                     </a>
                 </li> <!-- end Dashboard -->
 
                 <!-- Categories -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('category.view') }}">
+                    <a href="{{ route('category.view') }}"
+                        class="nav-link menu-link
+                    {{ request()->routeIs('category.view') ? 'active' : '' }}
+                    {{ request()->routeIs('category.create') ? 'active' : '' }}
+                    {{ request()->routeIs('category.edit') ? 'active' : '' }}">
                         <i data-feather="grid" class="icon-dual"></i> <span>Categories</span>
                     </a>
                 </li> <!-- end Categories -->
 
                 <!-- Products -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('product.view') }}">
+                    <a href="{{ route('product.view') }}"
+                        class="nav-link menu-link 
+                    {{ request()->routeIs('product.view') ? 'active' : '' }}
+                    {{ request()->routeIs('product.create') ? 'active' : '' }}
+                    {{ request()->routeIs('product.edit') ? 'active' : '' }}">
                         <i class="mdi mdi-bed-king-outline"></i> <span>Products</span>
                     </a>
                 </li> <!-- end Products -->
 
                 <!-- Variant Box -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarPages">
+                    <a href="#variantBox" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                        aria-controls="variantBox"
+                        class="nav-link menu-link 
+                        {{ request()->routeIs('variant.view') ? 'active' : '' }}
+                        {{ request()->routeIs('variant.create') ? 'active' : '' }}
+                        {{ request()->routeIs('variant.edit') ? 'active' : '' }}
+                        {{ request()->routeIs('color.view') ? 'active' : '' }}
+                        {{ request()->routeIs('color.create') ? 'active' : '' }}
+                        {{ request()->routeIs('size.view') ? 'active' : '' }}
+                        {{ request()->routeIs('size.create') ? 'active' : '' }}">
                         <i class="lab las la-shapes"></i> <span data-key="t-pages">Variant Box</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarPages">
+                    <div class="collapse menu-dropdown" id="variantBox">
                         <ul class="nav nav-sm flex-column">
 
                             <!-- Variants -->
                             <li class="nav-item">
-                                <a href="{{ route('variant.view') }}" class="nav-link" data-key="t-starter"> Variants </a>
+                                <a href="{{ route('variant.view') }}" data-key="t-starter" class="nav-link
+                                {{ request()->routeIs('variant.view') ? 'active' : '' }}
+                                {{ request()->routeIs('variant.create') ? 'active' : '' }}
+                                {{ request()->routeIs('variant.edit') ? 'active' : '' }}">
+                                 Variants
+                                </a>
                             </li>
 
                             <!-- Colors -->
                             <li class="nav-item">
-                                <a href="{{ route('color.view') }}" class="nav-link" data-key="t-starter"> Colors </a>
+                                <a href="{{ route('color.view') }}" data-key="t-starter" class="nav-link
+                                {{ request()->routeIs('color.view') ? 'active' : '' }}
+                                {{ request()->routeIs('color.create') ? 'active' : '' }}">
+                                 Colors
+                                </a>
                             </li>
 
                             <!-- Sizes -->
                             <li class="nav-item">
-                                <a href="{{ route('size.view') }}" class="nav-link" data-key="t-starter"> Sizes </a>
+                                <a href="{{ route('size.view') }}" data-key="t-starter" class="nav-link
+                                {{ request()->routeIs('size.view') ? 'active' : '' }}
+                                {{ request()->routeIs('size.create') ? 'active' : '' }}">
+                                 Sizes
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -84,42 +115,53 @@
 
                 <!-- About -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('about.view') }}">
+                    <a href="{{ route('about.view') }}" class="nav-link menu-link
+                    {{ request()->routeIs('about.view') ? 'active' : '' }}">
                         <i data-feather="book-open" class="icon-dual"></i> <span>About</span>
                     </a>
                 </li> <!-- end About -->
 
                 <!-- Testimonials -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('testimonial.view') }}">
+                    <a href="{{ route('testimonial.view') }}" class="nav-link menu-link
+                    {{ request()->routeIs('testimonial.view') ? 'active' : '' }}
+                    {{ request()->routeIs('testimonial.create') ? 'active' : '' }}
+                    {{ request()->routeIs('testimonial.edit') ? 'active' : '' }}">
                         <i class="mdi mdi-comment-quote-outline"></i> <span>Testimonials</span>
                     </a>
                 </li> <!-- end Testimonials -->
 
                 <!-- Supporters -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('supporter.view') }}">
+                    <a href="{{ route('supporter.view') }}" class="nav-link menu-link
+                    {{ request()->routeIs('supporter.view') ? 'active' : '' }}
+                    {{ request()->routeIs('supporter.create') ? 'active' : '' }}
+                    {{ request()->routeIs('supporter.edit') ? 'active' : '' }}">
                         <i class="lab las la-handshake"></i> <span>Supporters</span>
                     </a>
                 </li> <!-- end Supporters -->
 
                 <!-- Coupons -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('coupon.view') }}">
+                    <a href="{{ route('coupon.view') }}" class="nav-link menu-link
+                    {{ request()->routeIs('coupon.view') ? 'active' : '' }}
+                    {{ request()->routeIs('coupon.create') ? 'active' : '' }}
+                    {{ request()->routeIs('coupon.edit') ? 'active' : '' }}">
                         <i class="lab las la-tags"></i> <span>Coupons</span>
                     </a>
                 </li> <!-- end Coupons -->
 
                 <!-- Reviews -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('review.view') }}">
+                    <a href="{{ route('review.view') }}" class="nav-link menu-link
+                    {{ request()->routeIs('review.view') ? 'active' : '' }}">
                         <i class="lab las la-sms"></i> <span>Reviews</span>
                     </a>
                 </li> <!-- end Reviews -->
 
                 <!-- Widgets -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets.html">
+                    <a href="widgets.html" class="nav-link menu-link">
                         <i data-feather="copy" class="icon-dual"></i> <span data-key="t-widgets">Widgets</span>
                     </a>
                 </li> <!-- end widgets -->
@@ -132,8 +174,15 @@
                     </a>
                     <div class="collapse menu-dropdown" id="frontend">
                         <ul class="nav nav-sm flex-column">
+                            <!-- Slider Images -->
                             <li class="nav-item">
-                                <a href="{{ route('SliderImage.view') }}" class="nav-link" data-key="slider-image"> Slider Image </a>
+                                <a href="{{ route('SliderImage.view') }}" class="nav-link" data-key="slider-image">
+                                    Slider Image </a>
+                            </li>
+                            <!-- Services -->
+                            <li class="nav-item">
+                                <a href="{{ route('service.view') }}" class="nav-link" data-key="service"> Services
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -185,7 +234,7 @@
                         </ul>
                     </div>
                 </li> <!-- end Multi-level -->
-                
+
             </ul>
         </div>
         <!-- Sidebar -->

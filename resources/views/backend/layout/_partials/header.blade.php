@@ -34,6 +34,11 @@
     <!-- Sweet Alert 2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Personalized CSS -->
+    <style>
+        .c-f2a100{color:#f2a100!important}
+    </style>
+
     @yield('header-content')
 
 
@@ -171,7 +176,7 @@
                                 </div>
 
                                 <div class="text-center pt-3 pb-1">
-                                    <a href="pages-search-results.html" class="btn btn-primary btn-sm">View All
+                                    <a href="pages-search-results.html" class="btn btn-warning btn-sm">View All
                                         Results <i class="ri-arrow-right-line ms-1"></i></a>
                                 </div>
                             </div>
@@ -193,7 +198,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search ..."
                                                 aria-label="Recipient's username">
-                                            <button class="btn btn-primary" type="submit"><i
+                                            <button class="btn btn-warning" type="submit"><i
                                                     class="mdi mdi-magnify"></i></button>
                                         </div>
                                     </div>
@@ -287,7 +292,7 @@
                                             <h6 class="m-0 fw-semibold fs-15"> Web Apps </h6>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#!" class="btn btn-sm btn-soft-info"> View All Apps
+                                            <a href="#!" class="btn btn-sm btn-soft-warning"> View All Apps
                                                 <i class="ri-arrow-right-s-line align-middle"></i></a>
                                         </div>
                                     </div>
@@ -351,7 +356,7 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class='bx bx-shopping-bag fs-22'></i>
                                 <span
-                                    class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-info">5</span>
+                                    class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-warning">5</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end p-0 dropdown-menu-cart"
                                 aria-labelledby="page-header-cart-dropdown">
@@ -372,7 +377,7 @@
                                         <div class="text-center empty-cart" id="empty-cart">
                                             <div class="avatar-md mx-auto my-3">
                                                 <div
-                                                    class="avatar-title bg-info-subtle text-info fs-36 rounded-circle">
+                                                    class="avatar-title bg-warning-subtle text-warning fs-36 rounded-circle">
                                                     <i class='bx bx-cart'></i>
                                                 </div>
                                             </div>
@@ -551,7 +556,7 @@
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                                 aria-labelledby="page-header-notifications-dropdown">
 
-                                <div class="dropdown-head bg-primary bg-pattern rounded-top">
+                                <div class="dropdown-head bg-warning bg-pattern rounded-top">
                                     <div class="p-3">
                                         <div class="row align-items-center">
                                             <div class="col">
@@ -598,7 +603,7 @@
                                                 <div class="d-flex">
                                                     <div class="avatar-xs me-3 flex-shrink-0">
                                                         <span
-                                                            class="avatar-title bg-info-subtle text-info rounded-circle fs-16">
+                                                            class="avatar-title bg-warning-subtle text-warning rounded-circle fs-16">
                                                             <i class="bx bx-badge-check"></i>
                                                         </span>
                                                     </div>
@@ -939,7 +944,7 @@
                     <div class="modal-body">
                         <div class="mt-2 text-center">
                             <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                                colors="primary:#f7b84b,secondary:#f06548"
+                                colors="warning:#f7b84b,secondary:#f06548"
                                 style="width:100px;height:100px"></lord-icon>
                             <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
                                 <h4>Are you sure ?</h4>

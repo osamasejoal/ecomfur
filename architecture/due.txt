@@ -17,6 +17,9 @@
 19. How to operate addition to all variants stock for a particular product? [ProductController]
 20. <select name="color" id="color" class="form-select text-center" {{ $colors ? '' : 'disabled' }}>. Here I want to check that if color table is empty then "disabled" attribute will active. [VariantController@add], [ProductController@add]
 21. How take multiple data from one value? I need it in the variant add page for pick the color name and code from one value. [VariantController@add]
+22. string minimum and maximum limit in validation. [universal]
+23. icon is not deleting in the service update. [ServiceController.update]
+
 
 
 
@@ -28,6 +31,7 @@
 Problems to discuss with Mehedi:
 1. Why we need color and size table, we can manage it from the variant table. 
 2. Image Thumbnail should be created.
+3. Don't we need slug in the order table? Otherwise, order details (frontend) page will depicts the order id.
 
 
 
@@ -39,6 +43,7 @@ Due commits on github:
 4.Product crud almost done (with prolems)
 5. variant crud done.
 6. review crud partially done.
+7. SliderImage crd done.
 
 
 
@@ -59,3 +64,24 @@ Questions to Naem Via:
 14. product Image lagbe.
 15. Slogan ace kno?
 16. Image set korle valo hoy.
+
+
+
+
+
+
+
+
+Others Table:
+1. cover Image for profile background (backend@profile)
+
+
+
+
+
+
+
+New Addition:
+1. "featured" row added into the category table. [Category table]
+2. "thumbnail" row added into the product table. [Product table]
+3. json('images') is nullable due to addition problem. Therefore, images section has been removed from the add/edit page. [Product table]

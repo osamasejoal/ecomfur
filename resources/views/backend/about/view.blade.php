@@ -93,9 +93,9 @@
                         <div class="col-12">
 
                             <!-- About -->
-                            <div class="card border card-border-info mt-4" style="margin-bottom: 10rem">
+                            <div class="card border card-border-warning mt-4" style="margin-bottom: 10rem">
 
-                                <div class="card-header card-info text-center fs-4">About</div>
+                                <div class="card-header card-warning text-center fs-4">About</div>
 
                                 <div class="card-body row">
                                     <div class="container">
@@ -118,7 +118,7 @@
 
                                         <!-- Edit button for modal -->
                                         <div class="update-button col-12 m-auto text-end mt-5">
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop">
                                                 Edit About
                                             </button>
@@ -161,7 +161,7 @@
                                                     <div class="modal-footer mt-3">
                                                         <button type="button" class="btn btn-secondary m-3"
                                                             data-bs-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary m-3">Update</button>
+                                                        <button type="submit" class="btn btn-warning m-3">Update</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="action-button text-end">
                                     <button type="button" class="btn btn-danger m-3">Delete Photo</button>
-                                    <button type="button" class="btn btn-info m-3">Add Photo</button>
+                                    <button type="button" class="btn btn-warning m-3">Add Photo</button>
                                 </div>
                             </div>
 

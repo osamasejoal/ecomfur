@@ -93,7 +93,7 @@
 
                             <!-- Submit Button -->
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary">Create Slider Image</button>
+                                <button type="submit" class="btn btn-warning">Create Slider Image</button>
                             </div>
                         </form>
 

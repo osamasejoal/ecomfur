@@ -93,7 +93,7 @@
 
                             <!-- Submit Button -->
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary">Create Supporter</button>
+                                <button type="submit" class="btn btn-warning">Create Supporter</button>
                             </div>
                         </form>
 

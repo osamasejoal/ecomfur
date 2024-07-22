@@ -42,7 +42,8 @@ class ProductController extends Controller
             'price'         => 'required|numeric',
             'discount'      => 'nullable|integer|min:1|max:100',
             'description'   => 'required',
-            'images'        => 'required|image|mimes:jpg,jpeg,png,gif,svg,webp',
+            // 'images'        => 'required|image|mimes:jpg,jpeg,png,gif,svg,webp',
+            'thumbnail'     => 'required|image|mimes:jpg,jpeg,png,gif,svg,webp',
         ], [
             '*.required'            => 'This field is required',
             '*.unique'              => 'This field must be unique',
@@ -51,22 +52,37 @@ class ProductController extends Controller
             'discount.min'          => 'The minimum discount percent is 1',
             'discount.integer'      => 'This field must be an integer',
             'discount.max'          => 'The maximum discount percent is 100',
-            'images.image'          => 'This field must be an image',
-            'images.mimes'          => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            'thumbnail.required'    => 'This field is required',
+            'thumbnail.image'       => 'This field must be an image',
+            'thumbnail.mimes'       => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
+            // 'images.image'          => 'This field must be an image',
+            // 'images.mimes'          => 'Image must be a file of type: jpg, jpeg, png, gif, svg, webp.',
         ]);
 
         $product = new Product();
 
         // Multiple Images Upload for Create Product
-        $imagePaths = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $filename = time() . '_' . Str::random('5') . '.' . $image->getClientOriginalName();
-                $path = $image->move(public_path('upload/product_images'), $filename);
-                $imagePaths[] = 'upload/product_images' . $filename;
+        // $imagePaths = [];
+        // if ($request->hasFile('images')) {
+        //     foreach ($request->file('images') as $image) {
+        //         $filename = time() . '_' . Str::random('5') . '.' . $image->getClientOriginalName();
+        //         $path = $image->move(public_path('upload/product_images'), $filename);
+        //         $imagePaths[] = 'upload/product_images' . $filename;
 
-                $product->images = json_encode($imagePaths);
-            }
+        //         $product->images = json_encode($imagePaths);
+        //     }
+        // }
+
+
+        // Thumbnail Upload for Create Product
+        if ($request->file('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $thumbnailName = rand() . '.' . $thumbnail->getClientOriginalName();
+            //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
+            $thumbnail->move(public_path('upload/product_images'), $thumbnailName);
+            $thumbnail_path = 'upload/product_images/' . $thumbnailName;
+
+            $product->thumbnail = $thumbnail_path;
         }
 
         // Creating Product
