@@ -270,7 +270,9 @@
                                                 <p>Product <span>Image</span> </h3>
                                             </div>
 
-                                            <div class="gallery-wrapper">{{ $product->thumbnail }}</div>
+                                            <div class="gallery-wrapper">
+                                                <div><img src="{{ asset($product->thumbnail) }}" alt="Product Thumbnail"></div>
+                                            </div>
 
                                         </div>
 

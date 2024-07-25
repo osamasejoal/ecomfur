@@ -18,21 +18,21 @@ class ServiceSeeder extends Seeder
             [
                 'title'     => 'Courier Service',
                 'sub_title' => 'Get free shipping inside Dhaka, 10% cashback on delivery charge in all Bangladesh. Instant free returns.*',
-                'icon'      => 'upload/service_images/icon-1.png'
+                'icon'      => 'seeder_images/service_icon_1.png'
             ],
 
             // Service-2
             [
                 'title'     => 'Safe Payment',
                 'sub_title' => 'Bkash, Nagad, Bank Transfer, wherever you are comfortable. We assure 100% secure transaction.',
-                'icon'      => 'upload/service_images/icon-2.png'
+                'icon'      => 'seeder_images/service_icon_2.png'
             ],
 
             // Service-3
             [
                 'title'     => 'Online Support',
                 'sub_title' => 'Our Support team always here to assist you! Just a click you are away from!',
-                'icon'      => 'upload/service_images/icon-3.png'
+                'icon'      => 'seeder_images/service_icon_3.png'
             ],
         ]);
     }

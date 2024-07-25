@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
 
         // ServiceSeeder
         $this->call(ServiceSeeder::class);
+
+        // FrontImageSeeder
+        $this->call(FrontImageSeeder::class);
     }
 }

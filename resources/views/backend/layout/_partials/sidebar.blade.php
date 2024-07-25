@@ -39,7 +39,7 @@
                     <a href="{{ route('home.admin') }}"
                         class="nav-link menu-link
                     {{ request()->routeIs('home.admin') ? 'active' : '' }}">
-                        <i data-feather="home" class="icon-dual"></i> <span data-key="t-dashboards">Dashboard</span>
+                        <i data-feather="home" class="icon-dual"></i> <span data-key="dashboard">Dashboard</span>
                     </a>
                 </li> <!-- end Dashboard -->
 
@@ -77,14 +77,14 @@
                         {{ request()->routeIs('color.create') ? 'active' : '' }}
                         {{ request()->routeIs('size.view') ? 'active' : '' }}
                         {{ request()->routeIs('size.create') ? 'active' : '' }}">
-                        <i class="lab las la-shapes"></i> <span data-key="t-pages">Variant Box</span>
+                        <i class="lab las la-shapes"></i> <span data-key="variant-box">Variant Box</span>
                     </a>
                     <div class="collapse menu-dropdown" id="variantBox">
                         <ul class="nav nav-sm flex-column">
 
                             <!-- Variants -->
                             <li class="nav-item">
-                                <a href="{{ route('variant.view') }}" data-key="t-starter" class="nav-link
+                                <a href="{{ route('variant.view') }}" data-key="variants" class="nav-link
                                 {{ request()->routeIs('variant.view') ? 'active' : '' }}
                                 {{ request()->routeIs('variant.create') ? 'active' : '' }}
                                 {{ request()->routeIs('variant.edit') ? 'active' : '' }}">
@@ -94,7 +94,7 @@
 
                             <!-- Colors -->
                             <li class="nav-item">
-                                <a href="{{ route('color.view') }}" data-key="t-starter" class="nav-link
+                                <a href="{{ route('color.view') }}" data-key="colors" class="nav-link
                                 {{ request()->routeIs('color.view') ? 'active' : '' }}
                                 {{ request()->routeIs('color.create') ? 'active' : '' }}">
                                  Colors
@@ -103,7 +103,7 @@
 
                             <!-- Sizes -->
                             <li class="nav-item">
-                                <a href="{{ route('size.view') }}" data-key="t-starter" class="nav-link
+                                <a href="{{ route('size.view') }}" data-key="sizes" class="nav-link
                                 {{ request()->routeIs('size.view') ? 'active' : '' }}
                                 {{ request()->routeIs('size.create') ? 'active' : '' }}">
                                  Sizes
@@ -159,34 +159,56 @@
                     </a>
                 </li> <!-- end Reviews -->
 
-                <!-- Widgets -->
+                <!-- Frontend -->
                 <li class="nav-item">
-                    <a href="widgets.html" class="nav-link menu-link">
-                        <i data-feather="copy" class="icon-dual"></i> <span data-key="t-widgets">Widgets</span>
-                    </a>
-                </li> <!-- end widgets -->
-
-                <!-- Multi-level -->
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#frontend" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="frontend">
+                    <a href="#frontend" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="frontend"  class="nav-link menu-link
+                        {{ request()->routeIs('SliderImage.view') ? 'active' : '' }}
+                        {{ request()->routeIs('SliderImage.create') ? 'active' : '' }}
+                        {{ request()->routeIs('SliderImage.edit') ? 'active' : '' }}
+                        {{ request()->routeIs('service.view') ? 'active' : '' }}
+                        {{ request()->routeIs('service.edit') ? 'active' : '' }}
+                        {{ request()->routeIs('front.image.view') ? 'active' : '' }}
+                        {{ request()->routeIs('front.image.edit') ? 'active' : '' }}">
                         <i class="lab las la-image"></i> <span data-key="frontend">Frontend</span>
                     </a>
                     <div class="collapse menu-dropdown" id="frontend">
                         <ul class="nav nav-sm flex-column">
                             <!-- Slider Images -->
                             <li class="nav-item">
-                                <a href="{{ route('SliderImage.view') }}" class="nav-link" data-key="slider-image">
-                                    Slider Image </a>
+                                <a href="{{ route('SliderImage.view') }}" data-key="slider-image" class="nav-link
+                                {{ request()->routeIs('SliderImage.view') ? 'active' : '' }}
+                                {{ request()->routeIs('SliderImage.create') ? 'active' : '' }}
+                                {{ request()->routeIs('SliderImage.edit') ? 'active' : '' }}">
+                                    Slider Images
+                                </a>
                             </li>
                             <!-- Services -->
                             <li class="nav-item">
-                                <a href="{{ route('service.view') }}" class="nav-link" data-key="service"> Services
+                                <a href="{{ route('service.view') }}" data-key="services" class="nav-link
+                                {{ request()->routeIs('service.view') ? 'active' : '' }}
+                                {{ request()->routeIs('service.edit') ? 'active' : '' }}">
+                                    Services
+                                </a>
+                            </li>
+                            <!-- Front Images -->
+                            <li class="nav-item">
+                                <a href="{{ route('front.image.view') }}" data-key="front-images" class="nav-link
+                                {{ request()->routeIs('front.image.view') ? 'active' : '' }}
+                                {{ request()->routeIs('front.image.edit') ? 'active' : '' }}">
+                                    Front Images
                                 </a>
                             </li>
                         </ul>
                     </div>
-                </li> <!-- end Multi-level -->
+                </li> <!-- end Frontend -->
+                
+                <!-- Widgets -->
+                <li class="nav-item">
+                    <a href="widgets.html" class="nav-link menu-link">
+                        <i data-feather="copy" class="icon-dual"></i> <span data-key="t-widgets">Widgets</span>
+                    </a>
+                </li> <!-- end widgets -->
 
                 <!-- Multi-level -->
                 <li class="nav-item">

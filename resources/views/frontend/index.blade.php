@@ -1,5 +1,74 @@
 @extends('frontend.layout.master')
 
+@section('header-content')
+    <style>
+        .gallery-image {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .welcome-offer-image {
+            height: 696px;
+            align-items: center;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+        }
+        .section.call-to-action{
+            height: 75vh;
+        }
+        .call-to-action-content p{
+            margin-top: 3rem;
+        }
+        .product-icon-wrapper{
+            padding: 70px 0;
+        }
+        .product-icon img{
+            width: 10%;
+        }
+        @media (max-width: 1200px) {
+            .section.call-to-action {
+                background-size: contain;
+            }
+        }
+
+        @media (max-width: 991.99px) {
+            .section.call-to-action {
+                height: 40vh;
+            }
+            .call-to-action-content p{
+                font-size: 12px;
+                width: 80%;
+                display: block;
+                margin: auto;
+                margin-top: 1.5rem;
+            }
+            .product-icon-wrapper{
+                padding: 50px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section.call-to-action {
+                height: 20vh;
+            }
+            .product-icon-wrapper{
+                padding: 30px 0;
+            }
+        }
+    </style>
+@endsection
+
 @section('main-content')
     <!-- Slider Section Start -->
     <div class="section slider-section-02">
@@ -76,39 +145,13 @@
                     @foreach ($services as $service)
                         <div class="col-lg-4 col-md-6">
                             <div class="single-benefit">
-                                <img src="{{ $service->icon }}" width="70"
-                                    height="92" alt="Service Icon" />
+                                <img src="{{ $service->icon }}" width="70" height="92" alt="Service Icon" />
                                 <h3 class="title">{{ $service->title }}</h3>
                                 <p>{{ $service->sub_title }}</p>
                             </div>
                         </div>
                     @endforeach <!-- Single Benefit End -->
 
-
-                    {{-- <div class="col-lg-4 col-md-6">
-                        <!-- Single Benefit Start -->
-                        <div class="single-benefit">
-                            <img src="{{ asset('frontend') }}/assets/images/icon/icon-2.png" width="70" height="92" alt="Icon" />
-                            <h3 class="title">Safe Payment</h3>
-                            <p>
-                                Get 10% cash back, free shipping, free
-                                returns, and more at 1000+ top retailers!
-                            </p>
-                        </div>
-                        <!-- Single Benefit End -->
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <!-- Single Benefit Start -->
-                        <div class="single-benefit">
-                            <img src="{{ asset('frontend') }}/assets/images/icon/icon-3.png" width="70" height="92" alt="Icon" />
-                            <h3 class="title">Online Support</h3>
-                            <p>
-                                Get 10% cash back, free shipping, free
-                                returns, and more at 1000+ top retailers!
-                            </p>
-                        </div>
-                        <!-- Single Benefit End -->
-                    </div> --}}
                 </div>
             </div>
             <!-- Benefit Wrapper End -->
@@ -119,9 +162,12 @@
     <!-- New Product Section Start -->
     <div class="section section-padding-02">
         <div class="container">
+
             <!-- Section Title Start -->
-            <div class="section-title-02 text-center">
-                <h2 class="title">New Products</h2>
+            <div class="product-top-wrapper">
+                <div class="section-title">
+                    <h2 class="title" style="font-size: 40px"># New Products</h2>
+                </div>
             </div>
             <!-- Section Title End -->
 
@@ -134,1382 +180,41 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab1">
                             <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-01.jpg"
-                                                    width="270" height="303" alt="product" /></a>
 
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Elona bedside grey
-                                                    table</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
+                                <!-- Single Product Start -->
+                                @forelse ($products as $product)
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="single-product-02">
+                                            <div class="product-images">
+                                                <a href="#"><img src="{{ $product->thumbnail }}" width="270"
+                                                        height="303" alt="product" /></a>
+
+                                                <ul class="product-meta">
+                                                    <li style="margin-right: 10px">
+                                                        <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
+                                                    </li>
+                                                    <li style="margin-left: 10px">
+                                                        <a class="action" href="#"><i class="pe-7s-like"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="title">
+                                                    <a href="#">{{ $product->name }}</a>
+                                                </h4>
+                                                <div class="price">
+                                                    <span class="sale-price">{{ '$' . $product->price }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-02.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Simple minimal Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
+                                @empty
+                                    <div class="col-12">
+                                        <p class="text-danger text-center">There is no Product to show!</p>
                                     </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-03.jpg"
-                                                    width="270" height="303" alt="product" /></a>
+                                @endforelse
+                                <!-- Single Product End -->
 
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Pendant Chandelier
-                                                    Light</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-04.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">High quality vase
-                                                    bottle</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-05.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Living & Bedroom
-                                                    Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-06.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Herman Arm Grey
-                                                    Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-11.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Lace Bar Stool</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-08.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Herman Seater Sofa</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab2">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-09.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Reece Seater Sofa</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-10.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Round Swivel Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-11.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">
-                                                    Lace Bar Stool</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-12.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Modern Accent Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-08.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Herman Seater Sofa</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-06.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Herman Arm Grey
-                                                    Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-07.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Wooden decorations</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-02.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Simple minimal Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab3">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-03.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Pendant Chandelier
-                                                    Light</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-04.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">High quality vase
-                                                    bottle</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-08.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Herman Seater Sofa</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-01.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Elona bedside grey
-                                                    table</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-07.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Wooden decorations</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-09.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Reece Seater Sofa</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-02.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Simple minimal Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-07.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Wooden decorations</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab4">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-03.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Pendant Chandelier
-                                                    Light</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-02.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Simple minimal Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-05.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Living & Bedroom
-                                                    Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-04.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">High quality vase
-                                                    bottle</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-10.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Round Swivel Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-11.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Lace Bar Stool</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-05.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Living & Bedroom
-                                                    Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-07.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Wooden decorations</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab5">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-03.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Pendant Chandelier
-                                                    Light</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-02.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Simple minimal Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-09.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Reece Seater Sofa</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-04.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">High quality vase
-                                                    bottle</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-12.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        href="#"><i class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Modern Accent Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-10.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal"
-                                                        data-bs-target="#quickView" href="#"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Round Swivel Chair</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-11.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal"
-                                                        data-bs-target="#quickView" href="#"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <span class="discount">-50%</span>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Lace Bar Stool</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$20.00</span>
-                                                <span class="old-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Product Start -->
-                                    <div class="single-product-02">
-                                        <div class="product-images">
-                                            <a href="product-details.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/product/product-01.jpg"
-                                                    width="270" height="303" alt="product" /></a>
-
-                                            <ul class="product-meta">
-                                                <li>
-                                                    <a class="action" data-bs-toggle="modal"
-                                                        data-bs-target="#quickView" href="#"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <h4 class="title">
-                                                <a href="product-details.html">Elona bedside grey
-                                                    table</a>
-                                            </h4>
-                                            <div class="price">
-                                                <span class="sale-price">$40.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product End -->
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1525,24 +230,25 @@
     <div class="section section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <!-- Single Banner Start -->
-                    <div class="single-banner-03">
-                        <img src="{{ asset('frontend') }}/assets/images/banner/banner-05.jpg" width="570"
-                            height="299" alt="Banner" />
 
-                        <div class="banner-content">
-                            <h6 class="sub-title">High-Quality</h6>
-                            <h3 class="title">
-                                <a href="shop-grid-left-sidebar.html">New Kitchen <br />
-                                    Furniture</a>
-                            </h3>
-                            <a class="btn btn-primary btn-hover-dark" href="shop-grid-left-sidebar.html">Shop Now</a>
+                <!-- Single Banner Start -->
+                @foreach ($featured_category as $fc)
+                    <div class="col-lg-6">
+                        <div class="single-banner-03">
+                            <a href="{{ route('frontpage') }}" style="cursor:default">
+                                <img src="{{ $fc->image }}" width="570" height="299" alt="Banner" />
+
+                                <div class="banner-content" style="width:50%">
+                                    <h3 class="title" style="font-size:2rem">{{ $fc->name }}</h3>
+                                    <button class="btn btn-primary btn-hover-dark" style="cursor:pointer">Shop Now</button>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <!-- Single Banner End -->
-                </div>
-                <div class="col-lg-6">
+                @endforeach
+                <!-- Single Banner End -->
+
+                {{-- <div class="col-lg-6">
                     <!-- Single Banner Start -->
                     <div class="single-banner-03">
                         <img src="{{ asset('frontend') }}/assets/images/banner/banner-06.jpg" width="570"
@@ -1558,702 +264,99 @@
                         </div>
                     </div>
                     <!-- Single Banner End -->
-                </div>
+                </div> --}}
+
             </div>
         </div>
     </div>
     <!-- Banner Section End -->
 
-    <!-- Countdown Section Start -->
-    <div class="section section-padding overflow-hidden bg-color-01">
-        <div class="container">
-            <div class="countdown-main-wrapper">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <!-- Countdown Content Start -->
-                        <div class="countdown-content">
-                            <h2 class="title">
-                                Chair Collection <span>50%</span> Off
-                            </h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing sed do eiusmol tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad
-                                mini veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip eao commodo
-                                consequat Duis aute irure.
-                            </p>
-
-                            <div class="countdown-wrapper">
-                                <div class="countdown" data-countdown="2024/11/20" data-format="short">
-                                    <div class="single-countdown">
-                                        <span class="count countdown__time daysLeft"></span>
-                                        <span class="value countdown__time daysText"></span>
-                                    </div>
-                                    <div class="single-countdown">
-                                        <span class="count countdown__time hoursLeft"></span>
-                                        <span class="value countdown__time hoursText"></span>
-                                    </div>
-                                    <div class="single-countdown">
-                                        <span class="count countdown__time minsLeft"></span>
-                                        <span class="value countdown__time minsText"></span>
-                                    </div>
-                                    <div class="single-countdown">
-                                        <span class="count countdown__time secsLeft"></span>
-                                        <span class="value countdown__time secsText"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a href="#" class="btn btn-primary btn-hover-dark">Shop Now</a>
-                        </div>
-                        <!-- Countdown Content End -->
-                    </div>
-
-                    <div class="col-lg-6">
-                        <!-- Countdown Images Start -->
-                        <div class="countdown-images">
-                            <div class="shape-1"></div>
-                            <div class="shape-2"></div>
-                            <div class="shape-3"></div>
-
-                            <div class="image-box">
-                                <img src="{{ asset('frontend') }}/assets/images/countdown.png" width="480"
-                                    height="383" alt="Countdown" />
-                            </div>
-                        </div>
-                        <!-- Countdown Images End -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Countdown Section End -->
-
-    <!-- Sale Product Section Start -->
-    <div class="section section-padding-02">
-        <div class="container">
-            <div class="">
-                <!-- Product Active Start -->
-                <div class="product-active-02">
-                    <!-- Product Top Wrapper Start -->
-                    <div class="product-top-wrapper">
-                        <!-- Section Title Start -->
-                        <div class="section-title">
-                            <h2 class="title"># Sale Products</h2>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- Product Menu Start -->
-                        <div class="product-menu">
-                            <ul class="nav">
-                                <li>
-                                    <button class="active" data-bs-toggle="tab" data-bs-target="#tab7">
-                                        All Time
-                                    </button>
-                                </li>
-                                <li>
-                                    <button data-bs-toggle="tab" data-bs-target="#tab8">
-                                        This Year
-                                    </button>
-                                </li>
-                                <li>
-                                    <button data-bs-toggle="tab" data-bs-target="#tab9">
-                                        This Month
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Product Menu End -->
-
-                        <!-- Swiper Arrows End -->
-                        <div class="swiper-arrows">
-                            <!-- Add Arrows -->
-                            <div class="swiper-button-prev">
-                                <i class="pe-7s-angle-left"></i>
-                            </div>
-                            <div class="swiper-button-next">
-                                <i class="pe-7s-angle-right"></i>
-                            </div>
-                        </div>
-                        <!-- Swiper Arrows End -->
-                    </div>
-                    <!-- Product Top Wrapper End -->
-
-                    <!-- Product Tabs Content Start -->
-                    <div class="product-tabs-content">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab7">
-                                <div class="swiper-container">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-12.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Modern Accent
-                                                            Chair</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-08.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Herman Seater
-                                                            Sofa</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-09.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Reece Seater
-                                                            Sofa</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-10.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Round Swivel
-                                                            Chair</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab8">
-                                <div class="swiper-container">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-12.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Modern Accent
-                                                            Chair</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-07.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Wooden
-                                                            decorations</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-06.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Herman Arm Grey
-                                                            Chair</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-05.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Living &
-                                                            Bedroom Chair</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab9">
-                                <div class="swiper-container">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-04.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">High quality
-                                                            vase bottle</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-03.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Pendant
-                                                            Chandelier
-                                                            Light</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-02.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Simple minimal
-                                                            Chair</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- Single Product Start -->
-                                            <div class="single-product-02">
-                                                <div class="product-images">
-                                                    <a href="product-details.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/product/product-01.jpg"
-                                                            width="270" height="303" alt="product" /></a>
-
-                                                    <ul class="product-meta">
-                                                        <li>
-                                                            <a class="action" data-bs-toggle="modal"
-                                                                data-bs-target="#quickView" href="#"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-shopbag"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="action" href="#"><i
-                                                                    class="pe-7s-like"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h4 class="title">
-                                                        <a href="product-details.html">Elona bedside
-                                                            grey table</a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span class="sale-price">$40.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single Product End -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product Tabs Content End -->
-                </div>
-                <!-- Product Active End -->
-            </div>
-        </div>
-    </div>
-    <!-- Sale Product Section End -->
-
-
-    <!-- Call To Action Section Start -->
-    {{-- <div class="section call-to-action" style="background-image: url({{ asset('frontend') }}/assets/images/bg-1.jpg)">
+    <!-- Welcome Offer Image -->
+    <div class="section call-to-action"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url({{ asset($welcome_offer_image->welcolme_or_offer_image) }});">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <!-- Call To Action Content Start -->
+
                     <div class="call-to-action-content text-center">
-                        <h1 class="title">Welcome To Store</h1>
-                        <p>
+                        <h1 class="title" style="color:#f2a100;font-weight:600">Welcome To Store</h1>
+                        <p style="color:#F9F6EE">
                             Lorem ipsum dolor sit amet, consectetur
                             adipisicing elit sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua.
                         </p>
-                        <a href="shop-grid-left-sidebar.html" class="btn btn-primary btn-hover-dark btn-margin">purchase
-                            now</a>
                     </div>
-                    <!-- Call To Action Content End -->
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Call To Action Section End -->
 
-
-    <div class="section section-padding-02">
-        <div class="products-banner products-banner-active">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <!-- Single Products Banner Start -->
-                        <div class="single-products-banner">
-                            <img src="{{ asset('frontend/assets') }}/images/products-banner/products-01.jpg"
-                                width="480" height="600" alt="Products" />
-
-                            <div class="products-banner-content">
-                                <div class="banner-content-wrapper">
-                                    <h4 class="title">
-                                        <a href="product-details.html">Drawing Furniture</a>
-                                    </h4>
-                                    <span class="products-count">15 Products</span>
-                                    <a href="product-details.html" class="arrow"><i
-                                            class="pe-7s-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Products Banner End -->
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- Single Products Banner Start -->
-                        <div class="single-products-banner">
-                            <img src="{{ asset('frontend/assets') }}/images/products-banner/products-02.jpg"
-                                width="480" height="600" alt="Products" />
-
-                            <div class="products-banner-content">
-                                <div class="banner-content-wrapper">
-                                    <h4 class="title">
-                                        <a href="product-details.html">Drawing Furniture</a>
-                                    </h4>
-                                    <span class="products-count">15 Products</span>
-                                    <a href="product-details.html" class="arrow"><i
-                                            class="pe-7s-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Products Banner End -->
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- Single Products Banner Start -->
-                        <div class="single-products-banner">
-                            <img src="{{ asset('frontend/assets') }}/images/products-banner/products-03.jpg"
-                                width="480" height="600" alt="Products" />
-
-                            <div class="products-banner-content">
-                                <div class="banner-content-wrapper">
-                                    <h4 class="title">
-                                        <a href="product-details.html">Drawing Furniture</a>
-                                    </h4>
-                                    <span class="products-count">15 Products</span>
-                                    <a href="product-details.html" class="arrow"><i
-                                            class="pe-7s-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Products Banner End -->
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- Single Products Banner Start -->
-                        <div class="single-products-banner">
-                            <img src="{{ asset('frontend/assets') }}/images/products-banner/products-04.jpg"
-                                width="480" height="600" alt="Products" />
-
-                            <div class="products-banner-content">
-                                <div class="banner-content-wrapper">
-                                    <h4 class="title">
-                                        <a href="product-details.html">Drawing Furniture</a>
-                                    </h4>
-                                    <span class="products-count">15 Products</span>
-                                    <a href="product-details.html" class="arrow"><i
-                                            class="pe-7s-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Products Banner End -->
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Product Banner Section End -->
+    <!-- End Welcome Offer Image -->
+
+
+
+    <!-- Sale Product Section Start -->
+    <div class="section section-padding-02">
+        <div class="container">
+
+            <div class="product-top-wrapper">
+                <div class="section-title">
+                    <h2 class="title" style="font-size:35px">#Sale Products</h2>
+                </div>
+            </div>
+
+            <div class="product-wrapper-02">
+                <div class="row">
+
+                    @forelse ($products as $product)    
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-product-02">
+                                <div class="product-images">
+                                    <a href="#"><img src="{{ $product->thumbnail }}" width="270"
+                                            height="303" alt="product" /></a>
+
+                                    <ul class="product-meta">
+                                        <li style="margin-right: 10px">
+                                            <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
+                                        </li>
+                                        <li style="margin-left: 10px">
+                                            <a class="action" href="#"><i class="pe-7s-like"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-content">
+                                    <h4 class="title">
+                                        <a href="#">{{ $product->name }}</a>
+                                    </h4>
+                                    <div class="price">
+                                        <span class="sale-price">{{ '$' . $product->price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12">
+                            <p class="text-danger text-center">There is no Product to show!</p>
+                        </div>
+                    @endforelse
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Sale Product Section Start -->
+
+    <!-- Gallery Image -->
+    <div class="section section-padding-02">
+        <div class="gallery-image">
+            <img src="{{ asset($gallery_images->gallery_image_1) }}" alt="Gallery Image 1">
+            <img src="{{ asset($gallery_images->gallery_image_2) }}" alt="Gallery Image 2">
+            <img src="{{ asset($gallery_images->gallery_image_3) }}" alt="Gallery Image 3">
+            <img src="{{ asset($gallery_images->gallery_image_4) }}" alt="Gallery Image 4">
+        </div>
+    </div>
+    <!-- End Gallery Image -->
 
     <!-- Blog Section Start -->
     <div class="section section-padding">
@@ -2383,51 +486,20 @@
         </div>
     </div>
     <!-- Blog Section End -->
-
-    <!-- Brand Logo Section Start -->
-    <div class="section brand-logo">
+    
+    <!-- Product Icon -->
+    <div class="section product-icon-wrapper" style="background-color:#f2a100">
         <div class="container">
-            <!-- Brand Logo Wrapper Start -->
-            <div class="brand-logo-wrapper brand-active">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <!-- Brand Logo Wrapper Start -->
-                        <div class="swiper-slide single-brand-02">
-                            <img src="{{ asset('frontend/assets') }}/images/brand/brand-2-1.png" width="118"
-                                height="87" alt="Brand" />
-                        </div>
-                        <!-- Brand Logo Wrapper End -->
-                        <!-- Brand Logo Wrapper Start -->
-                        <div class="swiper-slide single-brand-02">
-                            <img src="{{ asset('frontend/assets') }}/images/brand/brand-2-2.png" width="118"
-                                height="87" alt="Brand" />
-                        </div>
-                        <!-- Brand Logo Wrapper End -->
-                        <!-- Brand Logo Wrapper Start -->
-                        <div class="swiper-slide single-brand-02">
-                            <img src="{{ asset('frontend/assets') }}/images/brand/brand-2-3.png" width="118"
-                                height="87" alt="Brand" />
-                        </div>
-                        <!-- Brand Logo Wrapper End -->
-                        <!-- Brand Logo Wrapper Start -->
-                        <div class="swiper-slide single-brand-02">
-                            <img src="{{ asset('frontend/assets') }}/images/brand/brand-2-4.png" width="118"
-                                height="87" alt="Brand" />
-                        </div>
-                        <!-- Brand Logo Wrapper End -->
-                        <!-- Brand Logo Wrapper Start -->
-                        <div class="swiper-slide single-brand-02">
-                            <img src="{{ asset('frontend/assets') }}/images/brand/brand-2-5.png" width="118"
-                                height="87" alt="Brand" />
-                        </div>
-                        <!-- Brand Logo Wrapper End -->
-                    </div>
-                </div>
+            <div class="product-icon d-flex justify-content-between">
+                <img src="{{ asset($product_icon->product_icon_1) }}" alt="Product Icon 1">
+                <img src="{{ asset($product_icon->product_icon_2) }}" alt="Product Icon 2">
+                <img src="{{ asset($product_icon->product_icon_3) }}" alt="Product Icon 3">
+                <img src="{{ asset($product_icon->product_icon_4) }}" alt="Product Icon 4">
+                <img src="{{ asset($product_icon->product_icon_5) }}" alt="Product Icon 5">
             </div>
-            <!-- Brand Logo Wrapper End -->
         </div>
     </div>
-    <!-- Brand Logo Section End -->
+    <!-- End Product Icon -->
 
     <!-- Product Banner Section Start -->
 @endsection

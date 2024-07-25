@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.min.css" />
 
     {{-- <style>.logout-button input:hover{color:#f2a100}</style> --}}
+
+    @yield('header-content')
+    
 </head>
 
 

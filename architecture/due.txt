@@ -19,6 +19,10 @@
 21. How take multiple data from one value? I need it in the variant add page for pick the color name and code from one value. [VariantController@add]
 22. string minimum and maximum limit in validation. [universal]
 23. icon is not deleting in the service update. [ServiceController.update]
+24. add route to the products image for product details page. [Fronpage]
+25. use json images in the FrontImage table accordingly in the controller and view. [FrontImageController]
+26. show first 8 products images into the front page.
+27. add title and sub_title for welcome offer image nad make your controller accordingly.
 
 
 
@@ -44,6 +48,7 @@ Due commits on github:
 5. variant crud done.
 6. review crud partially done.
 7. SliderImage crd done.
+8. Services crud, backend active attribute, backend color code. 
 
 
 
@@ -85,3 +90,4 @@ New Addition:
 1. "featured" row added into the category table. [Category table]
 2. "thumbnail" row added into the product table. [Product table]
 3. json('images') is nullable due to addition problem. Therefore, images section has been removed from the add/edit page. [Product table]
+4. "FrontImage" mm has been created as for the frontpage design demand.

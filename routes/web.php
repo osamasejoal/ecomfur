@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\{AboutController, AddressController, CategoryController, ColorController, CouponController, FrontendController, HomeController, OrderController, OrderItemController, PopController, ProductController, ProfileController, ReviewController, SizeController, SliderImageController, SupporterController, TestimonialController, VariantController, WishlistController, ServiceController};
+use App\Http\Controllers\{AboutController, AddressController, CategoryController, ColorController, CouponController, FrontendController, HomeController, OrderController, OrderItemController, PopController, ProductController, ProfileController, ReviewController, SizeController, SliderImageController, SupporterController, TestimonialController, VariantController, WishlistController, ServiceController, FrontImageController};
+use App\Models\FrontImage;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -171,6 +172,20 @@ Route::controller(CouponController::class)->prefix('coupon')->middleware(['auth'
 
 /*
 |--------------------------------------------------------------------------
+|                          Review Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(ReviewController::class)->prefix('review')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('review.view');
+    Route::post('/store', 'store')->name('review.store');
+    Route::put('/update/{id}', 'update')->name('review.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('review.destroy');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
 |                          Slider Image Controller
 |--------------------------------------------------------------------------
 */
@@ -187,20 +202,6 @@ Route::controller(SliderImageController::class)->prefix('SliderImage')->middlewa
 
 /*
 |--------------------------------------------------------------------------
-|                          Review Controller
-|--------------------------------------------------------------------------
-*/
-Route::controller(ReviewController::class)->prefix('review')->middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('/index', 'index')->name('review.view');
-    Route::post('/store', 'store')->name('review.store');
-    Route::put('/update/{id}', 'update')->name('review.update');
-    Route::delete('/destroy/{id}', 'destroy')->name('review.destroy');
-});
-
-
-
-/*
-|--------------------------------------------------------------------------
 |                          Service Controller
 |--------------------------------------------------------------------------
 */
@@ -208,4 +209,17 @@ Route::controller(ServiceController::class)->prefix('service')->middleware(['aut
     Route::get('/index', 'index')->name('service.view');
     Route::get('/edit/{id}', 'edit')->name('service.edit');
     Route::put('/update/{id}', 'update')->name('service.update');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Front Image Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(FrontImageController::class)->prefix('front/image')->middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/index', 'index')->name('front.image.view');
+    Route::get('/edit/{id}', 'edit')->name('front.image.edit');
+    Route::put('/update/{id}', 'update')->name('front.image.update');
 });
