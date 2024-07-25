@@ -49,6 +49,7 @@ Due commits on github:
 6. review crud partially done.
 7. SliderImage crd done.
 8. Services crud, backend active attribute, backend color code. 
+9. FrontImage crud (slight left)
 
 
 
