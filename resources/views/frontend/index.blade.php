@@ -14,16 +14,6 @@
             object-fit: cover;
             object-position: center;
         }
-
-        .welcome-offer-image {
-            height: 696px;
-            align-items: center;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-        }
         .section.call-to-action{
             height: 75vh;
         }
@@ -194,7 +184,15 @@
                                                         <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
                                                     </li>
                                                     <li style="margin-left: 10px">
-                                                        <a class="action" href="#"><i class="pe-7s-like"></i></a>
+                                                        @auth
+                                                            @if (wishlist_exist($product->id))
+                                                                <a class="action" style="background-color:#f2a100;border-color:#f2a100;color:#fff"><i class="pe-7s-like"></i></a>
+                                                            @else
+                                                                <a class="action" href="{{ route('wishlist.store', $product->id) }}"><i class="pe-7s-like"></i></a>    
+                                                            @endif
+                                                        @else
+                                                            <a class="action" href="{{ route('login') }}"><i class="pe-7s-like"></i></a>
+                                                        @endauth
                                                     </li>
                                                 </ul>
                                             </div>
@@ -271,27 +269,23 @@
     </div>
     <!-- Banner Section End -->
 
-    <!-- Welcome Offer Image -->
+    <!-- Welcome Image -->
     <div class="section call-to-action"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url({{ asset($welcome_offer_image->welcolme_or_offer_image) }});">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url({{ asset($welcome_imgs->welcome_img) }})">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
 
                     <div class="call-to-action-content text-center">
-                        <h1 class="title" style="color:#f2a100;font-weight:600">Welcome To Store</h1>
-                        <p style="color:#F9F6EE">
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                        </p>
+                        <h1 class="title" style="color:#f2a100;font-weight:600">{{ $welcome_imgs->welcome_title }}</h1>
+                        <p style="color:#F9F6EE">{{ $welcome_imgs->welcome_desc }}</p>
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Welcome Offer Image -->
+    <!-- End Welcome Image -->
 
 
 
@@ -350,10 +344,10 @@
     <!-- Gallery Image -->
     <div class="section section-padding-02">
         <div class="gallery-image">
-            <img src="{{ asset($gallery_images->gallery_image_1) }}" alt="Gallery Image 1">
-            <img src="{{ asset($gallery_images->gallery_image_2) }}" alt="Gallery Image 2">
-            <img src="{{ asset($gallery_images->gallery_image_3) }}" alt="Gallery Image 3">
-            <img src="{{ asset($gallery_images->gallery_image_4) }}" alt="Gallery Image 4">
+            <img src="{{ asset($gallery_imgs->gallery_img_1) }}" alt="Gallery Image 1">
+            <img src="{{ asset($gallery_imgs->gallery_img_2) }}" alt="Gallery Image 2">
+            <img src="{{ asset($gallery_imgs->gallery_img_3) }}" alt="Gallery Image 3">
+            <img src="{{ asset($gallery_imgs->gallery_img_4) }}" alt="Gallery Image 4">
         </div>
     </div>
     <!-- End Gallery Image -->
@@ -491,11 +485,11 @@
     <div class="section product-icon-wrapper" style="background-color:#f2a100">
         <div class="container">
             <div class="product-icon d-flex justify-content-between">
-                <img src="{{ asset($product_icon->product_icon_1) }}" alt="Product Icon 1">
-                <img src="{{ asset($product_icon->product_icon_2) }}" alt="Product Icon 2">
-                <img src="{{ asset($product_icon->product_icon_3) }}" alt="Product Icon 3">
-                <img src="{{ asset($product_icon->product_icon_4) }}" alt="Product Icon 4">
-                <img src="{{ asset($product_icon->product_icon_5) }}" alt="Product Icon 5">
+                <img src="{{ asset($product_icons->product_icon_1) }}" alt="Product Icon 1">
+                <img src="{{ asset($product_icons->product_icon_2) }}" alt="Product Icon 2">
+                <img src="{{ asset($product_icons->product_icon_3) }}" alt="Product Icon 3">
+                <img src="{{ asset($product_icons->product_icon_4) }}" alt="Product Icon 4">
+                <img src="{{ asset($product_icons->product_icon_5) }}" alt="Product Icon 5">
             </div>
         </div>
     </div>

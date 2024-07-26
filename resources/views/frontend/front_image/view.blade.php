@@ -80,17 +80,37 @@
                 <div class="row my-5">
                     <div class="container">
 
-                        <!-- Welcome / Offer Image -->
+                        <!-- Welcome Image -->
                         <div class="col-12">
                             <div class="card border-warning">
                                 <div class="card-body">
 
                                     <div class="fi-heading">
-                                        <p>Welcome Offer <span>Image</span></p>
+                                        <p>Welcome <span>Image</span></p>
                                     </div>
 
-                                    <div class="gallery welcome-offer">
-                                        <div><img src="{{ asset($front_images->welcolme_or_offer_image) }}" alt="Welcome Offer"></div>
+                                    <div class="welcome-content p-3" style="font-size:1rem">
+                                        <div class="title row">
+                                            <div class="col-lg-2 d-flex justify-content-lg-end">
+                                                <label for="title" class="form-label fw-bold">Title: </label>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <p id="title">{{ $front_img->welcome_title }}</p>
+                                            </div>
+                                        </div>
+    
+                                        <div class="desc row">
+                                            <div class="col-lg-2 d-flex justify-content-lg-end">
+                                                <label for="description" class="form-label fw-bold">Description: </label>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <p id="description">{{ $front_img->welcome_desc }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="gallery welcome-offer mt-3">
+                                        <div><img src="{{ asset($front_img->welcome_img) }}" alt="Welcome Offer"></div>
                                     </div>
 
                                 </div>
@@ -107,10 +127,10 @@
                                     </div>
 
                                     <div class="gallery gallery-image">
-                                        <div><img src="{{ asset($front_images->gallery_image_1) }}" alt="Gallery Image"></div>
-                                        <div><img src="{{ asset($front_images->gallery_image_2) }}" alt="Gallery Image"></div>
-                                        <div><img src="{{ asset($front_images->gallery_image_3) }}" alt="Gallery Image"></div>
-                                        <div><img src="{{ asset($front_images->gallery_image_4) }}" alt="Gallery Image"></div>
+                                        <div><img src="{{ asset($front_img->gallery_img_1) }}" alt="Gallery Image"></div>
+                                        <div><img src="{{ asset($front_img->gallery_img_2) }}" alt="Gallery Image"></div>
+                                        <div><img src="{{ asset($front_img->gallery_img_3) }}" alt="Gallery Image"></div>
+                                        <div><img src="{{ asset($front_img->gallery_img_4) }}" alt="Gallery Image"></div>
                                     </div>
 
                                 </div>
@@ -127,11 +147,28 @@
                                     </div>
 
                                     <div class="gallery product-icon">
-                                        <div><img src="{{ asset($front_images->product_icon_1) }}" alt="Product Icon"></div>
-                                        <div><img src="{{ asset($front_images->product_icon_2) }}" alt="Product Icon"></div>
-                                        <div><img src="{{ asset($front_images->product_icon_3) }}" alt="Product Icon"></div>
-                                        <div><img src="{{ asset($front_images->product_icon_4) }}" alt="Product Icon"></div>
-                                        <div><img src="{{ asset($front_images->product_icon_5) }}" alt="Product Icon"></div>
+                                        <div><img src="{{ asset($front_img->product_icon_1) }}" alt="Product Icon"></div>
+                                        <div><img src="{{ asset($front_img->product_icon_2) }}" alt="Product Icon"></div>
+                                        <div><img src="{{ asset($front_img->product_icon_3) }}" alt="Product Icon"></div>
+                                        <div><img src="{{ asset($front_img->product_icon_4) }}" alt="Product Icon"></div>
+                                        <div><img src="{{ asset($front_img->product_icon_5) }}" alt="Product Icon"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Breadcrumb Background Image -->
+                        <div class="col-12 mt-5">
+                            <div class="card border-warning">
+                                <div class="card-body">
+
+                                    <div class="fi-heading">
+                                        <p>Breadcrumb Background <span>Image</span></p>
+                                    </div>
+
+                                    <div class="gallery welcome-offer">
+                                        <div><img src="{{ asset($front_img->breadcrumb_bg_img) }}" alt="Welcome Offer"></div>
                                     </div>
 
                                 </div>
@@ -141,7 +178,7 @@
                         <!-- Action -->
                         <div class="col-12 mt-5">
                             <div class="edit-button" style="padding: 5% 30% 0 30%">
-                                <a href="{{ route('front.image.edit', $front_images->id) }}" class="btn btn-warning btn-lg d-block">Edit</a>
+                                <a href="{{ route('front.image.edit', $front_img->id) }}" class="btn btn-warning btn-lg d-block">Edit</a>
                             </div>
                         </div>
 

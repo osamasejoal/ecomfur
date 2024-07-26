@@ -23,7 +23,9 @@
 25. use json images in the FrontImage table accordingly in the controller and view. [FrontImageController]
 26. show first 8 products images into the front page.
 27. add title and sub_title for welcome offer image nad make your controller accordingly.
-
+(M)28. sweet alert 2, title font has been changed in the frontend. [Fronpage]
+28. Add taka icon in every page (wishlist, cart, checkout, order, product). [universal]
+29. There are some link not integrated yet in the wishlist page. [Frontend]
 
 
 
@@ -36,20 +38,13 @@ Problems to discuss with Mehedi:
 1. Why we need color and size table, we can manage it from the variant table. 
 2. Image Thumbnail should be created.
 3. Don't we need slug in the order table? Otherwise, order details (frontend) page will depicts the order id.
+4. why wishlist is one is belongsTo and another is hasMany?
 
 
 
 
 Due commits on github:
-1. Testimonial, Supporter crud done.
-2. Color, Size crud done.
-3. Coupon crud done (with lots of problems)
-4.Product crud almost done (with prolems)
-5. variant crud done.
-6. review crud partially done.
-7. SliderImage crd done.
-8. Services crud, backend active attribute, backend color code. 
-9. FrontImage crud (slight left)
+1.
 
 
 

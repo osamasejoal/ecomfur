@@ -50,7 +50,7 @@ class TestimonialController extends Controller
         // Image Upload for Create Testimonial
         if ($request->file('image')) {
             $image = $request->file('image');
-            $imageName = rand() . '.' . $image->getClientOriginalName();
+            $imageName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $image->getClientOriginalExtension();
             //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
             $image->move(public_path('upload/testimonial_images'), $imageName);
             $image_path = 'upload/testimonial_images/' . $imageName;
@@ -104,7 +104,7 @@ class TestimonialController extends Controller
                     unlink($testimonial->image);
                 }
                 $image = $request->file('image');
-                $imageName = rand() . '.' . $image->getClientOriginalName();
+                $imageName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $image->getClientOriginalExtension();
                 //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
                 $image->move(public_path('upload/testimonial_images'), $imageName);
                 $image_path = 'upload/testimonial_images/' . $imageName;

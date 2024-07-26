@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supporter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class SupporterController extends Controller
 {
@@ -50,7 +51,7 @@ class SupporterController extends Controller
         // Image Upload for Create Supporter
         if ($request->file('logo')) {
             $logo = $request->file('logo');
-            $logoName = rand() . '.' . $logo->getClientOriginalName();
+            $logoName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $logo->getClientOriginalExtension();
             $logo->move(public_path('upload/supporter_images'), $logoName);
             $logo_path = 'upload/supporter_images/' . $logoName;
 
@@ -102,7 +103,7 @@ class SupporterController extends Controller
                     unlink($supporter->logo);
                 }
                 $logo = $request->file('logo');
-                $logoName = rand() . '.' . $logo->getClientOriginalName();
+                $logoName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $logo->getClientOriginalExtension();
                 $logo->move(public_path('upload/supporter_images'), $logoName);
                 $logo_path = 'upload/supporter_images/' . $logoName;
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SliderImage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class SliderImageController extends Controller
 {
@@ -45,7 +46,7 @@ class SliderImageController extends Controller
         // Image Upload for Create Slider Image
         if ($request->file('image')) {
             $image = $request->file('image');
-            $imageName = rand() . '.' . $image->getClientOriginalName();
+            $imageName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $image->getClientOriginalExtension();
             //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
             $image->move(public_path('upload/slider_images'), $imageName);
             $image_path = 'upload/slider_images/' . $imageName;

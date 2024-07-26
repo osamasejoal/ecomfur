@@ -77,7 +77,7 @@ class ProductController extends Controller
         // Thumbnail Upload for Create Product
         if ($request->file('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
-            $thumbnailName = rand() . '.' . $thumbnail->getClientOriginalName();
+            $thumbnailName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $thumbnail->getClientOriginalExtension();;
             //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
             $thumbnail->move(public_path('upload/product_images'), $thumbnailName);
             $thumbnail_path = 'upload/product_images/' . $thumbnailName;

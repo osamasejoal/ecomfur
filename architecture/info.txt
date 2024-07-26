@@ -1,2 +1,3 @@
 Frontend:
 color: #f2a100
+footer-top: #e9e1f7

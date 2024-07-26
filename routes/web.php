@@ -20,6 +20,7 @@ require __DIR__.'/auth.php';
 |--------------------------------------------------------------------------
 */
 Route::get('/', [FrontendController::class, 'index'])->name('frontpage');
+Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist.view');
 
 
 
@@ -222,4 +223,16 @@ Route::controller(FrontImageController::class)->prefix('front/image')->middlewar
     Route::get('/index', 'index')->name('front.image.view');
     Route::get('/edit/{id}', 'edit')->name('front.image.edit');
     Route::put('/update/{id}', 'update')->name('front.image.update');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          Wishlist Controller
+|--------------------------------------------------------------------------
+*/
+Route::controller(WishlistController::class)->prefix('wishlist')->middleware(['auth'])->group(function() {
+    Route::get('/store/{id}', 'store')->name('wishlist.store');
+    Route::delete('/destroy/{id}', 'destroy')->name('wishlist.destroy');
 });

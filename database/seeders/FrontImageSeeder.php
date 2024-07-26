@@ -14,18 +14,21 @@ class FrontImageSeeder extends Seeder
     public function run(): void
     {
         DB::table('front_images')->insert([
-            'welcolme_or_offer_image'   => 'seeder_images/front_image_welcolme_or_offer_image.jpg',
-            'gallery_image_1'           => 'seeder_images/front_image_gallery_image_1.jpg',
-            'gallery_image_2'           => 'seeder_images/front_image_gallery_image_2.jpg',
-            'gallery_image_3'           => 'seeder_images/front_image_gallery_image_3.jpg',
-            'gallery_image_4'           => 'seeder_images/front_image_gallery_image_4.jpg',
-            'product_icon_1'            => 'seeder_images/front_image_product_icon_1.png',
-            'product_icon_2'            => 'seeder_images/front_image_product_icon_2.png',
-            'product_icon_3'            => 'seeder_images/front_image_product_icon_3.png',
-            'product_icon_4'            => 'seeder_images/front_image_product_icon_4.png',
-            'product_icon_5'            => 'seeder_images/front_image_product_icon_5.png',
-            'created_at'                => now(),
-            'updated_at'                => now(),
+            'welcome_img'       => 'seeder_images/fi_welcome_img.jpeg',
+            'welcome_title'     => 'Welcome to Store',
+            'welcome_desc'      => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            'gallery_img_1'     => 'seeder_images/fi_gallery_img_1.jpg',
+            'gallery_img_2'     => 'seeder_images/fi_gallery_img_2.jpg',
+            'gallery_img_3'     => 'seeder_images/fi_gallery_img_3.jpg',
+            'gallery_img_4'     => 'seeder_images/fi_gallery_img_4.jpg',
+            'product_icon_1'    => 'seeder_images/fi_product_icon_1.png',
+            'product_icon_2'    => 'seeder_images/fi_product_icon_2.png',
+            'product_icon_3'    => 'seeder_images/fi_product_icon_3.png',
+            'product_icon_4'    => 'seeder_images/fi_product_icon_4.png',
+            'product_icon_5'    => 'seeder_images/fi_product_icon_5.png',
+            'breadcrumb_bg_img' => 'seeder_images/fi_breadcrumb_bg_img.jpeg',
+            'created_at'        => now(),
+            'updated_at'        => now(),
         ]);
     }
 }

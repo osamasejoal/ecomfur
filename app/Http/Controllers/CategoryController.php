@@ -50,7 +50,7 @@ class CategoryController extends Controller
         // Image Upload for Create Category
         if ($request->file('image')) {
             $image = $request->file('image');
-            $imageName = rand() . '.' . $image->getClientOriginalName();
+            $imageName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $image->getClientOriginalExtension();
             //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
             $image->move(public_path('upload/category_images'), $imageName);
             $image_path = 'upload/category_images/' . $imageName;
@@ -102,7 +102,7 @@ class CategoryController extends Controller
                     unlink($category->image);
                 }
                 $image = $request->file('image');
-                $imageName = rand() . '.' . $image->getClientOriginalName();
+                $imageName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $image->getClientOriginalExtension();
                 //Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
                 $image->move(public_path('upload/category_images'), $imageName);
                 $image_path = 'upload/category_images/' . $imageName;

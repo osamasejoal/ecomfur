@@ -28,9 +28,9 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    // belongsTo wishlist table
+    // hasMany relation with wishlist table
     public function wishlist()
     {
-        return $this->belongsTo(Wishlist::class);
+        return $this->hasMany(Wishlist::class);
     }
 }

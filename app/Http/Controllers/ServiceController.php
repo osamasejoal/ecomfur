@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -57,7 +58,7 @@ class ServiceController extends Controller
                 }
 
                 $icon = $request->file('icon');
-                $iconName = rand() . '.' . $icon->getClientOriginalName();
+                $iconName = date('d-m-Y-H-i-s') . Str::random('5') . '.' . $icon->getClientOriginalExtension();
                 $icon->move(public_path('upload/service_images'), $iconName);
                 $icon_path = 'upload/service_images/' . $iconName;
 

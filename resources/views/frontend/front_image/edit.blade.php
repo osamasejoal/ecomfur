@@ -31,7 +31,7 @@
             border-radius: 3px;
         }
 
-        .welcome-offer-image {
+        .welcome_img {
             width: 80%;
             margin: auto;
         }
@@ -50,26 +50,26 @@
         }
 
         @media (max-width: 991.99px) {
-            .gallery-image {
+            .gallery_img {
                 width: 80%;
                 margin: auto;
             }
 
-            .gallery-image-wrapper label {
+            .gallery_img-wrapper label {
                 margin-top: 2rem;
             }
 
-            .gallery-image-wrapper .first-label {
+            .gallery_img-wrapper .first-label {
                 margin-top: 0;
             }
 
-            .gallery-image-wrapper .second-label {
+            .gallery_img-wrapper .second-label {
                 margin-top: 0;
             }
         }
 
         @media (max-width: 767.99px) {
-            .gallery-image {
+            .gallery_img {
                 width: 50%;
                 margin: auto;
             }
@@ -87,7 +87,7 @@
                 margin-top: 0;
             }
 
-            .gallery-image-wrapper .second-label {
+            .gallery_img-wrapper .second-label {
                 margin-top: 2rem;
             }
         }
@@ -126,12 +126,12 @@
                     <div class="col-lg-11 m-auto">
                         <div class="container-fluid">
 
-                            <form action="{{ route('front.image.update', $front_image->id) }}" method="POST"
+                            <form action="{{ route('front.image.update', $front_img->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
 
-                                <!-- Welcome Offer Image -->
+                                <!-- Welcome Image -->
                                 <div class="col-12">
                                     <div class="card border-warning">
                                         <div class="card-body">
@@ -140,20 +140,41 @@
                                                 <p>Welcome Offer <span>Image</span></p>
                                             </div>
 
+                                            <div class="row" style="font-size:1rem">
+                                                <div class="container mb-5">
+                                                    <!-- Title -->
+                                                    <div class="title col-12">
+                                                        <label for="title" id="title">Title: <span class="text-danger">*</span></label>
+                                                        <input type="text" name="welcome_title" id="title" class="form-control" value="{{ $front_img->welcome_title }}">
+                                                        @error('welcome_title')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <!-- Description -->
+                                                    <div class="description col-12 mt-4">
+                                                        <label for="description" id="description">Description: <span class="text-danger">*</span></label>
+                                                        <textarea name="welcome_desc" id="description" rows="4" class="form-control">{{ $front_img->welcome_desc }}</textarea>
+                                                        @error('welcome_desc')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="container">
-                                                    <input type="file" name="welcolme_or_offer_image" id="image"
+                                                    <input type="file" name="welcome_img" id="image"
                                                         class="form-control">
 
-                                                    @error('welcolme_or_offer_image')
+                                                    @error('welcome_img')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
                                                 <div class="container mt-4">
-                                                    <div class="gallery welcome-offer-image">
-                                                        <img src="{{ asset($front_image->welcolme_or_offer_image) }}"
-                                                            id="showImage" alt="Welcome Offer Image">
+                                                    <div class="gallery welcome_img">
+                                                        <img src="{{ asset($front_img->welcome_img) }}"
+                                                            id="showImage" alt="Welcome Image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,7 +184,7 @@
                                 </div>
 
                                 <!-- Gallery Image -->
-                                <div class="col-12 mt-5 gallery-image-wrapper">
+                                <div class="col-12 mt-5 gallery_img-wrapper">
                                     <div class="card border-warning">
                                         <div class="card-body">
 
@@ -180,15 +201,15 @@
                                                         class="form-label fs-5 d-block text-center mb-3 first-label"
                                                         style="font-weight:600">Image-1</label>
 
-                                                    <input type="file" name="gallery_image_1" id="g_i_1"
-                                                        class="form-control mb-4">
+                                                    <input type="file" name="gallery_img_1" id="g_i_1"
+                                                        class="form-control">
 
-                                                    @error('gallery_image_1')
+                                                    @error('gallery_img_1')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery gallery-image">
-                                                        <img src="{{ asset($front_image->gallery_image_1) }}"
+                                                    <div class="gallery gallery_img mt-4">
+                                                        <img src="{{ asset($front_img->gallery_img_1) }}"
                                                             id="show_g_i_1" alt="Gallery Image 1">
                                                     </div>
                                                 </div>
@@ -200,15 +221,15 @@
                                                         class="form-label fs-5 d-block text-center mb-3 second-label"
                                                         style="font-weight:600">Image-2</label>
 
-                                                    <input type="file" name="gallery_image_2" id="g_i_2"
-                                                        class="form-control mb-4">
+                                                    <input type="file" name="gallery_img_2" id="g_i_2"
+                                                        class="form-control">
 
-                                                    @error('gallery_image_2')
+                                                    @error('gallery_img_2')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery gallery-image">
-                                                        <img src="{{ asset($front_image->gallery_image_2) }}"
+                                                    <div class="gallery gallery_img mt-4">
+                                                        <img src="{{ asset($front_img->gallery_img_2) }}"
                                                             id="show_g_i_2" alt="Gallery Image 2">
                                                     </div>
                                                 </div>
@@ -219,15 +240,15 @@
                                                     <label for="g_i_3" class="form-label fs-5 d-block text-center mb-3"
                                                         style="font-weight:600">Image-3</label>
 
-                                                    <input type="file" name="gallery_image_3" id="g_i_3"
-                                                        class="form-control mb-4">
+                                                    <input type="file" name="gallery_img_3" id="g_i_3"
+                                                        class="form-control">
 
-                                                    @error('gallery_image_3')
+                                                    @error('gallery_img_3')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery gallery-image">
-                                                        <img src="{{ asset($front_image->gallery_image_3) }}"
+                                                    <div class="gallery gallery_img mt-4">
+                                                        <img src="{{ asset($front_img->gallery_img_3) }}"
                                                             id="show_g_i_3" alt="Gallery Image 1">
                                                     </div>
                                                 </div>
@@ -238,15 +259,15 @@
                                                     <label for="g_i_4" class="form-label fs-5 d-block text-center mb-3"
                                                         style="font-weight:600">Image-4</label>
 
-                                                    <input type="file" name="gallery_image_4" id="g_i_4"
-                                                        class="form-control mb-4">
+                                                    <input type="file" name="gallery_img_4" id="g_i_4"
+                                                        class="form-control">
 
-                                                    @error('gallery_image_4')
+                                                    @error('gallery_img_4')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery gallery-image">
-                                                        <img src="{{ asset($front_image->gallery_image_4) }}"
+                                                    <div class="gallery gallery_img mt-4">
+                                                        <img src="{{ asset($front_img->gallery_img_4) }}"
                                                             id="show_g_i_4" alt="Gallery Image 1">
                                                     </div>
                                                 </div>
@@ -276,14 +297,14 @@
                                                         style="font-weight:600">Icon-1</label>
 
                                                     <input type="file" name="product_icon_1" id="p_i_1"
-                                                        class="form-control mb-4">
+                                                        class="form-control">
 
                                                     @error('product_icon_1')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery product-icon">
-                                                        <img src="{{ asset($front_image->product_icon_1) }}"
+                                                    <div class="gallery product-icon mt-4">
+                                                        <img src="{{ asset($front_img->product_icon_1) }}"
                                                             id="show_p_i_1" alt="Product Icon 1">
                                                     </div>
                                                 </div>
@@ -295,14 +316,14 @@
                                                         style="font-weight:600">Icon-2</label>
 
                                                     <input type="file" name="product_icon_2" id="p_i_2"
-                                                        class="form-control mb-4">
+                                                        class="form-control">
 
                                                     @error('product_icon_2')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery product-icon">
-                                                        <img src="{{ asset($front_image->product_icon_2) }}"
+                                                    <div class="gallery product-icon mt-4">
+                                                        <img src="{{ asset($front_img->product_icon_2) }}"
                                                             id="show_p_i_2" alt="Product Icon 2">
                                                     </div>
                                                 </div>
@@ -314,14 +335,14 @@
                                                         style="font-weight:600">Icon-3</label>
 
                                                     <input type="file" name="product_icon_3" id="p_i_3"
-                                                        class="form-control mb-4">
+                                                        class="form-control">
 
                                                     @error('product_icon_3')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery product-icon">
-                                                        <img src="{{ asset($front_image->product_icon_3) }}"
+                                                    <div class="gallery product-icon mt-4">
+                                                        <img src="{{ asset($front_img->product_icon_3) }}"
                                                             id="show_p_i_3" alt="Product Icon 3">
                                                     </div>
                                                 </div>
@@ -333,14 +354,14 @@
                                                         style="font-weight:600">Icon-4</label>
 
                                                     <input type="file" name="product_icon_4" id="p_i_4"
-                                                        class="form-control mb-4">
+                                                        class="form-control">
 
                                                     @error('product_icon_4')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery product-icon">
-                                                        <img src="{{ asset($front_image->product_icon_4) }}"
+                                                    <div class="gallery product-icon mt-4">
+                                                        <img src="{{ asset($front_img->product_icon_4) }}"
                                                             id="show_p_i_4" alt="Product Icon 4">
                                                     </div>
                                                 </div>
@@ -352,18 +373,50 @@
                                                         style="font-weight:600">Icon-5</label>
 
                                                     <input type="file" name="product_icon_5" id="p_i_5"
-                                                        class="form-control mb-4">
+                                                        class="form-control">
 
                                                     @error('product_icon_5')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                                                    <div class="gallery product-icon">
-                                                        <img src="{{ asset($front_image->product_icon_5) }}"
+                                                    <div class="gallery product-icon mt-4">
+                                                        <img src="{{ asset($front_img->product_icon_5) }}"
                                                             id="show_p_i_5" alt="Product Icon 5">
                                                     </div>
                                                 </div>
 
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <!-- Breadcrumb Background Image -->
+                                <div class="col-12 mt-5">
+                                    <div class="card border-warning">
+                                        <div class="card-body">
+
+                                            <div class="fi-heading">
+                                                <p>Breadcrumb Background <span>Image</span></p>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="container">
+                                                    <input type="file" name="breadcrumb_bg_img" id="bc_bg_img"
+                                                        class="form-control">
+
+                                                    @error('breadcrumb_bg_img')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="container mt-4">
+                                                    <div class="gallery welcome_img">
+                                                        <img src="{{ asset($front_img->breadcrumb_bg_img) }}"
+                                                            id="show_bc_bg_img" alt="Welcome Offer Image">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -517,6 +570,19 @@
                     var reader = new FileReader();
                     reader.onload = function(e) {
                         $('#show_p_i_5').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(e.target.files['0']);
+                })
+            });
+        </script>
+
+        <!-- Breadcrumb Background Image -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#bc_bg_img').change(function(e) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#show_bc_bg_img').attr('src', e.target.result);
                     }
                     reader.readAsDataURL(e.target.files['0']);
                 })

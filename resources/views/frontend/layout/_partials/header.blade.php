@@ -30,7 +30,8 @@
     {{-- <!-- <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.css"> --> --}}
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.min.css" />
 
-    {{-- <style>.logout-button input:hover{color:#f2a100}</style> --}}
+    <!-- Sweet Alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @yield('header-content')
     
@@ -45,7 +46,7 @@
                 <div class="col-lg-3">
                     <!-- Header Logo Start -->
                     <div class="header-logo">
-                        <a href="index.html"><img src="{{ asset('frontend') }}/assets/images/logo.png" width="154"
+                        <a href="{{ route('frontpage') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png" width="154"
                                 height="46" alt="Logo" /></a>
                     </div>
                     <!-- Header Logo End -->
@@ -197,27 +198,13 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
+
+
+
                     <!-- Header Meta Start -->
                     <div class="header-meta">
-                        <div class="dropdown">
-                            <a class="action" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="pe-7s-search"></i>
-                            </a>
 
-                            <div class="dropdown-menu dropdown-search">
-                                <!-- Header Search Start -->
-                                <div class="header-search">
-                                    <form action="#">
-                                        <input type="text" placeholder="Enter your search key ... " />
-                                        <button>
-                                            <i class="pe-7s-search"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                                <!-- Header Search End -->
-                            </div>
-                        </div>
-
+                        <!-- My Account -->
                         <div class="dropdown">
                             <a class="action" href="#" role="button" data-bs-toggle="dropdown"><i
                                     class="pe-7s-user"></i></a>
@@ -240,8 +227,16 @@
                                 @endauth
                             </ul>
                         </div>
-                        <a class="action" href="wishlist.html"><i class="pe-7s-like"></i></a>
 
+                        <!-- Wishlist -->
+                        <a class="action" href="{{ route('wishlist.view') }}">
+                            <i class="pe-7s-like"></i>
+                            @if (count(wishlists()) > 0)
+                                <span class="number" style="right:1px;opacity:0.8">{{ count(wishlists()) }}</span>
+                            @endif
+                        </a>
+
+                        <!-- Cart -->
                         <div class="dropdown">
                             <a class="action" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="pe-7s-shopbag"></i>
@@ -335,6 +330,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!-- Header Meta End -->
                 </div>
@@ -342,6 +338,8 @@
         </div>
     </div>
     <!-- Header End -->
+
+
 
     <!-- Header Mobile Start -->
     <div class="header-mobile section d-lg-none">
@@ -364,7 +362,7 @@
                     <div class="col">
                         <!-- Header Logo Start -->
                         <div class="header-logo text-center">
-                            <a href="index.html"><img src="{{ asset('frontend') }}/assets/images/logo.png"
+                            <a href="{{ route('frontpage') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png"
                                     width="154" height="46" alt="Logo" /></a>
                         </div>
                         <!-- Header Logo End -->
@@ -507,7 +505,7 @@
                                     <ul class="menu-item">
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="#">Wishlist</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="my-account.html">My Account</a></li>
                                     </ul>
