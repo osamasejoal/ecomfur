@@ -2,6 +2,7 @@
 
 use App\Models\FrontImage;
 use App\Models\Wishlist;
+use App\Models\Category;
 
 
 
@@ -24,6 +25,13 @@ use App\Models\Wishlist;
     --------------------------------------------------------------------------*/
     function wishlist_exist($id){
         return Wishlist::where('user_id', auth()->id())->where('product_id', $id)->first();
+    }
+
+    /*--------------------------------------------------------------------------
+    categories method
+    --------------------------------------------------------------------------*/
+    function categories(){
+        return Category::all();
     }
 
 ?>

@@ -26,6 +26,10 @@
 (M)28. sweet alert 2, title font has been changed in the frontend. [Fronpage]
 28. Add taka icon in every page (wishlist, cart, checkout, order, product). [universal]
 29. There are some link not integrated yet in the wishlist page. [Frontend]
+30. fix the pagination system. [universal]
+31. Isn't it possible to fetch product tables data by category id from category model? [FrontendController@category_products]
+32. Dynamic the breadcrumbs. [universal]
+33. add variant system in the product details page.
 
 
 
@@ -65,6 +69,7 @@ Questions to Naem Via:
 14. product Image lagbe.
 15. Slogan ace kno?
 16. Image set korle valo hoy.
+17. Shipping korba kamne (for cart page)?
 
 
 

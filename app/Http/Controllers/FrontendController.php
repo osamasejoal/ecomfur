@@ -26,4 +26,15 @@ class FrontendController extends Controller
         $bc_bg_imgs = FrontImage::select('breadcrumb_bg_img')->first();
         return view('frontend.pre_order.wishlist');
     }
+
+    public function category_product($id){
+        $category = Category::find($id);
+        $products = Product::where('category_id', $id)->get();
+        return view('frontend.product.category_product', compact('category', 'products'));
+    }
+
+    public function product_details($id){
+        $product = Product::find($id);
+        return view('frontend.product.product_details', compact('product'));
+    }
 }

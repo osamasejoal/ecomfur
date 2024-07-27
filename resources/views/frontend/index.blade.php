@@ -176,7 +176,7 @@
                                     <div class="col-lg-3 col-sm-6">
                                         <div class="single-product-02">
                                             <div class="product-images">
-                                                <a href="#"><img src="{{ $product->thumbnail }}" width="270"
+                                                <a href="{{ route('product.details', $product->id) }}"><img src="{{ $product->thumbnail }}" width="270"
                                                         height="303" alt="product" /></a>
 
                                                 <ul class="product-meta">
@@ -198,7 +198,7 @@
                                             </div>
                                             <div class="product-content">
                                                 <h4 class="title">
-                                                    <a href="#">{{ $product->name }}</a>
+                                                    <a href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a>
                                                 </h4>
                                                 <div class="price">
                                                     <span class="sale-price">{{ '$' . $product->price }}</span>

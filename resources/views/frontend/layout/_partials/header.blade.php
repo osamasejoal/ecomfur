@@ -30,11 +30,17 @@
     {{-- <!-- <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.css"> --> --}}
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.min.css" />
 
+    
+    <!-- Added by developer -->
+
+    <!-- Icons Css -->
+    <link href="{{ asset('backend/assets') }}/css/icons.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Sweet Alert 2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @yield('header-content')
-    
+
 </head>
 
 
@@ -46,154 +52,38 @@
                 <div class="col-lg-3">
                     <!-- Header Logo Start -->
                     <div class="header-logo">
-                        <a href="{{ route('frontpage') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png" width="154"
-                                height="46" alt="Logo" /></a>
+                        <a href="{{ route('frontpage') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png"
+                                width="154" height="46" alt="Logo" /></a>
                     </div>
                     <!-- Header Logo End -->
                 </div>
                 <div class="col-lg-6">
                     <div class="header-menu">
                         <ul class="nav-menu">
-                            <li>
-                                <a href="#">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Home 01</a></li>
-                                    <li><a href="index-2.html">Home 02</a></li>
-                                </ul>
-                            </li>
+
+                            <!-- Home -->
+                            <li><a href="{{ route('frontpage') }}">Home</a></li>
+
+                            <!-- About -->
                             <li><a href="about.html">About</a></li>
+
+                            <!-- Categories -->
                             <li>
-                                <a href="#">Shop</a>
-                                <ul class="mega-sub-menu">
-                                    <li>
-                                        <a href="#" class="menu-title">Shop Grid</a>
-
-                                        <ul class="menu-item">
-                                            <li>
-                                                <a href="shop-grid-3-column.html">Shop Grid 3 Column</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-grid-4-column.html">Shop Grid 4 Column</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-title">Shop List</a>
-
-                                        <ul class="menu-item">
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                            <li>
-                                                <a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-title">Shop Single</a>
-
-                                        <ul class="menu-item">
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li>
-                                                <a href="product-details-affiliate.html">Product Details Affiliate</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details-gallery.html">Product Details Gallery</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details-group.html">Product Details Group</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details-sticky.html">Product Details Sticky</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-title">Page</a>
-
-                                        <ul class="menu-item">
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="manu-banner">
-                                        <a href="#"><img
-                                                src="{{ asset('frontend') }}/assets/images/banner-menu-01.jpg"
-                                                width="465" height="170" alt="Banner" /></a>
-                                    </li>
-                                    <li class="manu-banner">
-                                        <a href="#"><img
-                                                src="{{ asset('frontend') }}/assets/images/banner-menu-02.jpg"
-                                                width="465" height="170" alt="Banner" /></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Pages </a>
+                                <a href="#">Categories </a>
                                 <ul class="sub-menu">
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="compare.html">Compare</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="empty-cart.html">Empty Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    @forelse (categories() as $category)
+                                        <li><a
+                                                href="{{ route('category.products', $category->id) }}">{{ $category->name }}</a>
+                                        </li>
+                                    @empty
+                                        <li class="text-center text-danger">There is no category!</li>
+                                    @endforelse
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#">Blog</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="#">Blog Grid</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-grid.html">Blog Grid</a></li>
-                                            <li>
-                                                <a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Blog List</a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Blog Details</a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog-details-left-sidebar.html">Blog details Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-details-right-sidebar.html">Blog details Right
-                                                    Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact</a></li>
+
+                            <!-- Contact -->
+                            <li><a href="#">Contact</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -204,132 +94,145 @@
                     <!-- Header Meta Start -->
                     <div class="header-meta">
 
-                        <!-- My Account -->
-                        <div class="dropdown">
-                            <a class="action" href="#" role="button" data-bs-toggle="dropdown"><i
-                                    class="pe-7s-user"></i></a>
+                        @auth
+                            <!-- My Account -->
+                            <div class="dropdown">
+                                <a class="action" href="#" role="button" data-bs-toggle="dropdown"><i
+                                        class="pe-7s-user"></i></a>
 
-                            <ul class="dropdown-menu dropdown-profile">
-                                @auth
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li>
-                                        <form method="POST" action="{{ route('logout') }}"
-                                        style="display:inline-block;padding:3px 1.5rem;color:#373a3c" class="logout-button">
-                                        @csrf
-                                            <style>.logout-button input:hover{color:#f2a100}</style>
-                                            <input type="submit" value="logout"
-                                                style="border: none;background: transparent;padding: 0;">
-                                        </form>
-                                    </li>
-                                @else
-                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                    <li><a href="{{ route('register') }}">Sign Up</a></li>
-                                @endauth
-                            </ul>
-                        </div>
+                                <ul class="dropdown-menu dropdown-profile">
+                                    @auth
+                                        <li><a href="my-account.html">My Account</a></li>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}"
+                                                style="display:inline-block;padding:3px 1.5rem;color:#373a3c"
+                                                class="logout-button">
+                                                @csrf
+                                                <style>
+                                                    .logout-button input:hover {
+                                                        color: #f2a100
+                                                    }
+                                                </style>
+                                                <input type="submit" value="logout"
+                                                    style="border: none;background: transparent;padding: 0;">
+                                            </form>
+                                        </li>
+                                    @else
+                                        <li><a href="{{ route('login') }}">Login</a></li>
+                                        <li><a href="{{ route('register') }}">Sign Up</a></li>
+                                    @endauth
+                                </ul>
+                            </div>
 
-                        <!-- Wishlist -->
-                        <a class="action" href="{{ route('wishlist.view') }}">
-                            <i class="pe-7s-like"></i>
-                            @if (count(wishlists()) > 0)
-                                <span class="number" style="right:1px;opacity:0.8">{{ count(wishlists()) }}</span>
-                            @endif
-                        </a>
-
-                        <!-- Cart -->
-                        <div class="dropdown">
-                            <a class="action" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="pe-7s-shopbag"></i>
-                                <span class="number">3</span>
+                            <!-- Wishlist -->
+                            <a class="action" href="{{ route('wishlist.view') }}">
+                                <i class="pe-7s-like"></i>
+                                @if (count(wishlists()) > 0)
+                                    <span class="number" style="right:1px;opacity:0.8">{{ count(wishlists()) }}</span>
+                                @endif
                             </a>
 
-                            <div class="dropdown-menu dropdown-cart">
-                                <div class="cart-content" id="cart-content">
-                                    <ul>
-                                        <li>
-                                            <!-- Single Cart Item Start -->
-                                            <div class="single-cart-item">
-                                                <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-1.jpg"
-                                                        width="98" height="98" alt="Cart" />
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="cart-item-content">
-                                                    <h6 class="product-name">
-                                                        <a href="#">High quality vase
-                                                            bottle</a>
-                                                    </h6>
-                                                    <span class="product-price">$19.12</span>
-                                                    <div class="attributes-content">
-                                                        <span><strong>Color:</strong>
-                                                            White
-                                                        </span>
-                                                    </div>
-                                                    <a class="cart-remove" href="#"><i
-                                                            class="las la-times"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- Single Cart Item End -->
-                                        </li>
-                                        <li>
-                                            <!-- Single Cart Item Start -->
-                                            <div class="single-cart-item">
-                                                <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-2.jpg"
-                                                        width="98" height="98" alt="Cart" />
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="cart-item-content">
-                                                    <h6 class="product-name">
-                                                        <a href="#">Living & Bedroom
-                                                            Chair</a>
-                                                    </h6>
-                                                    <span class="product-price">$19.12</span>
-                                                    <div class="attributes-content">
-                                                        <span><strong>Color:</strong>
-                                                            White
-                                                        </span>
-                                                    </div>
-                                                    <a class="cart-remove" href="#"><i
-                                                            class="las la-times"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- Single Cart Item End -->
-                                        </li>
-                                        <li>
-                                            <!-- Single Cart Item Start -->
-                                            <div class="single-cart-item">
-                                                <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-3.jpg"
-                                                        width="98" height="98" alt="Cart" />
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="cart-item-content">
-                                                    <h6 class="product-name">
-                                                        <a href="#">Herman Arm Grey
-                                                            Chair</a>
-                                                    </h6>
-                                                    <span class="product-price">$19.12</span>
-                                                    <div class="attributes-content">
-                                                        <span><strong>Color:</strong>
-                                                            White
-                                                        </span>
-                                                    </div>
-                                                    <a class="cart-remove" href="#"><i
-                                                            class="las la-times"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- Single Cart Item End -->
-                                        </li>
-                                    </ul>
-                                </div>
+                            <!-- Cart -->
+                            <div class="dropdown">
+                                <a class="action" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="pe-7s-shopbag"></i>
+                                    <span class="number">3</span>
+                                </a>
 
-                                <div class="checkout-btn">
-                                    <a href="checkout.html"
-                                        class="btn btn-dark btn-hover-primary d-block">Checkout</a>
+                                <div class="dropdown-menu dropdown-cart">
+                                    <div class="cart-content" id="cart-content">
+                                        <ul>
+                                            <li>
+                                                <!-- Single Cart Item Start -->
+                                                <div class="single-cart-item">
+                                                    <div class="cart-thumb">
+                                                        <img src="{{ asset('frontend') }}/assets/images/cart/cart-1.jpg"
+                                                            width="98" height="98" alt="Cart" />
+                                                        <span class="product-quantity">1x</span>
+                                                    </div>
+                                                    <div class="cart-item-content">
+                                                        <h6 class="product-name">
+                                                            <a href="#">High quality vase
+                                                                bottle</a>
+                                                        </h6>
+                                                        <span class="product-price">$19.12</span>
+                                                        <div class="attributes-content">
+                                                            <span><strong>Color:</strong>
+                                                                White
+                                                            </span>
+                                                        </div>
+                                                        <a class="cart-remove" href="#"><i
+                                                                class="las la-times"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- Single Cart Item End -->
+                                            </li>
+                                            <li>
+                                                <!-- Single Cart Item Start -->
+                                                <div class="single-cart-item">
+                                                    <div class="cart-thumb">
+                                                        <img src="{{ asset('frontend') }}/assets/images/cart/cart-2.jpg"
+                                                            width="98" height="98" alt="Cart" />
+                                                        <span class="product-quantity">1x</span>
+                                                    </div>
+                                                    <div class="cart-item-content">
+                                                        <h6 class="product-name">
+                                                            <a href="#">Living & Bedroom
+                                                                Chair</a>
+                                                        </h6>
+                                                        <span class="product-price">$19.12</span>
+                                                        <div class="attributes-content">
+                                                            <span><strong>Color:</strong>
+                                                                White
+                                                            </span>
+                                                        </div>
+                                                        <a class="cart-remove" href="#"><i
+                                                                class="las la-times"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- Single Cart Item End -->
+                                            </li>
+                                            <li>
+                                                <!-- Single Cart Item Start -->
+                                                <div class="single-cart-item">
+                                                    <div class="cart-thumb">
+                                                        <img src="{{ asset('frontend') }}/assets/images/cart/cart-3.jpg"
+                                                            width="98" height="98" alt="Cart" />
+                                                        <span class="product-quantity">1x</span>
+                                                    </div>
+                                                    <div class="cart-item-content">
+                                                        <h6 class="product-name">
+                                                            <a href="#">Herman Arm Grey
+                                                                Chair</a>
+                                                        </h6>
+                                                        <span class="product-price">$19.12</span>
+                                                        <div class="attributes-content">
+                                                            <span><strong>Color:</strong>
+                                                                White
+                                                            </span>
+                                                        </div>
+                                                        <a class="cart-remove" href="#"><i
+                                                                class="las la-times"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- Single Cart Item End -->
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="checkout-btn">
+                                        <a href="checkout.html"
+                                            class="btn btn-dark btn-hover-primary d-block">Checkout</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="log-up user-select-none">
+                                <a href="{{ route('login') }}">Login</a>
+                                <span style="cursor:default">&nbsp;/&nbsp;</span>
+                                <a href="{{ route('register') }}">Sign Up</a>
+                            </div>
+                        @endauth
 
                     </div>
                     <!-- Header Meta End -->
@@ -362,8 +265,9 @@
                     <div class="col">
                         <!-- Header Logo Start -->
                         <div class="header-logo text-center">
-                            <a href="{{ route('frontpage') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png"
-                                    width="154" height="46" alt="Logo" /></a>
+                            <a href="{{ route('frontpage') }}"><img
+                                    src="{{ asset('frontend') }}/assets/images/logo.png" width="154"
+                                    height="46" alt="Logo" /></a>
                         </div>
                         <!-- Header Logo End -->
                     </div>
@@ -438,145 +342,30 @@
             <div class="canvas-menu">
                 <nav>
                     <ul class="nav-menu">
-                        <li>
-                            <a href="#">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html">Home 01</a></li>
-                                <li><a href="index-2.html">Home 02</a></li>
-                            </ul>
-                        </li>
+
+                        <!-- Home -->
+                        <li><a href="{{ route('frontpage') }}">Home</a></li>
+
+                        <!-- About -->
                         <li><a href="about.html">About</a></li>
+
+                        <!-- Categories -->
                         <li>
-                            <a href="#">Shop</a>
-                            <ul class="mega-sub-menu">
-                                <li>
-                                    <a href="#" class="menu-title">Shop Grid</a>
-
-                                    <ul class="menu-item">
-                                        <li>
-                                            <a href="shop-grid-3-column.html">Shop Grid 3 Column</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-4-column.html">Shop Grid 4 Column</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="menu-title">Shop List</a>
-
-                                    <ul class="menu-item">
-                                        <li><a href="shop-list.html">Shop List</a></li>
-                                        <li>
-                                            <a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="menu-title">Shop Single</a>
-
-                                    <ul class="menu-item">
-                                        <li><a href="product-details.html">Product Details</a></li>
-                                        <li>
-                                            <a href="product-details-affiliate.html">Product Details Affiliate</a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details-gallery.html">Product Details Gallery</a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details-group.html">Product Details Group</a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details-sticky.html">Product Details Sticky</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="menu-title">Page</a>
-
-                                    <ul class="menu-item">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="#">Wishlist</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="manu-banner">
-                                    <a href="#"><img
-                                            src="{{ asset('frontend') }}/assets/images/banner-menu-01.jpg"
-                                            width="465" height="170" alt="Banner" /></a>
-                                </li>
-                                <li class="manu-banner">
-                                    <a href="#"><img
-                                            src="{{ asset('frontend') }}/assets/images/banner-menu-02.jpg"
-                                            width="465" height="170" alt="Banner" /></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Pages </a>
+                            <a href="#">Categories </a>
                             <ul class="sub-menu">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="compare.html">Compare</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="empty-cart.html">Empty Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
+                                @forelse (categories() as $category)
+                                    <li><a
+                                            href="{{ route('category.products', $category->id) }}">{{ $category->name }}</a>
+                                    </li>
+                                @empty
+                                    <li class="text-center text-danger">There is no category!</li>
+                                @endforelse
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">Blog</a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#">Blog Grid</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-grid.html">Blog Grid</a></li>
-                                        <li>
-                                            <a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Blog List</a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Blog Details</a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="blog-details-left-sidebar.html">Blog details Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-details-right-sidebar.html">Blog details Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+
+                        <!-- Contact -->
+                        <li><a href="#">Contact</a></li>
+
                     </ul>
                 </nav>
             </div>

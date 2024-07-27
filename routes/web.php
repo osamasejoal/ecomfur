@@ -21,6 +21,8 @@ require __DIR__.'/auth.php';
 */
 Route::get('/', [FrontendController::class, 'index'])->name('frontpage');
 Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist.view');
+Route::get('/category/products/{id}', [FrontendController::class, 'category_product'])->name('category.products');
+Route::get('/product/details/{id}', [FrontendController::class, 'product_details'])->name('product.details');
 
 
 

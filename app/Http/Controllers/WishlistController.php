@@ -25,7 +25,7 @@ class WishlistController extends Controller
             $wishlist->product_id   = $id;
             $wishlist->save();
     
-            return back()->with('success', $wishlist->product->name . 'added to your wishlist');
+            return back()->with('success', $wishlist->product->name . ' added to your wishlist');
         }
 
     }
@@ -39,9 +39,9 @@ class WishlistController extends Controller
 
         if ($wishlist) {
             $wishlist->delete();
-            return back()->with('success', 'Successfully Deleted' . $wishlist->product->name . ' from your wishlist');
+            return back()->with('success', 'Successfully Deleted ' . $wishlist->product->name . ' from your wishlist');
         } else {
-            return back()->with('warning', 'Sorry!' . $wishlist->product->name . 'not found in your wishlist.');
+            return back()->with('warning', 'Sorry! ' . $wishlist->product->name . ' not found in your wishlist.');
         }
     }
 }
