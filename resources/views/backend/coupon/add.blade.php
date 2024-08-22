@@ -36,8 +36,7 @@
                             <!-- Name -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="name" class="form-label">Name: <span
-                                            class="text-danger">*</span></label>
+                                    <label for="name" class="form-label">Name: </label>
                                 </div>
                                 <div class="col-lg-10">
                                     <input type="text" name="name" value="{{ old('name') }}" id="name"
@@ -87,7 +86,7 @@
                                     <label for="validity" class="form-label">Validity: </label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <input type="date" name="validity" value="{{ old('validity') }}" id="validity"
+                                    <input type="datetime-local" name="validity" value="{{ old('validity') }}" id="validity"
                                         class="form-control">
 
                                     @error('validity')

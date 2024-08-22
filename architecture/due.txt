@@ -1,37 +1,21 @@
-1. Login Signup page.
+1. forgot password.
 2. Dashboard for moderator.
-3. About page (json Image add, delete).
-5. Check Modal Error. (check validation error, where modal used for update operation). [AboutContoller]
-6. Look after Coupon's validation (There are some portions of validation should be updated). [CouponController]
-8. Validation Problem with Coupon's crud (specially with the date field). [CouponController]
-9. Product image should be resized. [ProductController]
-10. Product's slug (Product name should not be unique, because same product name can be generated which can differ by brand. But as 'brand' field is nullable, therefore product name has to be unique for unique slug). [ProductController]
-11. Product page (json Image add, delete). [ProductController]
-12. Product add page (When category table is empty, "category_id" field shuld be disabled). [ProductController]
-13. Use edit box in product description. [ProductController]
-14. add and view problem with json image (product table). [ProductController]
-15. Status update. [universal]
-16. Category can't be updated. [CategoryController]
-17. Add variants into the product details page. [ProductController]
-18. sort the variant view page according to the category/product order. [VariantController]
-19. How to operate addition to all variants stock for a particular product? [ProductController]
-20. <select name="color" id="color" class="form-select text-center" {{ $colors ? '' : 'disabled' }}>. Here I want to check that if color table is empty then "disabled" attribute will active. [VariantController@add], [ProductController@add]
-21. How take multiple data from one value? I need it in the variant add page for pick the color name and code from one value. [VariantController@add]
-22. string minimum and maximum limit in validation. [universal]
-23. icon is not deleting in the service update. [ServiceController.update]
-24. add route to the products image for product details page. [Fronpage]
-25. use json images in the FrontImage table accordingly in the controller and view. [FrontImageController]
-26. show first 8 products images into the front page.
-27. add title and sub_title for welcome offer image nad make your controller accordingly.
-(M)28. sweet alert 2, title font has been changed in the frontend. [Fronpage]
-28. Add taka icon in every page (wishlist, cart, checkout, order, product). [universal]
-29. There are some link not integrated yet in the wishlist page. [Frontend]
-30. fix the pagination system. [universal]
-31. Isn't it possible to fetch product tables data by category id from category model? [FrontendController@category_products]
-32. Dynamic the breadcrumbs. [universal]
-33. add variant system in the product details page.
+3. About page, product edit (update description with quilljs editor).
+4. Product image should be resized. [ProductController]
+6s. sort the variant view page according to the category/product order. [VariantController]
+8. There are some link not integrated yet in the wishlist page. [Frontend]
+9. fix the pagination system. [universal]
+10. Isn't it possible to fetch product tables data by category id from category model? [FrontendController@category_products]
+11. after refresh mouse starts from first. ()
 
-
+12. quantity is increasing and decreasing like: 1, 3, 5, 7 sequence. [FrontendController@cart.blade.php]
+13. responsive cart table.
+14. add logos into favicon -> front, back, login/signup.
+15. Dynamic the background image of login/signup page.
+16. Forgot Password.
+17. move front_image folder from frontend to backend.
+18. Change password is not working.
+19. Testimonial Image must be resized.
 
 
 
@@ -39,10 +23,6 @@
 
 
 Problems to discuss with Mehedi:
-1. Why we need color and size table, we can manage it from the variant table. 
-2. Image Thumbnail should be created.
-3. Don't we need slug in the order table? Otherwise, order details (frontend) page will depicts the order id.
-4. why wishlist is one is belongsTo and another is hasMany?
 
 
 
@@ -55,7 +35,7 @@ Due commits on github:
 Questions to Naem Via:
 1. Social Media / Email Create korco? || No
 2. Product ki ki? || Home furniture, office, mattress
-3. Payment Method ki ki? || bkash, nogod, bank account (dutch-bangla-bank)
+3. Payment Method ki ki? || bkash, nogod, bank account (dutch-bangla-bank) (COD)
 4. FAQ ace ki ki? || pending
 5. Any guarantee/Warranty? || 1-year Warranty (manufacturing fault)
 6. Return policy ki? || Instant return

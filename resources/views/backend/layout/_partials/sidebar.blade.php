@@ -65,57 +65,21 @@
                     </a>
                 </li> <!-- end Products -->
 
-                <!-- Variant Box -->
+                <!-- Variants -->
                 <li class="nav-item">
-                    <a href="#variantBox" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                        aria-controls="variantBox"
-                        class="nav-link menu-link 
-                        {{ request()->routeIs('variant.view') ? 'active' : '' }}
-                        {{ request()->routeIs('variant.create') ? 'active' : '' }}
-                        {{ request()->routeIs('variant.edit') ? 'active' : '' }}
-                        {{ request()->routeIs('color.view') ? 'active' : '' }}
-                        {{ request()->routeIs('color.create') ? 'active' : '' }}
-                        {{ request()->routeIs('size.view') ? 'active' : '' }}
-                        {{ request()->routeIs('size.create') ? 'active' : '' }}">
-                        <i class="lab las la-shapes"></i> <span data-key="variant-box">Variant Box</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="variantBox">
-                        <ul class="nav nav-sm flex-column">
-
-                            <!-- Variants -->
-                            <li class="nav-item">
-                                <a href="{{ route('variant.view') }}" data-key="variants" class="nav-link
+                    <a href="{{ route('variant.view') }}" data-key="variants"
+                        class="nav-link menu-link
                                 {{ request()->routeIs('variant.view') ? 'active' : '' }}
                                 {{ request()->routeIs('variant.create') ? 'active' : '' }}
                                 {{ request()->routeIs('variant.edit') ? 'active' : '' }}">
-                                 Variants
-                                </a>
-                            </li>
-
-                            <!-- Colors -->
-                            <li class="nav-item">
-                                <a href="{{ route('color.view') }}" data-key="colors" class="nav-link
-                                {{ request()->routeIs('color.view') ? 'active' : '' }}
-                                {{ request()->routeIs('color.create') ? 'active' : '' }}">
-                                 Colors
-                                </a>
-                            </li>
-
-                            <!-- Sizes -->
-                            <li class="nav-item">
-                                <a href="{{ route('size.view') }}" data-key="sizes" class="nav-link
-                                {{ request()->routeIs('size.view') ? 'active' : '' }}
-                                {{ request()->routeIs('size.create') ? 'active' : '' }}">
-                                 Sizes
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                        <i class="lab las la-shapes"></i> <span data-key="variant-box">Variants</span>
+                    </a>
                 </li> <!-- end Variant -->
 
                 <!-- About -->
                 <li class="nav-item">
-                    <a href="{{ route('about.view') }}" class="nav-link menu-link
+                    <a href="{{ route('about.view') }}"
+                        class="nav-link menu-link
                     {{ request()->routeIs('about.view') ? 'active' : '' }}">
                         <i data-feather="book-open" class="icon-dual"></i> <span>About</span>
                     </a>
@@ -123,7 +87,8 @@
 
                 <!-- Testimonials -->
                 <li class="nav-item">
-                    <a href="{{ route('testimonial.view') }}" class="nav-link menu-link
+                    <a href="{{ route('testimonial.view') }}"
+                        class="nav-link menu-link
                     {{ request()->routeIs('testimonial.view') ? 'active' : '' }}
                     {{ request()->routeIs('testimonial.create') ? 'active' : '' }}
                     {{ request()->routeIs('testimonial.edit') ? 'active' : '' }}">
@@ -133,7 +98,8 @@
 
                 <!-- Supporters -->
                 <li class="nav-item">
-                    <a href="{{ route('supporter.view') }}" class="nav-link menu-link
+                    <a href="{{ route('supporter.view') }}"
+                        class="nav-link menu-link
                     {{ request()->routeIs('supporter.view') ? 'active' : '' }}
                     {{ request()->routeIs('supporter.create') ? 'active' : '' }}
                     {{ request()->routeIs('supporter.edit') ? 'active' : '' }}">
@@ -143,7 +109,8 @@
 
                 <!-- Coupons -->
                 <li class="nav-item">
-                    <a href="{{ route('coupon.view') }}" class="nav-link menu-link
+                    <a href="{{ route('coupon.view') }}"
+                        class="nav-link menu-link
                     {{ request()->routeIs('coupon.view') ? 'active' : '' }}
                     {{ request()->routeIs('coupon.create') ? 'active' : '' }}
                     {{ request()->routeIs('coupon.edit') ? 'active' : '' }}">
@@ -153,7 +120,8 @@
 
                 <!-- Reviews -->
                 <li class="nav-item">
-                    <a href="{{ route('review.view') }}" class="nav-link menu-link
+                    <a href="{{ route('review.view') }}"
+                        class="nav-link menu-link
                     {{ request()->routeIs('review.view') ? 'active' : '' }}">
                         <i class="lab las la-sms"></i> <span>Reviews</span>
                     </a>
@@ -161,22 +129,28 @@
 
                 <!-- Frontend -->
                 <li class="nav-item">
-                    <a href="#frontend" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="frontend"  class="nav-link menu-link
+                    <a href="#frontend" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                        aria-controls="frontend"
+                        class="nav-link menu-link
                         {{ request()->routeIs('SliderImage.view') ? 'active' : '' }}
                         {{ request()->routeIs('SliderImage.create') ? 'active' : '' }}
                         {{ request()->routeIs('SliderImage.edit') ? 'active' : '' }}
                         {{ request()->routeIs('service.view') ? 'active' : '' }}
                         {{ request()->routeIs('service.edit') ? 'active' : '' }}
                         {{ request()->routeIs('front.image.view') ? 'active' : '' }}
-                        {{ request()->routeIs('front.image.edit') ? 'active' : '' }}">
+                        {{ request()->routeIs('front.image.edit') ? 'active' : '' }}
+                        {{ request()->routeIs('com.info.view') ? 'active' : '' }}
+                        {{ request()->routeIs('com.info.edit') ? 'active' : '' }}
+                        {{ request()->routeIs('com.social.view') ? 'active' : '' }}
+                        {{ request()->routeIs('com.social.edit') ? 'active' : '' }}">
                         <i class="lab las la-image"></i> <span data-key="frontend">Frontend</span>
                     </a>
                     <div class="collapse menu-dropdown" id="frontend">
                         <ul class="nav nav-sm flex-column">
                             <!-- Slider Images -->
                             <li class="nav-item">
-                                <a href="{{ route('SliderImage.view') }}" data-key="slider-image" class="nav-link
+                                <a href="{{ route('SliderImage.view') }}" data-key="slider-image"
+                                    class="nav-link
                                 {{ request()->routeIs('SliderImage.view') ? 'active' : '' }}
                                 {{ request()->routeIs('SliderImage.create') ? 'active' : '' }}
                                 {{ request()->routeIs('SliderImage.edit') ? 'active' : '' }}">
@@ -185,7 +159,8 @@
                             </li>
                             <!-- Services -->
                             <li class="nav-item">
-                                <a href="{{ route('service.view') }}" data-key="services" class="nav-link
+                                <a href="{{ route('service.view') }}" data-key="services"
+                                    class="nav-link
                                 {{ request()->routeIs('service.view') ? 'active' : '' }}
                                 {{ request()->routeIs('service.edit') ? 'active' : '' }}">
                                     Services
@@ -193,16 +168,35 @@
                             </li>
                             <!-- Front Images -->
                             <li class="nav-item">
-                                <a href="{{ route('front.image.view') }}" data-key="front-images" class="nav-link
+                                <a href="{{ route('front.image.view') }}" data-key="front-images"
+                                    class="nav-link
                                 {{ request()->routeIs('front.image.view') ? 'active' : '' }}
                                 {{ request()->routeIs('front.image.edit') ? 'active' : '' }}">
                                     Front Images
                                 </a>
                             </li>
+                            <!-- Company Information -->
+                            <li class="nav-item">
+                                <a href="{{ route('com.info.view') }}" data-key="front-images"
+                                    class="nav-link
+                                {{ request()->routeIs('com.info.view') ? 'active' : '' }}
+                                {{ request()->routeIs('com.info.edit') ? 'active' : '' }}">
+                                    Company Information
+                                </a>
+                            </li>
+                            <!-- Company Social Media -->
+                            <li class="nav-item">
+                                <a href="{{ route('com.social.view') }}" data-key="front-images"
+                                    class="nav-link
+                                {{ request()->routeIs('com.social.view') ? 'active' : '' }}
+                                {{ request()->routeIs('com.social.edit') ? 'active' : '' }}">
+                                    Social Media
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li> <!-- end Frontend -->
-                
+
                 <!-- Widgets -->
                 <li class="nav-item">
                     <a href="widgets.html" class="nav-link menu-link">

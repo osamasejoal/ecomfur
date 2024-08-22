@@ -37,11 +37,10 @@
                             <!-- Validity -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="validity" class="form-label">Validity: <span
-                                            class="text-danger">*</span></label>
+                                    <label for="validity" class="form-label">Validity: </label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <input type="text" name="validity" value="{{ $coupon->validity }}" id="validity"
+                                    <input type="datetime-local" name="validity" value="{{ $coupon->validity }}" id="validity"
                                         class="form-control" placeholder="Coupon Validity">
 
                                     @error('validity')
@@ -53,11 +52,10 @@
                             <!-- Limit -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="limit" class="form-label">Limit: <span
-                                            class="text-danger">*</span></label>
+                                    <label for="limit" class="form-label">Limit: label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <input type="text" name="limit" value="{{ $coupon->limit }}" id="limit"
+                                    <input type="number" name="limit" value="{{ $coupon->limit }}" id="limit"
                                         class="form-control" placeholder="Coupon Limit">
 
                                     @error('limit')

@@ -10,6 +10,11 @@ class Coupon extends Model
     use HasFactory;
     protected $guarded = [];
 
+    // Ensure 'validity' is cast as a datetime
+    protected $casts = [
+        'validity' => 'datetime'
+    ];
+
     // belongsTo order table
     public function order()
     {

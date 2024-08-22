@@ -53,7 +53,7 @@ class ServiceController extends Controller
             if ($request->file('icon')) {
 
                 $s_icon = File::exists($service->icon);
-                if ($s_icon != 'upload/service_images/icon-1.png' || $s_icon != 'upload/service_images/icon-2.png' || $s_icon != 'upload/service_images/icon-3.png') {
+                if ($s_icon != 'seeder_images/service_icon_1.png' || $s_icon != 'seeder_images/service_icon_2.png' || $s_icon != 'seeder_images/service_icon_3.png') {
                     unlink($service->icon);
                 }
 

@@ -14,18 +14,47 @@
             object-fit: cover;
             object-position: center;
         }
-        .section.call-to-action{
+
+        .section.call-to-action {
             height: 75vh;
         }
-        .call-to-action-content p{
+
+        .call-to-action-content p {
             margin-top: 3rem;
         }
-        .product-icon-wrapper{
+
+        .product-icon-wrapper {
             padding: 70px 0;
         }
-        .product-icon img{
+
+        .product-icon img {
             width: 10%;
         }
+
+        .cart-modal {
+            max-width: 400px !important;
+        }
+
+        btn.cart_modal_close {
+            width: 20%;
+            font-size: 1rem;
+            padding: .25rem;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #d73038;
+            border: none;
+        }
+
+        btn.cart_modal_submit {
+            width: 20%;
+            font-size: 1rem;
+            padding: .25rem;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #f2a100;
+            border: none;
+        }
+
         @media (max-width: 1200px) {
             .section.call-to-action {
                 background-size: contain;
@@ -36,24 +65,31 @@
             .section.call-to-action {
                 height: 40vh;
             }
-            .call-to-action-content p{
+
+            .call-to-action-content p {
                 font-size: 12px;
                 width: 80%;
                 display: block;
                 margin: auto;
                 margin-top: 1.5rem;
             }
-            .product-icon-wrapper{
+
+            .product-icon-wrapper {
                 padding: 50px 0;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 575.99px) {
             .section.call-to-action {
                 height: 20vh;
             }
-            .product-icon-wrapper{
+
+            .product-icon-wrapper {
                 padding: 30px 0;
+            }
+
+            .cart-modal {
+                max-width: 90% !important;
             }
         }
     </style>
@@ -65,33 +101,26 @@
         <div class="slider-active">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <!-- Single Slider Start  -->
-                    <div class="single-slider slider-02 swiper-slide animation-style-01"
-                        style="
-                                background-image: url({{ asset('frontend') }}/assets/images/slider/slider-01.jpg);
-                            ">
-                        <div class="container">
-                            <!-- Slider Content Start -->
-                            <div class="slider-content-02 text-center">
-                                <h2 class="title">
-                                    Stylish Kitchen Furniture
-                                </h2>
-                                <p>
-                                    Unique Furniture Style Design for Your
-                                    Family and Welcome <br />
-                                    Our Shop, 30% Offer All Stylish Kitchen
-                                    Furniture
-                                </p>
-                                <a href="shop-grid-4-column.html" class="btn btn-primary btn-hover-dark btn-margin">purchase
-                                    now</a>
+
+                    @foreach ($sliders as $slider)
+                        <!-- Single Slider Start  -->
+                        <div class="single-slider slider-02 swiper-slide animation-style-01"
+                            style="background-image: url({{ asset($slider->image) }});">
+                            <div class="container">
+                                <!-- Slider Content Start -->
+                                <div class="slider-content-02 text-center">
+                                    <h2 class="title">{{ $slider->title }}</h2>
+                                    <p>{{ $slider->slogan }}</p>
+                                </div>
+                                <!-- Slider Content End -->
                             </div>
-                            <!-- Slider Content End -->
                         </div>
-                    </div>
-                    <!-- Single Slider End  -->
+                        <!-- Single Slider End  -->
+                    @endforeach
+
 
                     <!-- Single Slider Start  -->
-                    <div class="single-slider slider-02 swiper-slide animation-style-01"
+                    {{-- <div class="single-slider slider-02 swiper-slide animation-style-01"
                         style="
                                 background-image: url({{ asset('frontend') }}/assets/images/slider/slider-02.jpg);
                             ">
@@ -112,7 +141,7 @@
                             </div>
                             <!-- Slider Content End -->
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Single Slider End  -->
 
                     <!-- Add Arrows -->
@@ -176,29 +205,76 @@
                                     <div class="col-lg-3 col-sm-6">
                                         <div class="single-product-02">
                                             <div class="product-images">
-                                                <a href="{{ route('product.details', $product->id) }}"><img src="{{ $product->thumbnail }}" width="270"
-                                                        height="303" alt="product" /></a>
+                                                <a href="{{ route('product.details', $product->id) }}"><img
+                                                        src="{{ $product->thumbnail }}" style="width:276px;height:303px"
+                                                        alt="product" /></a>
 
                                                 <ul class="product-meta">
                                                     <li style="margin-right: 10px">
-                                                        <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
+                                                        @auth
+                                                            @if (cart_exist($product->id))
+                                                                <a class="action"
+                                                                    style="background-color:#f2a100;border-color:#f2a100;color:#fff"><i
+                                                                        class="pe-7s-shopbag"></i></a>
+                                                            @else
+                                                                @if ($product->variant->count() > 0)
+                                                                    @php
+                                                                        $hasStock = $product->variant->contains(
+                                                                            function ($variant) {
+                                                                                return $variant->stock > 0;
+                                                                            },
+                                                                        );
+                                                                    @endphp
+
+                                                                    @if ($hasStock)
+                                                                        <form action="{{ route('cart.store', $product->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            <button type="submit" class="action">
+                                                                                <i class="pe-7s-shopbag"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    @else
+                                                                        <script>
+                                                                            swal.fire({
+                                                                                icon: 'error',
+                                                                                title: 'Out of Stock',
+                                                                                text: 'This product is currently out of stock!'
+                                                                            })
+                                                                        </script>
+                                                                    @endif
+                                                                @else
+                                                                    <button type="submit" class="action outOfStockButton"><i
+                                                                            class="pe-7s-shopbag"></i></button>
+                                                                @endif
+                                                            @endif
+                                                        @else
+                                                            <a class="action" href="{{ route('login') }}"><i
+                                                                    class="pe-7s-shopbag"></i></a>
+                                                        @endauth
                                                     </li>
                                                     <li style="margin-left: 10px">
                                                         @auth
                                                             @if (wishlist_exist($product->id))
-                                                                <a class="action" style="background-color:#f2a100;border-color:#f2a100;color:#fff"><i class="pe-7s-like"></i></a>
+                                                                <a class="action"
+                                                                    style="background-color:#f2a100;border-color:#f2a100;color:#fff"><i
+                                                                        class="pe-7s-like"></i></a>
                                                             @else
-                                                                <a class="action" href="{{ route('wishlist.store', $product->id) }}"><i class="pe-7s-like"></i></a>    
+                                                                <a class="action"
+                                                                    href="{{ route('wishlist.store', $product->id) }}"><i
+                                                                        class="pe-7s-like"></i></a>
                                                             @endif
                                                         @else
-                                                            <a class="action" href="{{ route('login') }}"><i class="pe-7s-like"></i></a>
+                                                            <a class="action" href="{{ route('login') }}"><i
+                                                                    class="pe-7s-like"></i></a>
                                                         @endauth
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="product-content">
                                                 <h4 class="title">
-                                                    <a href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a>
+                                                    <a
+                                                        href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a>
                                                 </h4>
                                                 <div class="price">
                                                     <span class="sale-price">{{ '$' . $product->price }}</span>
@@ -238,7 +314,8 @@
 
                                 <div class="banner-content" style="width:50%">
                                     <h3 class="title" style="font-size:2rem">{{ $fc->name }}</h3>
-                                    <button class="btn btn-primary btn-hover-dark" style="cursor:pointer">Shop Now</button>
+                                    <button class="btn btn-primary btn-hover-dark" style="cursor:pointer">Shop
+                                        Now</button>
                                 </div>
                             </a>
                         </div>
@@ -287,8 +364,6 @@
     </div>
     <!-- End Welcome Image -->
 
-
-
     <!-- Sale Product Section Start -->
     <div class="section section-padding-02">
         <div class="container">
@@ -302,19 +377,70 @@
             <div class="product-wrapper-02">
                 <div class="row">
 
-                    @forelse ($products as $product)    
+                    @forelse ($sale_products as $product)
                         <div class="col-lg-3 col-sm-6">
                             <div class="single-product-02">
                                 <div class="product-images">
-                                    <a href="#"><img src="{{ $product->thumbnail }}" width="270"
-                                            height="303" alt="product" /></a>
+                                    <a href="#"><img src="{{ $product->thumbnail }}"
+                                            style="width:276px;height:303px" alt="product" /></a>
 
                                     <ul class="product-meta">
                                         <li style="margin-right: 10px">
-                                            <a class="action" href="#"><i class="pe-7s-shopbag"></i></a>
+                                            @auth
+                                                @if (cart_exist($product->id))
+                                                    <a class="action"
+                                                        style="background-color:#f2a100;border-color:#f2a100;color:#fff"><i
+                                                            class="pe-7s-shopbag"></i></a>
+                                                @else
+                                                    @if ($product->variant->count() > 0)
+                                                        @php
+                                                            $hasStock = $product->variant->contains(function (
+                                                                $variant,
+                                                            ) {
+                                                                return $variant->stock > 0;
+                                                            });
+                                                        @endphp
+
+                                                        @if ($hasStock)
+                                                            <form action="{{ route('cart.store', $product->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="action">
+                                                                    <i class="pe-7s-shopbag"></i>
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <script>
+                                                                swal.fire({
+                                                                    icon: 'error',
+                                                                    title: 'Out of Stock',
+                                                                    text: 'This product is currently out of stock!'
+                                                                })
+                                                            </script>
+                                                        @endif
+                                                    @else
+                                                        <button type="submit" class="action outOfStockButton2"><i
+                                                                class="pe-7s-shopbag"></i></button>
+                                                    @endif
+                                                @endif
+                                            @else
+                                                <a class="action" href="{{ route('login') }}"><i
+                                                        class="pe-7s-shopbag"></i></a>
+                                            @endauth
                                         </li>
                                         <li style="margin-left: 10px">
-                                            <a class="action" href="#"><i class="pe-7s-like"></i></a>
+                                            @auth
+                                                @if (wishlist_exist($product->id))
+                                                    <a class="action"
+                                                        style="background-color:#f2a100;border-color:#f2a100;color:#fff"><i
+                                                            class="pe-7s-like"></i></a>
+                                                @else
+                                                    <a class="action" href="{{ route('wishlist.store', $product->id) }}"><i
+                                                            class="pe-7s-like"></i></a>
+                                                @endif
+                                            @else
+                                                <a class="action" href="{{ route('login') }}"><i class="pe-7s-like"></i></a>
+                                            @endauth
                                         </li>
                                     </ul>
                                 </div>
@@ -323,7 +449,8 @@
                                         <a href="#">{{ $product->name }}</a>
                                     </h4>
                                     <div class="price">
-                                        <span class="sale-price">{{ '$' . $product->price }}</span>
+                                        <span class="sale-price"><i
+                                                class="mdi mdi-currency-bdt"></i>{{ $product->price }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -352,135 +479,72 @@
     </div>
     <!-- End Gallery Image -->
 
-    <!-- Blog Section Start -->
+    <!-- Testimonial Section Start -->
     <div class="section section-padding">
         <div class="container">
-            <!-- Blog Wrapper End -->
-            <div class="blog-active">
-                <!-- Blog Top Wrapper Start -->
-                <div class="blog-top-wrapper">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h2 class="title"># Latest Blog</h2>
-                    </div>
-                    <!-- Section Title End -->
+            <!-- Testimonial Wrapper Start -->
+            <div class="testimonial-wrapper testimonial-active">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
 
-                    <!-- Swiper Arrows End -->
-                    <div class="swiper-arrows">
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-prev">
-                            <i class="pe-7s-angle-left"></i>
+                        @foreach ($testimonials as $testimonial)
+                            <!-- single Testimonial Start -->
+                            <div class="single-testimonial swiper-slide">
+                                <img class="quote" src="{{ asset('frontend') }}/assets/images/icon/quote.png" alt="Icon" />
+                                <p>{{ $testimonial->comment }}</p>
+                                <img class="author-thumb" src="{{ asset($testimonial->image) }}" width="100" height="100" alt="Author" />
+                                <h6 class="name">{{ $testimonial->name }}</h6>
+                                <span class="designation">{{ $testimonial->profession }}</span>
+                            </div>
+                            <!-- single Testimonial End -->
+                        @endforeach
+
+                        {{-- <!-- single Testimonial Start -->
+                        <div class="single-testimonial swiper-slide">
+                            <img class="quote" src="assets/images/icon/quote.png" alt="Icon" />
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore dolorelo magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip
+                                ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit
+                            </p>
+                            <img class="author-thumb" src="assets/images/author-1.jpg" width="100" height="100" alt="Author" />
+                            <h6 class="name">Taelynn Thorpe</h6>
+                            <span class="designation">Customer</span>
                         </div>
-                        <div class="swiper-button-next">
-                            <i class="pe-7s-angle-right"></i>
+                        <!-- single Testimonial End -->
+
+                        <!-- single Testimonial Start -->
+                        <div class="single-testimonial swiper-slide">
+                            <img class="quote" src="assets/images/icon/quote.png" alt="Icon" />
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore dolorelo magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip
+                                ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit
+                            </p>
+                            <img class="author-thumb" src="assets/images/author-1.jpg" width="100" height="100" alt="Author" />
+                            <h6 class="name">Taelynn Thorpe</h6>
+                            <span class="designation">Customer</span>
                         </div>
+                        <!-- single Testimonial End --> --}}
                     </div>
-                    <!-- Swiper Arrows End -->
+
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- Blog Top Wrapper End -->
-
-                <!-- Blog Items Wrapper End -->
-                <div class="blog-items-wrapper">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <!-- Single Blog Start -->
-                                <div class="single-blog">
-                                    <a href="blog-details-left-sidebar.html"><img
-                                            src="{{ asset('frontend/assets') }}/images/blog/blog-01.jpg" width="370"
-                                            height="230" alt="Blog" /></a>
-
-                                    <div class="blog-content">
-                                        <ul class="blog-meta">
-                                            <li>
-                                                <i class="pe-7s-user"></i>
-                                                <span>
-                                                    BY:<a href="#">ADMIN</a></span>
-                                            </li>
-                                            <li>
-                                                <i class="pe-7s-date"></i>
-                                                <span>27 FEB 2023</span>
-                                            </li>
-                                        </ul>
-                                        <h4 class="title">
-                                            <a href="blog-details-left-sidebar.html">Unique products that will
-                                                impress your home.</a>
-                                        </h4>
-                                        <a href="blog-details-left-sidebar.html"
-                                            class="btn btn-dark btn-hover-primary">Read More</a>
-                                    </div>
-                                </div>
-                                <!-- Single Blog End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single Blog Start -->
-                                <div class="single-blog">
-                                    <a href="blog-details-left-sidebar.html"><img
-                                            src="{{ asset('frontend/assets') }}/images/blog/blog-02.jpg" width="370"
-                                            height="230" alt="Blog" /></a>
-
-                                    <div class="blog-content">
-                                        <ul class="blog-meta">
-                                            <li>
-                                                <i class="pe-7s-user"></i>
-                                                <span>
-                                                    BY:<a href="#">ADMIN</a></span>
-                                            </li>
-                                            <li>
-                                                <i class="pe-7s-date"></i>
-                                                <span>27 FEB 2023</span>
-                                            </li>
-                                        </ul>
-                                        <h4 class="title">
-                                            <a href="blog-details-left-sidebar.html">Interior designer Nancy,
-                                                the witch of the unique
-                                                space.</a>
-                                        </h4>
-                                        <a href="blog-details-left-sidebar.html"
-                                            class="btn btn-dark btn-hover-primary">Read More</a>
-                                    </div>
-                                </div>
-                                <!-- Single Blog End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single Blog Start -->
-                                <div class="single-blog">
-                                    <a href="blog-details-left-sidebar.html"><img
-                                            src="{{ asset('frontend/assets') }}/images/blog/blog-03.jpg" width="370"
-                                            height="230" alt="Blog" /></a>
-
-                                    <div class="blog-content">
-                                        <ul class="blog-meta">
-                                            <li>
-                                                <i class="pe-7s-user"></i>
-                                                <span>
-                                                    BY:<a href="#">ADMIN</a></span>
-                                            </li>
-                                            <li>
-                                                <i class="pe-7s-date"></i>
-                                                <span>27 FEB 2023</span>
-                                            </li>
-                                        </ul>
-                                        <h4 class="title">
-                                            <a href="blog-details-left-sidebar.html">Decorate your home with the
-                                                most modern furnishings.</a>
-                                        </h4>
-                                        <a href="blog-details-left-sidebar.html"
-                                            class="btn btn-dark btn-hover-primary">Read More</a>
-                                    </div>
-                                </div>
-                                <!-- Single Blog End -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Blog Items Wrapper End -->
             </div>
-            <!-- Blog Wrapper End -->
+            <!-- Testimonial Wrapper End -->
         </div>
     </div>
-    <!-- Blog Section End -->
-    
+    <!-- Testimonial Section End -->
+
     <!-- Product Icon -->
     <div class="section product-icon-wrapper" style="background-color:#f2a100">
         <div class="container">
@@ -496,4 +560,30 @@
     <!-- End Product Icon -->
 
     <!-- Product Banner Section Start -->
+@endsection
+
+@section('footer-content')
+    <script>
+        document.querySelectorAll('.outOfStockButton').forEach(button => {
+            button.addEventListener('click', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Out of Stock',
+                    text: 'This product is currently out of stock!',
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.outOfStockButton2').forEach(button => {
+            button.addEventListener('click', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Out of Stock',
+                    text: 'This product is currently out of stock!',
+                });
+            });
+        });
+    </script>
 @endsection

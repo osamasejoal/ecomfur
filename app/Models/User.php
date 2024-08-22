@@ -66,6 +66,12 @@ class User extends Authenticatable
         return $this->hasMany(Wishlist::class);
     }
 
+    // hasMany relation with cart table
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     // hasMany relation with review table
     public function reviews()
     {

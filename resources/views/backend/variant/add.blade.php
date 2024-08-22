@@ -62,51 +62,14 @@
                             <!-- Variant Color -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="color_id" class="form-label"> Select Color: </label>
+                                    <label for="color" class="form-label">Color: <span
+                                            class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <select name="color_id" id="color_id" class="form-select text-center"
-                                        {{ $colors ? '' : 'disabled' }}>
+                                    <input type="text" name="color" value="{{ old('color') }}" id="color"
+                                        class="form-control" placeholder="Variant Color">
 
-                                        <option selected> ** Choose Color ** </option>
-
-                                        @forelse ($colors as $color)
-                                            <option value="{{ $color->id }}">{{ $color->code . ' / ' . $color->title }}
-                                            </option>
-                                        @empty
-                                            <option value="" selected class="text-danger"> There is no Color to show!
-                                            </option>
-                                        @endforelse
-
-                                    </select>
-
-                                    @error('color_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- Variant Size -->
-                            <div class="row mb-4">
-                                <div class="col-lg-2">
-                                    <label for="size" class="form-label"> Select Size: </label>
-                                </div>
-                                <div class="col-lg-10">
-                                    <select name="size" id="size" class="form-select text-center"
-                                        {{ $sizes ? '' : 'disabled' }}>
-
-                                        <option selected> ** Choose Size ** </option>
-
-                                        @forelse ($sizes as $size)
-                                            <option value="{{ $size->title }}">{{ $size->title }}</option>
-                                        @empty
-                                            <option value="" selected class="text-danger"> There is no Size to show!
-                                            </option>
-                                        @endforelse
-
-                                    </select>
-
-                                    @error('size')
+                                    @error('color')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

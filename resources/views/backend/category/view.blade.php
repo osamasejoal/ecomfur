@@ -40,6 +40,7 @@
                                     <th class="fw-bolder" scope="col">Name</th>
                                     <th class="fw-bolder" scope="col">Slug</th>
                                     <th class="fw-bolder" scope="col">Image</th>
+                                    <th class="fw-bolder" scope="col">Featured</th>
                                     <th class="fw-bolder" scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -56,12 +57,23 @@
                                         <!-- Image -->
                                         <td style="vertical-align:middle">
                                             @if ($category->image)
-                                                <img style="object-fit:cover;object-position:center;width:70px;height:70px;border-radius:10%"
+                                                <img style="object-fit:cover;object-position:center;width:200px"
                                                     src="{{ asset($category->image) }}" alt=""
-                                                    class="rounded-circle">
+                                                    class="rounded-2">
                                             @else
                                                 <span class="fw-light fst-italic">Null</span>
                                             @endif
+                                        </td>
+                                        
+                                        <!-- Featured in Front Page -->
+                                        <td style="vertical-align:middle;background:transparent">
+                                            <div
+                                                class="form-check form-switch form-switch-warning form-switch-md text-center">
+                                                <input class="form-check-input featured_toggle" type="checkbox"
+                                                    role="switch" id="featuredSwitch{{ $category->id }}"
+                                                    data-id="{{ $category->id }}"
+                                                    {{ $category->featured === 'on' ? 'checked' : '' }}>
+                                            </div>
                                         </td>
 
                                         <!-- Action -->
@@ -100,3 +112,47 @@
         </div>
         <!-- End Page-content -->
     @endsection
+
+    @section('footer-content')
+        <script>
+            $(document).ready(function() {
+                // Handle featured Toggle
+                $('.featured_toggle').change(function() {
+                    var toggleSwitch = $(this);
+                    var category_id = toggleSwitch.data('id');
+                    var featuredStatus = toggleSwitch.is(':checked') ? 'on' : 'off';
+
+                    $.ajax({
+                        url: '{{ route('category.toggleFeatured', '') }}/' + category_id,
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            featured: featuredStatus
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: 'An error occurred while updating the Best Sale status.',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+
+                            // Revert the switch to its previous state
+                            toggleSwitch.prop('checked', !toggleSwitch.is(':checked'));
+                        }
+                    });
+                });
+            });
+        </script>
+    @endsection
+

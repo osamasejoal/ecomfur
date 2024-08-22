@@ -41,19 +41,21 @@
                                             class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <select name="category_id" id="category_id" class="form-select text-center" {{ $categories ? '' : 'disabled' }}>
+                                    @if ($categories->isEmpty())
+                                        <select name="category_id" id="category_id" class="form-select text-center" disabled>
+                                            <option> Please add Category first </option>
+                                        </select>
+                                    @else
+                                        <select name="category_id" id="category_id" class="form-select text-center">
 
-                                        @if ($categories)
                                             <option selected> ** Choose Category ** </option>
 
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
-                                        @else
-                                            <option value="" selected> There is no Category to show! </option>
-                                        @endif
+                                        </select>
+                                    @endif
 
-                                    </select>
 
                                     @error('category_id')
                                         <span class="text-danger">{{ $message }}</span>
@@ -93,21 +95,6 @@
                                 </div>
                             </div>
 
-                            <!-- Brand -->
-                            <div class="row mb-4">
-                                <div class="col-lg-2">
-                                    <label for="brand" class="form-label">Brand: </label>
-                                </div>
-                                <div class="col-lg-10">
-                                    <input type="text" name="brand" value="{{ old('brand') }}" id="brand"
-                                        class="form-control" placeholder="Product Brand">
-
-                                    @error('brand')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <!-- Price -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
@@ -124,35 +111,21 @@
                                 </div>
                             </div>
 
-                            <!-- Discount -->
-                            <div class="row mb-4">
-                                <div class="col-lg-2">
-                                    <label for="discount" class="form-label">Discount: </label>
-                                </div>
-                                <div class="col-lg-10">
-                                    <input type="number" name="discount" value="{{ old('discount') }}" id="discount"
-                                        class="form-control" placeholder="Product Discount">
-
-                                    @error('discount')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            
                             <!-- Short Description -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
                                     <label for="short_description" class="form-label">Short Description: </label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <textarea name="short_description" id="short_description" rows="3" class="form-control" placeholder="Short Description about the Product">{{old('short_description')}}</textarea>
+                                    <textarea name="short_description" id="short_description" rows="3" class="form-control"
+                                        placeholder="Short Description about the Product">{{ old('short_description') }}</textarea>
 
                                     @error('short_description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <!-- Full Description -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
@@ -160,7 +133,8 @@
                                             class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <textarea name="description" id="description" rows="3" class="form-control" placeholder="Full Description about the Product">{{old('description')}}</textarea>
+                                    <textarea name="description" id="description" rows="3" class="form-control"
+                                        placeholder="Full Description about the Product">{{ old('description') }}</textarea>
 
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
@@ -168,29 +142,15 @@
                                 </div>
                             </div>
 
-                            <!-- Images -->
-                            {{-- <div class="row mb-4 pt-1">
-                                <div class="col-lg-2">
-                                    <label for="images" class="form-label">Images: <span
-                                        class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-lg-10">
-                                    <input type="file" name="images" id="images" class="form-control" multiple>
-
-                                    @error('images')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div> --}}
-
                             <!-- Thumbnail -->
                             <div class="row mb-4 pt-1">
                                 <div class="col-lg-2">
                                     <label for="thumbnail" class="form-label">Thumbnail: <span
-                                        class="text-danger">*</span></label>
+                                            class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control"
+                                        accept="image/*">
 
                                     @error('thumbnail')
                                         <span class="text-danger">{{ $message }}</span>
@@ -198,16 +158,40 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row mb-4 pt-1">
+                            <div class="row mb-4 pt-1" id="imagePreviewContainer" style="display: none;">
                                 <div class="col-lg-2">
                                     <label for="showImage" class="form-label"></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <img src="{{ asset('upload/no-image.png') }}" alt="No Image" class="rounded-circle "
-                                        id="showImage"
+                                    <img src="" alt="Selected Image" class="rounded-2" id="showImage"
                                         style="object-fit:cover;object-position:center;width:180px;height:180px;">
                                 </div>
-                            </div> --}}
+                            </div>
+
+                            <!-- Images -->
+                            <div class="row mb-4 pt-1">
+                                <div class="col-lg-2">
+                                    <label for="images" class="form-label">Images: </label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <input type="file" name="images[]" id="images" class="form-control" multiple>
+
+                                    @error('images')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-4 pt-1">
+                                <div class="col-lg-2">
+                                    <label for="showImages" class="form-label"></label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <div id="showImages" class="d-flex flex-wrap">
+                                        <!-- Selected images will be displayed here -->
+                                    </div>
+                                </div>
+                            </div>
 
 
                             <!-- Submit Button -->
@@ -227,15 +211,54 @@
 
     @section('footer-content')
         <!-- The script to show the image what have been chosen by user but didn't submit yet. -->
-        {{-- <script type="text/javascript">
-            $(document).ready(function() {
-                $('#image').change(function(e) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#showImage').attr('src', e.target.result);
+
+        <!-- Thumbnail Image to show -->
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                const thumbnailInput = document.getElementById('thumbnail');
+                const showImage = document.getElementById('showImage');
+                const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+                thumbnailInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            showImage.src = e.target.result;
+                            imagePreviewContainer.style.display = 'flex';
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                        showImage.src = "";
+                        imagePreviewContainer.style.display = 'none';
                     }
-                    reader.readAsDataURL(e.target.files['0']);
-                })
+                });
             });
-        </script> --}}
+        </script>
+
+        <!-- Images to show -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#images').change(function(e) {
+                    $('#showImages').empty(); // Clear any existing images
+                    var files = e.target.files;
+
+                    $.each(files, function(index, file) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = $('<img>').attr('src', e.target.result)
+                                .addClass('rounded-2 me-2 mb-2')
+                                .css({
+                                    'object-fit': 'cover',
+                                    'object-position': 'center',
+                                    'width': '180px',
+                                    'height': '180px'
+                                });
+                            $('#showImages').append(img);
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                });
+            });
+        </script>
     @endsection

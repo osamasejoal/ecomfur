@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
 use Illuminate\Http\Request;
 use App\Models\Variant;
 use App\Models\Product;
-use App\Models\Size;
+use Illuminate\Support\Facades\Session;
 
 class VariantController extends Controller
 {
@@ -25,10 +24,8 @@ class VariantController extends Controller
     --------------------------------------------------------------------------*/
     public function create()
     {
-        $products   = Product::all();
-        $colors     = Color::all();
-        $sizes      = Size::all();
-        return view('backend.variant.add', compact('products', 'colors', 'sizes'));
+        $products   = Product::orderBy('id', 'desc')->get();
+        return view('backend.variant.add', compact('products'));
     }
 
     /*--------------------------------------------------------------------------
@@ -39,6 +36,7 @@ class VariantController extends Controller
         // Validation for Create Variant
         $request->validate([
             'product_id'    => 'required|integer',
+            'color'         => 'required',
             'stock'         => 'required|integer|min:1',
         ], [
             '*.required'    => 'This field is required',
@@ -50,9 +48,7 @@ class VariantController extends Controller
 
         // Creating Variant
         $variant->product_id    = $request->product_id;
-        $variant->color         = Color::where('id', $request->color_id)->first()->title;
-        $variant->color_code    = Color::where('id', $request->color_id)->first()->code;
-        $variant->size          = $request->size;
+        $variant->color         = $request->color;
         $variant->stock         = $request->stock;
         $variant->save();
 
@@ -64,6 +60,9 @@ class VariantController extends Controller
     --------------------------------------------------------------------------*/
     public function edit($id)
     {
+        // Store the previous URL in the session
+        Session::put('previous_url', url()->previous());
+
         $variant = Variant::find($id);
         return view('backend.variant.edit', compact('variant'));
     }
@@ -90,7 +89,10 @@ class VariantController extends Controller
             $variant->stock = $request->stock;
             $variant->save();
 
-            return redirect()->route('variant.view')->with('success', 'Successfully Updated your Variant');
+            // Retrieve the previous URL from the session
+            $previousUrl = Session::pull('previous_url', route('variant.view'));
+
+            return redirect($previousUrl)->with('success', 'Successfully Updated your Variant');
         }
         else {
             return back()->with('Warning', 'Sorry! Variant not found');

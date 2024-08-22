@@ -49,7 +49,7 @@
 
 
 
-                                @forelse ($products as $product)
+                                @forelse ($category->product as $product)
                                     <div class="col-lg-3 col-sm-6">
 
                                         <div class="single-product">

@@ -1,47 +1,84 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Naem Furniture - Login Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{{ asset('auth/images/icons/favicon.ico') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('auth/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('{{ asset('auth/images/bg-01.jpg') }}');">
+			<div class="wrap-login100">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+                <!-- Login Form -->
+				<form action="{{ route('login') }}" method="POST" class="login100-form validate-form">
+                    @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+					<span class="login100-form-logo">
+						{{-- <i class="zmdi zmdi-landscape"></i> --}}
+                        <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="">
+					</span>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+					<span class="login100-form-title">
+						Log in
+					</span>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                    <!-- Email -->
+					<div class="wrap-input100 validate-input">
+						<input type="email" name="email" value="{{ old('email') }}" id="email" class="input100" placeholder="email">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+                    @error('email')    
+                        <div class="error-msg" style="position:relative;top:-38px">
+                            <p style="color:#8B0000">{{ $message }}</p>
+                        </div>
+                    @enderror
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                    <!-- Password -->
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input type="password" name="password" id="password" class="input100" placeholder="Password" required autocomplete="current-password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+                    @error('password')
+                        <div class="error-msg" style="position:relative;top:-38px">
+                            <p style="color:#8B0000">{{ $message }}</p>
+                        </div>
+                    @enderror
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+                    <!-- Remember Token -->
+					{{-- <div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div> --}}
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+					<div class="text-center sign-up">
+						<a class="txt1" href="{{ route('register') }}">
+							Don't have an account? <span>Sign up!</span>
+						</a>
+					</div>
+					<div class="text-center forgot-password">
+						<a class="txt1" href="#">
+							Forgot Password?
+						</a>
+					</div>
+				</form>
+                <!-- End Login Form -->
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

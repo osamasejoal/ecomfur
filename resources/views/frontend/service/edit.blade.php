@@ -38,7 +38,8 @@
                             <!-- Title -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="title" class="form-label">Title:</label>
+                                    <label for="title" class="form-label">Title: <span
+                                        class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
                                     <input type="text" name="title" value="{{ $service->title }}" id="title"
@@ -53,7 +54,8 @@
                             <!-- Sub Title -->
                             <div class="row mb-4">
                                 <div class="col-lg-2">
-                                    <label for="sub_title" class="form-label">Sub Title:</label>
+                                    <label for="sub_title" class="form-label">Sub Title: <span
+                                        class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
                                     <input type="text" name="sub_title" value="{{ $service->sub_title }}" id="sub_title"
@@ -68,7 +70,8 @@
                             <!-- Icon -->
                             <div class="row mb-4 pt-1">
                                 <div class="col-lg-2">
-                                    <label for="icon" class="form-label">Icon:</label>
+                                    <label for="icon" class="form-label">Icon: <span
+                                        class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-lg-10">
                                     <input type="file" name="icon" id="icon" class="form-control">
@@ -79,14 +82,13 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-4 pt-1">
+                            <div class="row mb-4 pt-1" id="imagePreviewContainer" style="display: none;">
                                 <div class="col-lg-2">
-                                    <label for="showIcon" class="form-label"></label>
+                                    <label for="showImage" class="form-label"></label>
                                 </div>
                                 <div class="col-lg-10">
-                                    <img src="{{ $service->icon }}"
-                                        alt="Service Icon" id="showIcon"
-                                        style="object-fit:cover;object-position:center;border-radius:1%">
+                                    <img src="" alt="Selected Image" class="rounded-2" id="showImage"
+                                        style="object-fit:cover;object-position:center;width:180px;height:180px;">
                                 </div>
                             </div>
 
@@ -108,14 +110,25 @@
     @section('footer-content')
         <!-- The script to show the image what have been chosen by user but didn't submit yet. -->
         <script type="text/javascript">
-            $(document).ready(function() {
-                $('#icon').change(function(e) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#showIcon').attr('src', e.target.result);
+            document.addEventListener('DOMContentLoaded', function() {
+                const thumbnailInput = document.getElementById('icon');
+                const showImage = document.getElementById('showImage');
+                const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+                thumbnailInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            showImage.src = e.target.result;
+                            imagePreviewContainer.style.display = 'flex';
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                        showImage.src = "";
+                        imagePreviewContainer.style.display = 'none';
                     }
-                    reader.readAsDataURL(e.target.files['0']);
-                })
+                });
             });
         </script>
     @endsection

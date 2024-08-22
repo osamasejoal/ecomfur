@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('code')->unique();
-            $table->string('brand')->nullable();
+            // $table->string('brand')->nullable();
             $table->decimal('price', 8, 2);
-            $table->integer('discount')->nullable();
+            // $table->integer('discount')->nullable();
             $table->mediumText('short_description')->nullable();
             $table->longText('description');
             $table->json('images')->nullable();
             $table->string('thumbnail');
+            $table->enum('best_sale', ['on', 'off'])->default('off');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

@@ -1,62 +1,108 @@
 @extends('backend.layout.master')
 
 @section('header-content')
+    <!-- CSS -->
     <style>
-        .gallery-heading {
-            width: 35%;
-            padding-bottom: 50px;
+        .custom-heading {
+            display: inline-block;
+            padding-bottom: 20px;
+            margin: 1rem;
+            margin-left: .6rem;
         }
 
-        .gallery-heading h3 {
-            font-size: 3rem;
+        .custom-heading p {
+            font-size: 1.5rem;
             font-weight: bolder;
-            border-bottom: 3px solid #222;
+            border-bottom: 2px solid #222;
             padding-bottom: 10px;
+            padding-right: 70px;
         }
 
-        .gallery-heading h3 span {
+        .custom-heading p span {
             font-weight: 100;
         }
 
-        .grid-wrapper img {
+        .gallery-wrapper img {
             max-width: 100%;
             height: auto;
             vertical-align: middle;
             display: inline-block;
         }
 
-        .grid-wrapper>div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .gallery-wrapper>div {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
         }
 
-        .grid-wrapper>div>img {
+        .gallery-wrapper>div>img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 5px;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+
         }
 
-        .grid-wrapper {
+        .gallery-wrapper {
             display: grid;
-            grid-gap: 10px;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            grid-auto-rows: 350px;
+            grid-gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-auto-rows: 336px;
             grid-auto-flow: dense;
         }
 
-        .grid-wrapper .wide {
+        .gallery-wrapper .wide {
             grid-column: span 2;
         }
 
-        .grid-wrapper .tall {
+        .gallery-wrapper .tall {
             grid-row: span 2;
         }
 
-        .grid-wrapper .big {
+        .gallery-wrapper .big {
             grid-column: span 2;
             grid-row: span 2;
+        }
+
+        /* Image Overlay */
+        .overlay-single {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border-radius: 5px;
+        }
+
+        .overlay-single button {
+            color: #fff;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 3rem;
+            text-decoration: none;
+            transition: all .5s ease;
+            -webkit-transition: all .5s ease;
+            -moz-transition: all .5s ease;
+        }
+        
+        .single-image:hover .overlay-single {
+            opacity: 1;
+        }
+        .overlay-button:hover {
+            transform: scale(1.5);
+            -webkit-transform: scale(1.5);
+            -moz-transform: scale(1.5);
+            
         }
     </style>
 @endsection
@@ -89,114 +135,101 @@
                 <!-- end page title -->
 
                 <div class="row">
-                    <div class="col-lg-10 m-auto">
-                        <div class="col-12">
+                    <div class="col-lg-11 m-auto">
 
-                            <!-- About -->
-                            <div class="card border card-border-warning mt-4" style="margin-bottom: 10rem">
+                        <div class="row mb-5" style="font-size:1rem">
 
-                                <div class="card-header card-warning text-center fs-4">About</div>
+                            <!-- Edit -->
+                            <div class="update-button col-12 m-auto text-end mb-4">
+                                <a href="{{ route('about.edit', $about->id) }}" class="btn btn-warning px-5">Edit</a>
+                            </div>
 
-                                <div class="card-body row">
-                                    <div class="container">
+                            <!-- About Text -->
+                            <div class="col-12">
+                                <div class="card border-warning">
+                                    <div class="card-body">
 
-                                        <!-- Title -->
-                                        <div class="title d-md-flex m-md-4 mb-5">
-                                            <div class="col-md-3 col-12">
-                                                <h5>Title:</h5>
-                                            </div>
-                                            <div class="col-md-9 col-12">{{ $about->title }}</div>
+                                        <div class="custom-heading">
+                                            <p>About <span>Text</span> </p>
                                         </div>
 
-                                        <!-- Description -->
-                                        <div class="description d-md-flex m-md-4 mb-5">
-                                            <div class="col-md-3 col-12">
-                                                <h5>Description:</h5>
-                                            </div>
-                                            <div class="col-md-9 col-12">{{ $about->description }}</div>
+                                        <div class="table-responsive col-11 m-auto">
+                                            <table class="table">
+                                                <tbody>
+                                                    <!-- Title -->
+                                                    <tr>
+                                                        <td class="pb-5">
+                                                            <div class="d-inline-block fw-bold mb-3 border-bottom border-dark"
+                                                                style="padding-right:10px">Title: </div>
+                                                            <div class="mx-3">{{ $about->title }}</div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Description -->
+                                                    <tr>
+                                                        <td class="pt-5 pb-3 border-bottom-0">
+                                                            <div class="d-inline-block fw-bold mb-3 border-bottom border-dark"
+                                                                style="padding-right:10px">Description: </div>
+                                                            <div class="mx-3">{{ $about->description }}</div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
                                         </div>
-
-                                        <!-- Edit button for modal -->
-                                        <div class="update-button col-12 m-auto text-end mt-5">
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                Edit About
-                                            </button>
-                                        </div>
-
-                                        <!-- Edit Modal -->
-                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" style="color:#222;">
-                                                <div class="modal-content">
-
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="border-bottom: 2px solid #222;padding-bottom: 5px;padding-right:50px;color:#222">
-                                                            Edit About
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-
-                                                        <form action="{{ route('about.update', $about->id) }}" method="POST">
-                                                            @method('put')
-                                                            @csrf
-                                                            <!-- Title -->
-                                                            <div class="mb-3 mt-4">
-                                                                <label for="title" class="form-label h6">Title:</label>
-                                                                <input type="text" name="title" value="{{ $about->title }}" class="form-control" id="title"
-                                                                    placeholder="Write your About title">
-                                                            </div>
-                                                            <!-- Description -->
-                                                            <div class="mb-3 mt-5">
-                                                                <label for="description"
-                                                                    class="form-label h6">Description:</label>
-                                                                <textarea name="description" id="description" rows="8" class="form-control" placeholder="Write your About description">{{ $about->description }}</textarea>
-                                                            </div>
-                                                    </div>
-
-                                                    <div class="modal-footer mt-3">
-                                                        <button type="button" class="btn btn-secondary m-3"
-                                                            data-bs-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-warning m-3">Update</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> <!-- End Modal -->
 
                                     </div>
-
                                 </div>
-                            </div> <!-- End About -->
+                            </div> <!-- End About Text -->
 
-                            <!-- Gallery -->
-                            <div class="gallery" style="margin-bottom: 5rem">
-                                <div class="gallery-heading">
-                                    <h3>Photo <span>Gallery</span></h3>
-                                </div>
-                                <div class="grid-wrapper mb-5">
+                            <!-- About Images -->
+                            <div class="col-12 mt-5">
+                                <div class="card border-warning">
+                                    <div class="card-body">
 
-                                    @if ($about->images)
-                                        @foreach ($about->images as $image)
-                                            <div><img src="{{ asset($image) }}" alt="Gallery Image"></div>
-                                        @endforeach
-                                    @else
-                                        <p>No images available.</p>
-                                    @endif
+                                        <div class="gallery">
 
+                                            <div class="custom-heading">
+                                                <p>About <span>Images</span> </p>
+                                            </div>
+
+                                            @if ($about->images)
+                                                <div class="gallery-wrapper">
+                                                    @foreach ($about->images as $image)
+                                                        <div class="single-image">
+                                                            <img src="{{ asset($image) }}" alt="Product Image">
+
+                                                            <div class="overlay-single">
+                                                                <form action="{{ route('about.deleteImage') }}"
+                                                                    method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @method('DELETE')
+
+                                                                    <input type="hidden" name="image"
+                                                                        value="{{ $image }}">
+                                                                    <button type="submit" class="overlay-button"><i
+                                                                            class="mdi mdi-delete"></i></button>
+
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @else
+                                                <div>
+                                                    <p class="text-center text-danger">There is no Image to show!</p>
+                                                </div>
+                                            @endif
+
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="action-button text-end">
-                                    <button type="button" class="btn btn-danger m-3">Delete Photo</button>
-                                    <button type="button" class="btn btn-warning m-3">Add Photo</button>
-                                </div>
-                            </div>
+                            </div> <!-- End About Images -->
 
                         </div>
                     </div>
+
                 </div>
 
             </div>

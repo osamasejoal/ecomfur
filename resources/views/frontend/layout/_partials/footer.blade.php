@@ -406,7 +406,7 @@
             icon: "success",
             title: "{{ session('success') }}",
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
         });
     </script>
 @endif
@@ -417,7 +417,20 @@
         Swal.fire({
             title: "{{ session('warning') }}",
             text: false,
-            icon: "warning"
+            icon: "warning",
+            timer: 1500
+        });
+    </script>
+@endif
+
+<!-- Error Toaster -->
+@if (session('error'))
+    <script>
+        Swal.fire({
+            title: "{{ session('error') }}",
+            text: false,
+            icon: "error",
+            timer: 1500
         });
     </script>
 @endif

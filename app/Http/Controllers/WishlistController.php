@@ -14,6 +14,11 @@ class WishlistController extends Controller
     public function store($id)
     {
         
+        // $status = Wishlist::where('user_id', auth()->id())->get();
+
+        // echo $status;
+
+
         $status = Wishlist::where('user_id', auth()->id())->where('product_id', $id)->first();
         
         if (isset($status->user_id) and isset($id)) {

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->unique()->nullable();
-            $table->integer('birthyear')->nullable();
-            $table->string('image')->default('default.png');
+            $table->date('birthday')->nullable();
+            $table->string('image')->default('seeder_images/default_profile.png');
             $table->enum('gender', ['male','female', 'others']);
             $table->enum('role', ['admin','moderator','user'])->default('user');
             $table->rememberToken();

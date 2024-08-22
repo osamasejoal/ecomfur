@@ -28,11 +28,10 @@
     </div>
     <!-- Page Banner Section End -->
 
-    <!-- Shopping Cart Section Start -->
+    <!-- Shopping Wishlist Section Start -->
     <div class="section section-padding">
         <div class="container">
             <div class="cart-wrapper">
-                <!-- Cart Wrapper Start -->
                 <div class="cart-table table-responsive">
                     <table class="table">
                         <thead>
@@ -95,9 +94,9 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Cart Wrapper End -->
+
             </div>
         </div>
     </div>
-    <!-- Shopping Cart Section End -->
+    <!-- Shopping Wishlist Section End -->
 @endsection

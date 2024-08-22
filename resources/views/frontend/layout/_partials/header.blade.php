@@ -102,7 +102,17 @@
 
                                 <ul class="dropdown-menu dropdown-profile">
                                     @auth
-                                        <li><a href="my-account.html">My Account</a></li>
+                                    
+                                        <!-- Profile -->
+                                        <li><a href="{{ route('user.profile') }}">My Profile</a></li>
+                                    
+                                        <!-- Orders -->
+                                        <li><a href="{{ route('user.orders') }}">My Orders</a></li>
+                                    
+                                        <!-- Address -->
+                                        <li><a href="{{ route('user.address') }}">Address</a></li>
+
+                                        <!-- Logout -->
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}"
                                                 style="display:inline-block;padding:3px 1.5rem;color:#373a3c"
@@ -117,6 +127,7 @@
                                                     style="border: none;background: transparent;padding: 0;">
                                             </form>
                                         </li>
+
                                     @else
                                         <li><a href="{{ route('login') }}">Login</a></li>
                                         <li><a href="{{ route('register') }}">Sign Up</a></li>
@@ -133,99 +144,12 @@
                             </a>
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="action" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="pe-7s-shopbag"></i>
-                                    <span class="number">3</span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-cart">
-                                    <div class="cart-content" id="cart-content">
-                                        <ul>
-                                            <li>
-                                                <!-- Single Cart Item Start -->
-                                                <div class="single-cart-item">
-                                                    <div class="cart-thumb">
-                                                        <img src="{{ asset('frontend') }}/assets/images/cart/cart-1.jpg"
-                                                            width="98" height="98" alt="Cart" />
-                                                        <span class="product-quantity">1x</span>
-                                                    </div>
-                                                    <div class="cart-item-content">
-                                                        <h6 class="product-name">
-                                                            <a href="#">High quality vase
-                                                                bottle</a>
-                                                        </h6>
-                                                        <span class="product-price">$19.12</span>
-                                                        <div class="attributes-content">
-                                                            <span><strong>Color:</strong>
-                                                                White
-                                                            </span>
-                                                        </div>
-                                                        <a class="cart-remove" href="#"><i
-                                                                class="las la-times"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!-- Single Cart Item End -->
-                                            </li>
-                                            <li>
-                                                <!-- Single Cart Item Start -->
-                                                <div class="single-cart-item">
-                                                    <div class="cart-thumb">
-                                                        <img src="{{ asset('frontend') }}/assets/images/cart/cart-2.jpg"
-                                                            width="98" height="98" alt="Cart" />
-                                                        <span class="product-quantity">1x</span>
-                                                    </div>
-                                                    <div class="cart-item-content">
-                                                        <h6 class="product-name">
-                                                            <a href="#">Living & Bedroom
-                                                                Chair</a>
-                                                        </h6>
-                                                        <span class="product-price">$19.12</span>
-                                                        <div class="attributes-content">
-                                                            <span><strong>Color:</strong>
-                                                                White
-                                                            </span>
-                                                        </div>
-                                                        <a class="cart-remove" href="#"><i
-                                                                class="las la-times"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!-- Single Cart Item End -->
-                                            </li>
-                                            <li>
-                                                <!-- Single Cart Item Start -->
-                                                <div class="single-cart-item">
-                                                    <div class="cart-thumb">
-                                                        <img src="{{ asset('frontend') }}/assets/images/cart/cart-3.jpg"
-                                                            width="98" height="98" alt="Cart" />
-                                                        <span class="product-quantity">1x</span>
-                                                    </div>
-                                                    <div class="cart-item-content">
-                                                        <h6 class="product-name">
-                                                            <a href="#">Herman Arm Grey
-                                                                Chair</a>
-                                                        </h6>
-                                                        <span class="product-price">$19.12</span>
-                                                        <div class="attributes-content">
-                                                            <span><strong>Color:</strong>
-                                                                White
-                                                            </span>
-                                                        </div>
-                                                        <a class="cart-remove" href="#"><i
-                                                                class="las la-times"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!-- Single Cart Item End -->
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="checkout-btn">
-                                        <a href="checkout.html"
-                                            class="btn btn-dark btn-hover-primary d-block">Checkout</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="action" href="{{ route('cart.view') }}">
+                                <i class="pe-7s-shopbag"></i>
+                                @if (count(carts()) > 0)
+                                    <span class="number" style="right:1px;opacity:0.8">{{ count(carts()) }}</span>
+                                @endif
+                            </a>
                         @else
                             <div class="log-up user-select-none">
                                 <a href="{{ route('login') }}">Login</a>

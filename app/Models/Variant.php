@@ -16,6 +16,12 @@ class Variant extends Model
         return $this->belongsTo(Product::class);
     }
 
+    // hasMany relation with cart table
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     // belongsTo orderItem table
     public function orderItem()
     {

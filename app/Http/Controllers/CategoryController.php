@@ -143,4 +143,16 @@ class CategoryController extends Controller
         }
 
     }
+    
+    /*--------------------------------------------------------------------------
+    toggle Featured method
+    --------------------------------------------------------------------------*/
+    public function toggleFeatured(Request $request, $id)
+    {
+        $category = Category::find($id);
+        $category->featured = $request->featured;
+        $category->save();
+
+        return response()->json(['message' => 'Featured status updated successfully.']);
+    }
 }

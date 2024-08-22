@@ -1,10 +1,10 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\FrontImage;
 use App\Models\Wishlist;
 use App\Models\Category;
-
-
+use App\Models\Variant;
 
     /*--------------------------------------------------------------------------
     Breadcrumb Background Image method
@@ -14,9 +14,12 @@ use App\Models\Category;
     }
 
     /*--------------------------------------------------------------------------
-    wishlist method
+    wishlists method
     --------------------------------------------------------------------------*/
     function wishlists(){
+        // return Wishlist::where('user_id', auth()->id())->product();
+
+
         return Wishlist::where('user_id', auth()->id())->get();
     }
 
@@ -28,10 +31,31 @@ use App\Models\Category;
     }
 
     /*--------------------------------------------------------------------------
+    carts method
+    --------------------------------------------------------------------------*/
+    function carts(){
+        return Cart::where('user_id', auth()->id())->get();
+    }
+
+    /*--------------------------------------------------------------------------
+    cart exist method
+    --------------------------------------------------------------------------*/
+    function cart_exist($id){
+        return Cart::where('user_id', auth()->id())->where('product_id', $id)->first();
+    }
+
+    /*--------------------------------------------------------------------------
     categories method
     --------------------------------------------------------------------------*/
     function categories(){
         return Category::all();
+    }
+
+    /*--------------------------------------------------------------------------
+    variants method
+    --------------------------------------------------------------------------*/
+    function variants($id){
+        return Variant::where('product_id', $id)->get();
     }
 
 ?>

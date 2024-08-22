@@ -39,8 +39,6 @@
                                 <tr class="table-bordered border-warning fw-bold">
                                     <th class="fw-bolder" scope="col">Product</th>
                                     <th class="fw-bolder" scope="col">Color</th>
-                                    <th class="fw-bolder" scope="col">Color Code</th>
-                                    <th class="fw-bolder" scope="col">Size</th>
                                     <th class="fw-bolder" scope="col">Stock</th>
                                     <th class="fw-bolder" scope="col">Action</th>
                                 </tr>
@@ -55,24 +53,6 @@
                                         <td style="vertical-align:middle">
                                             @if ($variant->color)
                                                 {{ $variant->color }}
-                                            @else
-                                                <span class="fst-italic fw-light text-muted">Null</span>
-                                            @endif
-                                        </td>
-
-                                        <!-- Color Code -->
-                                        <td style="vertical-align:middle">
-                                            @if ($variant->color_code)
-                                                {{ $variant->color_code }}
-                                            @else
-                                                <span class="fst-italic fw-light text-muted">Null</span>
-                                            @endif
-                                        </td>
-
-                                        <!-- Size -->
-                                        <td style="vertical-align:middle">
-                                            @if ($variant->size)
-                                                {{ $variant->size }}
                                             @else
                                                 <span class="fst-italic fw-light text-muted">Null</span>
                                             @endif

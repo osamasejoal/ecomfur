@@ -66,7 +66,15 @@
                                         <td style="vertical-align:middle">{{ $coupon->limit }}</td>
 
                                         <!-- Status -->
-                                        <td style="vertical-align:middle">{{ $coupon->status }}</td>
+                                        <!-- Status -->
+                                        <td style="vertical-align:middle;background:transparent">
+                                            <div
+                                                class="form-check form-switch form-switch-warning form-switch-md text-center">
+                                                <input class="form-check-input status_toggle" type="checkbox" role="switch"
+                                                    id="statusSwitch{{ $coupon->id }}" data-id="{{ $coupon->id }}"
+                                                    {{ $coupon->status === 'active' ? 'checked' : '' }}>
+                                            </div>
+                                        </td>
 
                                         <!-- Action -->
                                         <td style="vertical-align:middle;cursor:default;">
@@ -104,3 +112,48 @@
         </div>
         <!-- End Page-content -->
     @endsection
+
+    @section('footer-content')
+    <script>
+        $(document).ready(function() {
+
+            // Handle Status Toggle
+            $('.status_toggle').change(function() {
+                var toggleSwitch = $(this);
+                var coupon_id = toggleSwitch.data('id');
+                var currentStatus = toggleSwitch.is(':checked') ? 'active' : 'inactive';
+
+                $.ajax({
+                    url: '{{ route('coupon.toggleStatus', '') }}/' + coupon_id,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        status: currentStatus
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'An error occurred while updating the status.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+
+                        // Revert the switch to its previous state
+                        toggleSwitch.prop('checked', !toggleSwitch.is(':checked'));
+                    }
+                });
+            });
+
+        });
+    </script>
+@endsection
